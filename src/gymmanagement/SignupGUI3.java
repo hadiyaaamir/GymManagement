@@ -9,18 +9,24 @@ package gymmanagement;
  *
  * @author PC
  */
-public class LoginGUI extends javax.swing.JFrame {
+public class SignupGUI3 extends javax.swing.JFrame {
 
     /**
      * Creates new form HomePageGUI
      */
-    public LoginGUI() {
+    public SignupGUI3() {
         initComponents();
         
         classHover.setVisible(false);
         teamHover.setVisible(false);
         aboutHover.setVisible(false);
         xHover.setVisible(false);
+        
+        age.setVisible(false);
+        height.setVisible(false);
+        weight.setVisible(false);
+        
+        
     }
 
     /**
@@ -32,11 +38,10 @@ public class LoginGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        signup = new javax.swing.JLabel();
-        passwordText = new javax.swing.JTextField();
-        password = new javax.swing.JPasswordField();
-        emailText = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
+        height = new javax.swing.JTextField();
+        bmi = new javax.swing.JLabel();
+        weight = new javax.swing.JTextField();
+        age = new javax.swing.JTextField();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
         aboutHover = new javax.swing.JLabel();
@@ -47,89 +52,87 @@ public class LoginGUI extends javax.swing.JFrame {
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        loginBtn = new javax.swing.JButton();
+        prevBtn = new javax.swing.JButton();
+        nextBtn = new javax.swing.JButton();
+        ageBtn = new javax.swing.JButton();
+        heightBtn = new javax.swing.JButton();
+        weightBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(764, 493));
         setMinimumSize(new java.awt.Dimension(764, 493));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(764, 493));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        signup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/signup nonhover.PNG"))); // NOI18N
-        getContentPane().add(signup);
-        signup.setBounds(409, 434, 125, 40);
-
-        passwordText.setBackground(new java.awt.Color(56, 85, 98));
-        passwordText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        passwordText.setForeground(new java.awt.Color(255, 255, 255));
-        passwordText.setText(" Password");
-        passwordText.setBorder(null);
-        passwordText.setCaretColor(new java.awt.Color(56, 85, 98));
-        passwordText.setSelectionColor(new java.awt.Color(255, 255, 255));
-        passwordText.addMouseListener(new java.awt.event.MouseAdapter() {
+        height.setBackground(new java.awt.Color(56, 85, 98));
+        height.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        height.setForeground(new java.awt.Color(255, 255, 255));
+        height.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        height.setText(" ");
+        height.setBorder(null);
+        height.setCaretColor(new java.awt.Color(255, 255, 255));
+        height.setSelectionColor(new java.awt.Color(255, 255, 255));
+        height.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                passwordTextMouseClicked(evt);
+                heightMouseClicked(evt);
             }
         });
-        passwordText.addActionListener(new java.awt.event.ActionListener() {
+        height.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextActionPerformed(evt);
+                heightActionPerformed(evt);
             }
         });
-        getContentPane().add(passwordText);
-        passwordText.setBounds(250, 308, 270, 30);
+        getContentPane().add(height);
+        height.setBounds(266, 275, 50, 30);
 
-        password.setBackground(new java.awt.Color(56, 85, 98));
-        password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        password.setForeground(new java.awt.Color(255, 255, 255));
-        password.setBorder(null);
-        password.setSelectionColor(new java.awt.Color(56, 85, 98));
-        getContentPane().add(password);
-        password.setBounds(250, 310, 230, 30);
+        bmi.setBackground(new java.awt.Color(56, 85, 98));
+        bmi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bmi.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(bmi);
+        bmi.setBounds(490, 280, 60, 20);
 
-        emailText.setBackground(new java.awt.Color(56, 85, 98));
-        emailText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        emailText.setForeground(new java.awt.Color(255, 255, 255));
-        emailText.setText(" Email");
-        emailText.setBorder(null);
-        emailText.setCaretColor(new java.awt.Color(56, 85, 98));
-        emailText.setSelectionColor(new java.awt.Color(255, 255, 255));
-        emailText.addMouseListener(new java.awt.event.MouseAdapter() {
+        weight.setBackground(new java.awt.Color(56, 85, 98));
+        weight.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        weight.setForeground(new java.awt.Color(255, 255, 255));
+        weight.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        weight.setText(" ");
+        weight.setBorder(null);
+        weight.setCaretColor(new java.awt.Color(255, 255, 255));
+        weight.setSelectionColor(new java.awt.Color(255, 255, 255));
+        weight.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emailTextMouseClicked(evt);
+                weightMouseClicked(evt);
             }
         });
-        emailText.addActionListener(new java.awt.event.ActionListener() {
+        weight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextActionPerformed(evt);
+                weightActionPerformed(evt);
             }
         });
-        getContentPane().add(emailText);
-        emailText.setBounds(250, 253, 270, 30);
+        getContentPane().add(weight);
+        weight.setBounds(477, 218, 50, 30);
 
-        email.setBackground(new java.awt.Color(56, 85, 98));
-        email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        email.setForeground(new java.awt.Color(255, 255, 255));
-        email.setText(" ");
-        email.setBorder(null);
-        email.setCaretColor(new java.awt.Color(255, 255, 255));
-        email.setSelectionColor(new java.awt.Color(56, 85, 98));
-        email.addMouseListener(new java.awt.event.MouseAdapter() {
+        age.setBackground(new java.awt.Color(56, 85, 98));
+        age.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        age.setForeground(new java.awt.Color(255, 255, 255));
+        age.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        age.setText(" ");
+        age.setBorder(null);
+        age.setCaretColor(new java.awt.Color(255, 255, 255));
+        age.setSelectionColor(new java.awt.Color(255, 255, 255));
+        age.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emailMouseClicked(evt);
+                ageMouseClicked(evt);
             }
         });
-        email.addActionListener(new java.awt.event.ActionListener() {
+        age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
+                ageActionPerformed(evt);
             }
         });
-        getContentPane().add(email);
-        email.setBounds(250, 253, 270, 30);
+        getContentPane().add(age);
+        age.setBounds(250, 220, 50, 30);
 
         xHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x hover.PNG"))); // NOI18N
         getContentPane().add(xHover);
@@ -151,7 +154,7 @@ public class LoginGUI extends javax.swing.JFrame {
         getContentPane().add(teamHover);
         teamHover.setBounds(498, 16, 100, 60);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/login.PNG"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/signup 3.PNG"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 770, 495);
 
@@ -226,47 +229,70 @@ public class LoginGUI extends javax.swing.JFrame {
         getContentPane().add(classBtn);
         classBtn.setBounds(620, 10, 80, 40);
 
-        jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        prevBtn.setText("jButton1");
+        prevBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                prevBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                prevBtnMouseExited(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        prevBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                prevBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(410, 440, 120, 30);
+        getContentPane().add(prevBtn);
+        prevBtn.setBounds(200, 438, 150, 40);
 
-        loginBtn.setText("jButton1");
-        loginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        nextBtn.setText("jButton1");
+        nextBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                loginBtnMouseEntered(evt);
+                nextBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                loginBtnMouseExited(evt);
+                nextBtnMouseExited(evt);
             }
         });
-        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginBtnActionPerformed(evt);
+                nextBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(loginBtn);
-        loginBtn.setBounds(235, 386, 290, 40);
+        getContentPane().add(nextBtn);
+        nextBtn.setBounds(420, 438, 150, 40);
+
+        ageBtn.setText("jButton1");
+        ageBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ageBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ageBtn);
+        ageBtn.setBounds(200, 210, 160, 40);
+
+        heightBtn.setText("jButton1");
+        heightBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                heightBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(heightBtn);
+        heightBtn.setBounds(200, 270, 160, 40);
+
+        weightBtn.setText("jButton1");
+        weightBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                weightBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(weightBtn);
+        weightBtn.setBounds(410, 210, 160, 40);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginBtnActionPerformed
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
         // TODO add your handling code here:
@@ -291,14 +317,6 @@ public class LoginGUI extends javax.swing.JFrame {
     private void xBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseExited
         xHover.setVisible(false);
     }//GEN-LAST:event_xBtnMouseExited
-
-    private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
-        
-    }//GEN-LAST:event_loginBtnMouseEntered
-
-    private void loginBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseExited
-        
-    }//GEN-LAST:event_loginBtnMouseExited
 
     private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
         
@@ -328,43 +346,65 @@ public class LoginGUI extends javax.swing.JFrame {
         classHover.setVisible(false);
     }//GEN-LAST:event_classBtnMouseExited
 
-    private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextActionPerformed
+    }//GEN-LAST:event_nextBtnActionPerformed
 
-    private void emailTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailTextMouseClicked
-        emailText.setVisible(false);
-        email.setVisible(true);
-    }//GEN-LAST:event_emailTextMouseClicked
+    private void nextBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseEntered
+        
+    }//GEN-LAST:event_nextBtnMouseEntered
 
-    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
+    private void nextBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseExited
+        
+    }//GEN-LAST:event_nextBtnMouseExited
+
+    private void ageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ageMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextActionPerformed
+    }//GEN-LAST:event_ageMouseClicked
 
-    private void passwordTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextMouseClicked
-        passwordText.setVisible(false);
-        password.setVisible(true);
-    }//GEN-LAST:event_passwordTextMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ageActionPerformed
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        signup.setVisible(false);
-    }//GEN-LAST:event_jButton1MouseEntered
-
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        signup.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseExited
-
-    private void emailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailMouseClicked
+    private void heightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_heightMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailMouseClicked
+    }//GEN-LAST:event_heightMouseClicked
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+    private void heightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heightActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
+    }//GEN-LAST:event_heightActionPerformed
+
+    private void prevBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prevBtnMouseEntered
+
+    private void prevBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prevBtnMouseExited
+
+    private void prevBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prevBtnActionPerformed
+
+    private void ageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageBtnActionPerformed
+        age.setVisible(true);
+    }//GEN-LAST:event_ageBtnActionPerformed
+
+    private void heightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heightBtnActionPerformed
+        height.setVisible(true);
+    }//GEN-LAST:event_heightBtnActionPerformed
+
+    private void weightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weightBtnActionPerformed
+        weight.setVisible(true);
+    }//GEN-LAST:event_weightBtnActionPerformed
+
+    private void weightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_weightMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_weightMouseClicked
+
+    private void weightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_weightActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,21 +423,51 @@ public class LoginGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignupGUI3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignupGUI3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignupGUI3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignupGUI3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginGUI().setVisible(true);
+                new SignupGUI3().setVisible(true);
             }
         });
     }
@@ -405,18 +475,20 @@ public class LoginGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;
     private javax.swing.JLabel aboutHover;
+    private javax.swing.JTextField age;
+    private javax.swing.JButton ageBtn;
     private javax.swing.JLabel background;
+    private javax.swing.JLabel bmi;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
-    private javax.swing.JTextField email;
-    private javax.swing.JTextField emailText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton loginBtn;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JTextField passwordText;
-    private javax.swing.JLabel signup;
+    private javax.swing.JTextField height;
+    private javax.swing.JButton heightBtn;
+    private javax.swing.JButton nextBtn;
+    private javax.swing.JButton prevBtn;
     private javax.swing.JButton teamBtn;
     private javax.swing.JLabel teamHover;
+    private javax.swing.JTextField weight;
+    private javax.swing.JButton weightBtn;
     private javax.swing.JLabel x;
     private javax.swing.JButton xBtn;
     private javax.swing.JLabel xHover;
