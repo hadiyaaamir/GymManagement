@@ -11,9 +11,10 @@ package gymmanagement;
  */
 public class HomePageGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomePageGUI
-     */
+    public static SignupGUI1 s1 = new SignupGUI1();
+    public static SignupGUI2 s2 = new SignupGUI2();
+    public static SignupGUI3 s3 = new SignupGUI3();
+    
     public HomePageGUI() {
         initComponents();
         
@@ -204,7 +205,8 @@ public class HomePageGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupBtnActionPerformed
-        
+        new SignupGUI1().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_signupBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
@@ -246,6 +248,7 @@ public class HomePageGUI extends javax.swing.JFrame {
 
     private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
         loginHover.setVisible(true);
+        
     }//GEN-LAST:event_loginBtnMouseEntered
 
     private void loginBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseExited

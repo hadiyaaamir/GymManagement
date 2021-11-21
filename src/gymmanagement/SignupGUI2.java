@@ -11,22 +11,26 @@ package gymmanagement;
  */
 public class SignupGUI2 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomePageGUI
-     */
+    public static String cnic;
+    public static String phoneNum;
+    public static String add;
+    public static String gen;
+
     public SignupGUI2() {
         initComponents();
-        
+
         classHover.setVisible(false);
         teamHover.setVisible(false);
         aboutHover.setVisible(false);
         xHover.setVisible(false);
-        
+
         CNIC.setVisible(false);
         phone.setVisible(false);
         address.setVisible(false);
-        
-        
+
+        phoneError.setVisible(false);
+        CNICerror.setVisible(false);
+
     }
 
     /**
@@ -38,6 +42,9 @@ public class SignupGUI2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        phoneError = new javax.swing.JLabel();
+        CNICerror = new javax.swing.JLabel();
         address = new javax.swing.JTextArea();
         gender = new javax.swing.JComboBox<>();
         phone = new javax.swing.JTextField();
@@ -52,7 +59,6 @@ public class SignupGUI2 extends javax.swing.JFrame {
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
-        prevBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
         cnicBtn = new javax.swing.JButton();
         phoneBtn = new javax.swing.JButton();
@@ -64,6 +70,20 @@ public class SignupGUI2 extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(190, 430, 170, 50);
+
+        phoneError.setForeground(new java.awt.Color(192, 0, 0));
+        phoneError.setText("* Phone number length is incorrect *");
+        getContentPane().add(phoneError);
+        phoneError.setBounds(200, 300, 300, 14);
+
+        CNICerror.setForeground(new java.awt.Color(192, 0, 0));
+        CNICerror.setText("* CNIC length is incorrect *");
+        getContentPane().add(CNICerror);
+        CNICerror.setBounds(200, 244, 200, 14);
 
         address.setBackground(new java.awt.Color(56, 85, 98));
         address.setColumns(1);
@@ -231,23 +251,6 @@ public class SignupGUI2 extends javax.swing.JFrame {
         getContentPane().add(classBtn);
         classBtn.setBounds(620, 10, 80, 40);
 
-        prevBtn.setText("jButton1");
-        prevBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                prevBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                prevBtnMouseExited(evt);
-            }
-        });
-        prevBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prevBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(prevBtn);
-        prevBtn.setBounds(200, 438, 150, 40);
-
         nextBtn.setText("jButton1");
         nextBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -321,7 +324,7 @@ public class SignupGUI2 extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnMouseExited
 
     private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
-        
+
     }//GEN-LAST:event_aboutBtnMouseClicked
 
     private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
@@ -349,15 +352,30 @@ public class SignupGUI2 extends javax.swing.JFrame {
     }//GEN-LAST:event_classBtnMouseExited
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
-        // TODO add your handling code here:
+        phoneError.setVisible(false);
+        CNICerror.setVisible(false);
+
+        cnic = CNIC.getText();
+        phoneNum = phone.getText();
+        add = address.getText();
+        gen = gender.getItemAt(gender.getSelectedIndex());
+
+        if (cnic.length() != 13) {
+            CNICerror.setVisible(true);
+        } else if (phoneNum.length() != 11) {
+            phoneError.setVisible(true);
+        } else {
+            HomePageGUI.s3.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_nextBtnActionPerformed
 
     private void nextBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseEntered
-        
+
     }//GEN-LAST:event_nextBtnMouseEntered
 
     private void nextBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseExited
-        
+
     }//GEN-LAST:event_nextBtnMouseExited
 
     private void CNICMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CNICMouseClicked
@@ -379,18 +397,6 @@ public class SignupGUI2 extends javax.swing.JFrame {
     private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderActionPerformed
-
-    private void prevBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBtnMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prevBtnMouseEntered
-
-    private void prevBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBtnMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prevBtnMouseExited
-
-    private void prevBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prevBtnActionPerformed
 
     private void cnicBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cnicBtnActionPerformed
         CNIC.setVisible(true);
@@ -455,20 +461,22 @@ public class SignupGUI2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CNIC;
+    public javax.swing.JTextField CNIC;
+    private javax.swing.JLabel CNICerror;
     private javax.swing.JButton aboutBtn;
     private javax.swing.JLabel aboutHover;
-    private javax.swing.JTextArea address;
+    public javax.swing.JTextArea address;
     private javax.swing.JButton addressBtn;
     private javax.swing.JLabel background;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
     private javax.swing.JButton cnicBtn;
-    private javax.swing.JComboBox<String> gender;
+    public javax.swing.JComboBox<String> gender;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton nextBtn;
-    private javax.swing.JTextField phone;
+    public javax.swing.JTextField phone;
     private javax.swing.JButton phoneBtn;
-    private javax.swing.JButton prevBtn;
+    private javax.swing.JLabel phoneError;
     private javax.swing.JButton teamBtn;
     private javax.swing.JLabel teamHover;
     private javax.swing.JLabel x;

@@ -11,9 +11,10 @@ package gymmanagement;
  */
 public class SignupGUI3 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomePageGUI
-     */
+    public static int agee;
+    public static int w;
+    public static int h;
+    
     public SignupGUI3() {
         initComponents();
         
@@ -38,6 +39,7 @@ public class SignupGUI3 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         height = new javax.swing.JTextField();
         bmi = new javax.swing.JLabel();
         weight = new javax.swing.JTextField();
@@ -52,7 +54,6 @@ public class SignupGUI3 extends javax.swing.JFrame {
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
-        prevBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
         ageBtn = new javax.swing.JButton();
         heightBtn = new javax.swing.JButton();
@@ -64,6 +65,10 @@ public class SignupGUI3 extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(190, 430, 170, 50);
 
         height.setBackground(new java.awt.Color(56, 85, 98));
         height.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -229,23 +234,6 @@ public class SignupGUI3 extends javax.swing.JFrame {
         getContentPane().add(classBtn);
         classBtn.setBounds(620, 10, 80, 40);
 
-        prevBtn.setText("jButton1");
-        prevBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                prevBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                prevBtnMouseExited(evt);
-            }
-        });
-        prevBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prevBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(prevBtn);
-        prevBtn.setBounds(200, 438, 150, 40);
-
         nextBtn.setText("jButton1");
         nextBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -347,7 +335,20 @@ public class SignupGUI3 extends javax.swing.JFrame {
     }//GEN-LAST:event_classBtnMouseExited
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
-        // TODO add your handling code here:
+        
+//        int age = CNIC.getText();
+//        int phoneNum = phone.getText();
+//
+//        if (cnic.length() != 13) {
+//            CNICerror.setVisible(true);
+//        } 
+//        else if (phoneNum.length() != 11) {
+//            phoneError.setVisible(true);
+//        } 
+//        else {
+//            HomePageGUI.s3.setVisible(true);
+//            this.setVisible(false);
+//        }
     }//GEN-LAST:event_nextBtnActionPerformed
 
     private void nextBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseEntered
@@ -373,18 +374,6 @@ public class SignupGUI3 extends javax.swing.JFrame {
     private void heightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heightActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_heightActionPerformed
-
-    private void prevBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBtnMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prevBtnMouseEntered
-
-    private void prevBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevBtnMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prevBtnMouseExited
-
-    private void prevBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prevBtnActionPerformed
 
     private void ageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageBtnActionPerformed
         age.setVisible(true);
@@ -475,19 +464,19 @@ public class SignupGUI3 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;
     private javax.swing.JLabel aboutHover;
-    private javax.swing.JTextField age;
+    public javax.swing.JTextField age;
     private javax.swing.JButton ageBtn;
     private javax.swing.JLabel background;
     private javax.swing.JLabel bmi;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
-    private javax.swing.JTextField height;
+    public javax.swing.JTextField height;
     private javax.swing.JButton heightBtn;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton nextBtn;
-    private javax.swing.JButton prevBtn;
     private javax.swing.JButton teamBtn;
     private javax.swing.JLabel teamHover;
-    private javax.swing.JTextField weight;
+    public javax.swing.JTextField weight;
     private javax.swing.JButton weightBtn;
     private javax.swing.JLabel x;
     private javax.swing.JButton xBtn;
