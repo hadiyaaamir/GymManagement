@@ -5,22 +5,27 @@
  */
 package gymmanagement;
 
-/**
- *
- * @author PC
- */
-public class AboutUsGUI extends javax.swing.JFrame {
+import java.text.DecimalFormat;
 
-    /**
-     * Creates new form HomePageGUI
-     */
-    public AboutUsGUI() {
+public class PaymentPlanGUI extends javax.swing.JFrame {
+
+    public static String plan = "";
+    public static String p_id = "";
+
+    public PaymentPlanGUI() {
         initComponents();
-        
+
         classHover.setVisible(false);
         teamHover.setVisible(false);
         aboutHover.setVisible(false);
         xHover.setVisible(false);
+
+        ahover.setVisible(false);
+        bhover.setVisible(false);
+        mhover.setVisible(false);
+
+        fillAll.setVisible(false);
+
     }
 
     /**
@@ -32,6 +37,10 @@ public class AboutUsGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fillAll = new javax.swing.JLabel();
+        ahover = new javax.swing.JLabel();
+        bhover = new javax.swing.JLabel();
+        mhover = new javax.swing.JLabel();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
         aboutHover = new javax.swing.JLabel();
@@ -43,6 +52,10 @@ public class AboutUsGUI extends javax.swing.JFrame {
         teamBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
+        monthlyBtn = new javax.swing.JButton();
+        byeBtn = new javax.swing.JButton();
+        yearlyBtn = new javax.swing.JButton();
+        conBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -50,6 +63,23 @@ public class AboutUsGUI extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
+
+        fillAll.setForeground(new java.awt.Color(192, 0, 0));
+        fillAll.setText("* Please choose a plan*");
+        getContentPane().add(fillAll);
+        fillAll.setBounds(325, 190, 300, 14);
+
+        ahover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/annual hover.PNG"))); // NOI18N
+        getContentPane().add(ahover);
+        ahover.setBounds(518, 217, 220, 200);
+
+        bhover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/biannual hover.PNG"))); // NOI18N
+        getContentPane().add(bhover);
+        bhover.setBounds(276, 218, 220, 200);
+
+        mhover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/monthly hover.PNG"))); // NOI18N
+        getContentPane().add(mhover);
+        mhover.setBounds(40, 216, 220, 200);
 
         xHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x hover.PNG"))); // NOI18N
         getContentPane().add(xHover);
@@ -71,7 +101,7 @@ public class AboutUsGUI extends javax.swing.JFrame {
         getContentPane().add(teamHover);
         teamHover.setBounds(498, 16, 100, 60);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/aboutus.PNG"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/plan.PNG"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 770, 495);
 
@@ -155,12 +185,80 @@ public class AboutUsGUI extends javax.swing.JFrame {
         getContentPane().add(homeBtn);
         homeBtn.setBounds(40, 0, 180, 60);
 
+        monthlyBtn.setText("jButton1");
+        monthlyBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                monthlyBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                monthlyBtnMouseExited(evt);
+            }
+        });
+        monthlyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthlyBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(monthlyBtn);
+        monthlyBtn.setBounds(50, 220, 200, 190);
+
+        byeBtn.setText("jButton1");
+        byeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                byeBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                byeBtnMouseExited(evt);
+            }
+        });
+        byeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                byeBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(byeBtn);
+        byeBtn.setBounds(280, 220, 210, 190);
+
+        yearlyBtn.setText("jButton1");
+        yearlyBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                yearlyBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                yearlyBtnMouseExited(evt);
+            }
+        });
+        yearlyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearlyBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(yearlyBtn);
+        yearlyBtn.setBounds(520, 220, 200, 190);
+
+        conBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                conBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                conBtnMouseExited(evt);
+            }
+        });
+        conBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(conBtn);
+        conBtn.setBounds(280, 440, 210, 40);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        // TODO add your handling code here:
+        new AboutUsGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
@@ -184,7 +282,7 @@ public class AboutUsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnMouseExited
 
     private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
-        
+
     }//GEN-LAST:event_aboutBtnMouseClicked
 
     private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
@@ -211,10 +309,81 @@ public class AboutUsGUI extends javax.swing.JFrame {
         classHover.setVisible(false);
     }//GEN-LAST:event_classBtnMouseExited
 
+
+    private void conBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conBtnActionPerformed
+
+        fillAll.setVisible(false);
+
+        if (plan.equals("")) {
+            fillAll.setVisible(true);
+        } 
+        else {
+            new PayGUI().setVisible(true);
+            this.setVisible(false);
+        }
+
+    }//GEN-LAST:event_conBtnActionPerformed
+
+    private void conBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conBtnMouseEntered
+
+    }//GEN-LAST:event_conBtnMouseEntered
+
+    private void conBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conBtnMouseExited
+
+    }//GEN-LAST:event_conBtnMouseExited
+
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
         new HomePageGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void monthlyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthlyBtnActionPerformed
+        plan = "m";
+        p_id = "1";
+        mhover.setVisible(true);
+        ahover.setVisible(false);
+        bhover.setVisible(false);
+    }//GEN-LAST:event_monthlyBtnActionPerformed
+
+    private void byeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_byeBtnActionPerformed
+        plan = "b";
+        p_id = "3";
+        mhover.setVisible(false);
+        ahover.setVisible(false);
+        bhover.setVisible(true);
+    }//GEN-LAST:event_byeBtnActionPerformed
+
+    private void yearlyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearlyBtnActionPerformed
+        plan = "y";
+        p_id = "2";
+        mhover.setVisible(false);
+        ahover.setVisible(true);
+        bhover.setVisible(false);
+    }//GEN-LAST:event_yearlyBtnActionPerformed
+
+    private void monthlyBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monthlyBtnMouseEntered
+
+    }//GEN-LAST:event_monthlyBtnMouseEntered
+
+    private void monthlyBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monthlyBtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthlyBtnMouseExited
+
+    private void byeBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_byeBtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_byeBtnMouseEntered
+
+    private void byeBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_byeBtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_byeBtnMouseExited
+
+    private void yearlyBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yearlyBtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearlyBtnMouseEntered
+
+    private void yearlyBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yearlyBtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearlyBtnMouseExited
 
     /**
      * @param args the command line arguments
@@ -233,14 +402,74 @@ public class AboutUsGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AboutUsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaymentPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AboutUsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaymentPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AboutUsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaymentPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AboutUsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaymentPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -249,7 +478,7 @@ public class AboutUsGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AboutUsGUI().setVisible(true);
+                new PaymentPlanGUI().setVisible(true);
             }
         });
     }
@@ -257,14 +486,22 @@ public class AboutUsGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;
     private javax.swing.JLabel aboutHover;
+    private javax.swing.JLabel ahover;
     private javax.swing.JLabel background;
+    private javax.swing.JLabel bhover;
+    private javax.swing.JButton byeBtn;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
+    private javax.swing.JButton conBtn;
+    private javax.swing.JLabel fillAll;
     private javax.swing.JButton homeBtn;
+    private javax.swing.JLabel mhover;
+    private javax.swing.JButton monthlyBtn;
     private javax.swing.JButton teamBtn;
     private javax.swing.JLabel teamHover;
     private javax.swing.JLabel x;
     private javax.swing.JButton xBtn;
     private javax.swing.JLabel xHover;
+    private javax.swing.JButton yearlyBtn;
     // End of variables declaration//GEN-END:variables
 }

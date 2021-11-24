@@ -5,22 +5,31 @@
  */
 package gymmanagement;
 
-/**
- *
- * @author PC
- */
+import java.sql.*;
+
 public class LoginGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomePageGUI
-     */
+    public static String type = "";
+
+    String url = "jdbc:mysql://localhost:3306/gym_db";
+
+    String user = "root";
+    String password = "";
+
+    Connection conn;
+    Statement myStmt;
+
+    public static String e;
+    public static String pass;
+
     public LoginGUI() {
         initComponents();
-        
+
         classHover.setVisible(false);
         teamHover.setVisible(false);
         aboutHover.setVisible(false);
         xHover.setVisible(false);
+        kuchKharab.setVisible(false);
     }
 
     /**
@@ -33,10 +42,11 @@ public class LoginGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         signup = new javax.swing.JLabel();
-        passwordText = new javax.swing.JTextField();
-        password = new javax.swing.JPasswordField();
         emailText = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
+        kuchKharab = new javax.swing.JLabel();
+        passwordText = new javax.swing.JTextField();
+        passwor = new javax.swing.JPasswordField();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
         aboutHover = new javax.swing.JLabel();
@@ -49,6 +59,7 @@ public class LoginGUI extends javax.swing.JFrame {
         classBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         loginBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -62,34 +73,6 @@ public class LoginGUI extends javax.swing.JFrame {
         signup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/signup nonhover.PNG"))); // NOI18N
         getContentPane().add(signup);
         signup.setBounds(409, 434, 125, 40);
-
-        passwordText.setBackground(new java.awt.Color(56, 85, 98));
-        passwordText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        passwordText.setForeground(new java.awt.Color(255, 255, 255));
-        passwordText.setText(" Password");
-        passwordText.setBorder(null);
-        passwordText.setCaretColor(new java.awt.Color(56, 85, 98));
-        passwordText.setSelectionColor(new java.awt.Color(255, 255, 255));
-        passwordText.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                passwordTextMouseClicked(evt);
-            }
-        });
-        passwordText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextActionPerformed(evt);
-            }
-        });
-        getContentPane().add(passwordText);
-        passwordText.setBounds(250, 308, 270, 30);
-
-        password.setBackground(new java.awt.Color(56, 85, 98));
-        password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        password.setForeground(new java.awt.Color(255, 255, 255));
-        password.setBorder(null);
-        password.setSelectionColor(new java.awt.Color(56, 85, 98));
-        getContentPane().add(password);
-        password.setBounds(250, 310, 230, 30);
 
         emailText.setBackground(new java.awt.Color(56, 85, 98));
         emailText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -114,7 +97,6 @@ public class LoginGUI extends javax.swing.JFrame {
         email.setBackground(new java.awt.Color(56, 85, 98));
         email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         email.setForeground(new java.awt.Color(255, 255, 255));
-        email.setText(" ");
         email.setBorder(null);
         email.setCaretColor(new java.awt.Color(255, 255, 255));
         email.setSelectionColor(new java.awt.Color(56, 85, 98));
@@ -130,6 +112,37 @@ public class LoginGUI extends javax.swing.JFrame {
         });
         getContentPane().add(email);
         email.setBounds(250, 253, 270, 30);
+
+        kuchKharab.setForeground(new java.awt.Color(192, 0, 0));
+        kuchKharab.setText("* Incorrect Email or Password *");
+        getContentPane().add(kuchKharab);
+        kuchKharab.setBounds(232, 355, 300, 14);
+
+        passwordText.setBackground(new java.awt.Color(56, 85, 98));
+        passwordText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        passwordText.setForeground(new java.awt.Color(255, 255, 255));
+        passwordText.setText(" Password");
+        passwordText.setBorder(null);
+        passwordText.setCaretColor(new java.awt.Color(56, 85, 98));
+        passwordText.setSelectionColor(new java.awt.Color(255, 255, 255));
+        passwordText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordTextMouseClicked(evt);
+            }
+        });
+        passwordText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(passwordText);
+        passwordText.setBounds(250, 308, 270, 30);
+
+        passwor.setBackground(new java.awt.Color(56, 85, 98));
+        passwor.setForeground(new java.awt.Color(255, 255, 255));
+        passwor.setBorder(null);
+        getContentPane().add(passwor);
+        passwor.setBounds(250, 308, 260, 30);
 
         xHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x hover.PNG"))); // NOI18N
         getContentPane().add(xHover);
@@ -260,16 +273,121 @@ public class LoginGUI extends javax.swing.JFrame {
         getContentPane().add(loginBtn);
         loginBtn.setBounds(235, 386, 290, 40);
 
+        homeBtn.setText("jButton2");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(homeBtn);
+        homeBtn.setBounds(40, 0, 180, 60);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
+
+        kuchKharab.setVisible(false);
+
+        e = email.getText();
+        pass = new String(passwor.getPassword());
+        
+        try {
+            
+            conn = DriverManager.getConnection(url, user, password);
+            myStmt = conn.createStatement();
+        
+
+            String sql = "select email, password from Manager where email = '" + e + "';";
+            ResultSet rs = myStmt.executeQuery(sql);
+
+            //manager
+            if (type.equals("") || type.equals("m")) {
+                while (rs.next()) {
+                    String s = rs.getString("email");
+                    if (e.equals(s)) {
+                        type = "man";
+                        
+                        String p = rs.getString("password");
+                        if (p.equals(pass)) {
+                            System.out.println("manager login successful");
+                            //manager home gui
+                        } else {
+                            kuchKharab.setVisible(true);
+                        }
+                    }
+                }
+            } 
+            
+            
+            if (type.equals("") || type.equals("t")) {
+
+                sql = "select email, password from Trainer where email = '" + e + "';";
+                rs = myStmt.executeQuery(sql);
+
+                //trainer
+                while (rs.next()) {
+                    String s = rs.getString("email");
+                    if (e.equals(s)) {
+                        type = "t";
+                        
+                        String p = rs.getString("password");
+                        if (p.equals(pass)) {
+                            System.out.println("trainer login successful");
+                            //trainer home gui
+                        } 
+                        else {
+                            kuchKharab.setVisible(true);
+                        }
+                    }
+
+                    
+                }
+            } 
+            
+            
+            if (type.equals("") || type.equals("m")) {
+
+                sql = "select email, password from Member where email = '" + e + "';";
+                rs = myStmt.executeQuery(sql);
+
+
+                //member
+                while (rs.next()) {
+                    String s = rs.getString("email");
+                    if (e.equals(s)) {
+                        type = "m";
+                        
+                        String p = rs.getString("password");
+                        if (p.equals(pass)) {
+                            System.out.println("member login successful");
+                            //member home gui
+                        } 
+                        else {
+                            kuchKharab.setVisible(true);
+                        }
+                    }
+                    
+                    
+                }
+            }
+            
+            if(type.equals("")) {
+                kuchKharab.setVisible(true);
+            }
+
+            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        // TODO add your handling code here:
+        new AboutUsGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
@@ -293,15 +411,15 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnMouseExited
 
     private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
-        
+
     }//GEN-LAST:event_loginBtnMouseEntered
 
     private void loginBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseExited
-        
+
     }//GEN-LAST:event_loginBtnMouseExited
 
     private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
-        
+
     }//GEN-LAST:event_aboutBtnMouseClicked
 
     private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
@@ -343,11 +461,12 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void passwordTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextMouseClicked
         passwordText.setVisible(false);
-        password.setVisible(true);
+        passwor.setVisible(true);
     }//GEN-LAST:event_passwordTextMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new SignupGUI1().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -365,6 +484,11 @@ public class LoginGUI extends javax.swing.JFrame {
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        new HomePageGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_homeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,9 +534,11 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JLabel classHover;
     private javax.swing.JTextField email;
     private javax.swing.JTextField emailText;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel kuchKharab;
     private javax.swing.JButton loginBtn;
-    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField passwor;
     private javax.swing.JTextField passwordText;
     private javax.swing.JLabel signup;
     private javax.swing.JButton teamBtn;

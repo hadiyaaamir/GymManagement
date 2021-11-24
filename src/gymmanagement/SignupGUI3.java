@@ -5,6 +5,8 @@
  */
 package gymmanagement;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author PC
@@ -12,22 +14,26 @@ package gymmanagement;
 public class SignupGUI3 extends javax.swing.JFrame {
 
     public static int agee;
-    public static int w;
-    public static int h;
-    
+    public static double w = 0;
+    public static double h = 0;
+    public static double BMI = 0;
+
     public SignupGUI3() {
         initComponents();
-        
+
         classHover.setVisible(false);
         teamHover.setVisible(false);
         aboutHover.setVisible(false);
         xHover.setVisible(false);
-        
+        bmiHover.setVisible(false);
+
         age.setVisible(false);
         height.setVisible(false);
         weight.setVisible(false);
-        
-        
+        fillAll.setVisible(false);
+
+        bmi.setText(BMI + "");
+
     }
 
     /**
@@ -39,6 +45,8 @@ public class SignupGUI3 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bmiHover = new javax.swing.JLabel();
+        fillAll = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         height = new javax.swing.JTextField();
         bmi = new javax.swing.JLabel();
@@ -58,6 +66,8 @@ public class SignupGUI3 extends javax.swing.JFrame {
         ageBtn = new javax.swing.JButton();
         heightBtn = new javax.swing.JButton();
         weightBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
+        calculate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -65,6 +75,15 @@ public class SignupGUI3 extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
+
+        bmiHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/bmiHover.PNG"))); // NOI18N
+        getContentPane().add(bmiHover);
+        bmiHover.setBounds(412, 273, 110, 33);
+
+        fillAll.setForeground(new java.awt.Color(192, 0, 0));
+        fillAll.setText("* Please fill all fields *");
+        getContentPane().add(fillAll);
+        fillAll.setBounds(470, 480, 300, 14);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPanel1);
@@ -74,7 +93,6 @@ public class SignupGUI3 extends javax.swing.JFrame {
         height.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         height.setForeground(new java.awt.Color(255, 255, 255));
         height.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        height.setText(" ");
         height.setBorder(null);
         height.setCaretColor(new java.awt.Color(255, 255, 255));
         height.setSelectionColor(new java.awt.Color(255, 255, 255));
@@ -88,20 +106,31 @@ public class SignupGUI3 extends javax.swing.JFrame {
                 heightActionPerformed(evt);
             }
         });
+        height.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                heightKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                heightKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                heightKeyTyped(evt);
+            }
+        });
         getContentPane().add(height);
         height.setBounds(266, 275, 50, 30);
 
         bmi.setBackground(new java.awt.Color(56, 85, 98));
         bmi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bmi.setForeground(new java.awt.Color(255, 255, 255));
+        bmi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         getContentPane().add(bmi);
-        bmi.setBounds(490, 280, 60, 20);
+        bmi.setBounds(522, 280, 40, 20);
 
         weight.setBackground(new java.awt.Color(56, 85, 98));
         weight.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         weight.setForeground(new java.awt.Color(255, 255, 255));
         weight.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        weight.setText(" ");
         weight.setBorder(null);
         weight.setCaretColor(new java.awt.Color(255, 255, 255));
         weight.setSelectionColor(new java.awt.Color(255, 255, 255));
@@ -115,6 +144,17 @@ public class SignupGUI3 extends javax.swing.JFrame {
                 weightActionPerformed(evt);
             }
         });
+        weight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                weightKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                weightKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                weightKeyTyped(evt);
+            }
+        });
         getContentPane().add(weight);
         weight.setBounds(477, 218, 50, 30);
 
@@ -122,7 +162,6 @@ public class SignupGUI3 extends javax.swing.JFrame {
         age.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         age.setForeground(new java.awt.Color(255, 255, 255));
         age.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        age.setText(" ");
         age.setBorder(null);
         age.setCaretColor(new java.awt.Color(255, 255, 255));
         age.setSelectionColor(new java.awt.Color(255, 255, 255));
@@ -134,6 +173,11 @@ public class SignupGUI3 extends javax.swing.JFrame {
         age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ageActionPerformed(evt);
+            }
+        });
+        age.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ageKeyPressed(evt);
             }
         });
         getContentPane().add(age);
@@ -278,12 +322,39 @@ public class SignupGUI3 extends javax.swing.JFrame {
         getContentPane().add(weightBtn);
         weightBtn.setBounds(410, 210, 160, 40);
 
+        homeBtn.setText("jButton2");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(homeBtn);
+        homeBtn.setBounds(40, 0, 180, 60);
+
+        calculate.setText("jButton1");
+        calculate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                calculateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                calculateMouseExited(evt);
+            }
+        });
+        calculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(calculate);
+        calculate.setBounds(410, 270, 110, 40);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        // TODO add your handling code here:
+        new AboutUsGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
@@ -307,7 +378,7 @@ public class SignupGUI3 extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnMouseExited
 
     private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
-        
+
     }//GEN-LAST:event_aboutBtnMouseClicked
 
     private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
@@ -335,28 +406,37 @@ public class SignupGUI3 extends javax.swing.JFrame {
     }//GEN-LAST:event_classBtnMouseExited
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
-        
-//        int age = CNIC.getText();
-//        int phoneNum = phone.getText();
-//
-//        if (cnic.length() != 13) {
-//            CNICerror.setVisible(true);
-//        } 
-//        else if (phoneNum.length() != 11) {
-//            phoneError.setVisible(true);
-//        } 
-//        else {
-//            HomePageGUI.s3.setVisible(true);
-//            this.setVisible(false);
-//        }
+
+        fillAll.setVisible(false);
+
+        bmi.setText(BMI + "");
+
+        boolean isEmpty = age.getText().equals("") || weight.getText().equals("") || height.getText().equals("");
+        boolean isEmpty2 = weight.getText().equals("") || height.getText().equals("");
+
+        if (isEmpty) {
+            fillAll.setVisible(true);
+        } 
+        else {
+
+            if (!isEmpty2) {
+                agee = Integer.parseInt(age.getText());
+                w = Double.parseDouble(weight.getText());
+                h = Double.parseDouble(height.getText());
+                BMI = (w /(h * h)) * 10000;
+            }
+
+            new PaymentPlanGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_nextBtnActionPerformed
 
     private void nextBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseEntered
-        
+
     }//GEN-LAST:event_nextBtnMouseEntered
 
     private void nextBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseExited
-        
+
     }//GEN-LAST:event_nextBtnMouseExited
 
     private void ageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ageMouseClicked
@@ -394,6 +474,83 @@ public class SignupGUI3 extends javax.swing.JFrame {
     private void weightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weightActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_weightActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        new HomePageGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void weightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_weightKeyTyped
+
+    }//GEN-LAST:event_weightKeyTyped
+
+    private void heightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_heightKeyTyped
+
+    }//GEN-LAST:event_heightKeyTyped
+
+    private void weightKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_weightKeyReleased
+
+    }//GEN-LAST:event_weightKeyReleased
+
+    private void heightKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_heightKeyReleased
+        // TODO add your handling code here:
+//        h = Integer.parseInt(height.getText());
+//        BMI = (w / (h*h)) * 10000;
+//        bmi.setText(BMI+"");
+    }//GEN-LAST:event_heightKeyReleased
+
+    private void calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateActionPerformed
+
+        boolean isEmpty = weight.getText().equals("") || height.getText().equals("");
+
+        if (!isEmpty) {
+
+            w = Double.parseDouble(weight.getText());
+            h = Double.parseDouble(height.getText());
+
+            BMI = (w / (h * h)) * 10000;
+            DecimalFormat df = new DecimalFormat("#.#");
+            bmi.setText(df.format(BMI) + "");
+
+        } else {
+            bmi.setText(0.0 + "");
+        }
+    }//GEN-LAST:event_calculateActionPerformed
+
+    private void calculateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calculateMouseEntered
+        bmiHover.setVisible(true);
+    }//GEN-LAST:event_calculateMouseEntered
+
+    private void calculateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calculateMouseExited
+        bmiHover.setVisible(false);
+    }//GEN-LAST:event_calculateMouseExited
+
+    private void ageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageKeyPressed
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c) || evt.getKeyCode() == 8) {
+            age.setEditable(true);
+        }
+        else
+            age.setEditable(false);
+    }//GEN-LAST:event_ageKeyPressed
+
+    private void weightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_weightKeyPressed
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c) || c == '.' || evt.getKeyCode() == 8) {
+            weight.setEditable(true);
+        }
+        else
+            weight.setEditable(false);
+    }//GEN-LAST:event_weightKeyPressed
+
+    private void heightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_heightKeyPressed
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c) || c == '.' || evt.getKeyCode() == 8) {
+            height.setEditable(true);
+        }
+        else
+            height.setEditable(false);
+    }//GEN-LAST:event_heightKeyPressed
 
     /**
      * @param args the command line arguments
@@ -468,10 +625,14 @@ public class SignupGUI3 extends javax.swing.JFrame {
     private javax.swing.JButton ageBtn;
     private javax.swing.JLabel background;
     private javax.swing.JLabel bmi;
+    private javax.swing.JLabel bmiHover;
+    private javax.swing.JButton calculate;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
+    private javax.swing.JLabel fillAll;
     public javax.swing.JTextField height;
     private javax.swing.JButton heightBtn;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton nextBtn;
     private javax.swing.JButton teamBtn;

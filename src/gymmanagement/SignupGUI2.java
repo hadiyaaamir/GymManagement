@@ -30,6 +30,7 @@ public class SignupGUI2 extends javax.swing.JFrame {
 
         phoneError.setVisible(false);
         CNICerror.setVisible(false);
+        fillAll.setVisible(false);
 
     }
 
@@ -43,6 +44,7 @@ public class SignupGUI2 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        fillAll = new javax.swing.JLabel();
         phoneError = new javax.swing.JLabel();
         CNICerror = new javax.swing.JLabel();
         address = new javax.swing.JTextArea();
@@ -63,6 +65,7 @@ public class SignupGUI2 extends javax.swing.JFrame {
         cnicBtn = new javax.swing.JButton();
         phoneBtn = new javax.swing.JButton();
         addressBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -74,6 +77,11 @@ public class SignupGUI2 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPanel1);
         jPanel1.setBounds(190, 430, 170, 50);
+
+        fillAll.setForeground(new java.awt.Color(192, 0, 0));
+        fillAll.setText("* Please fill all fields *");
+        getContentPane().add(fillAll);
+        fillAll.setBounds(470, 480, 300, 14);
 
         phoneError.setForeground(new java.awt.Color(192, 0, 0));
         phoneError.setText("* Phone number length is incorrect *");
@@ -119,7 +127,6 @@ public class SignupGUI2 extends javax.swing.JFrame {
         phone.setBackground(new java.awt.Color(56, 85, 98));
         phone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         phone.setForeground(new java.awt.Color(255, 255, 255));
-        phone.setText(" ");
         phone.setBorder(null);
         phone.setCaretColor(new java.awt.Color(255, 255, 255));
         phone.setSelectionColor(new java.awt.Color(255, 255, 255));
@@ -133,13 +140,17 @@ public class SignupGUI2 extends javax.swing.JFrame {
                 phoneActionPerformed(evt);
             }
         });
+        phone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phoneKeyPressed(evt);
+            }
+        });
         getContentPane().add(phone);
         phone.setBounds(206, 264, 230, 30);
 
         CNIC.setBackground(new java.awt.Color(56, 85, 98));
         CNIC.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         CNIC.setForeground(new java.awt.Color(255, 255, 255));
-        CNIC.setText(" ");
         CNIC.setBorder(null);
         CNIC.setCaretColor(new java.awt.Color(255, 255, 255));
         CNIC.setSelectionColor(new java.awt.Color(255, 255, 255));
@@ -151,6 +162,11 @@ public class SignupGUI2 extends javax.swing.JFrame {
         CNIC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CNICActionPerformed(evt);
+            }
+        });
+        CNIC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CNICKeyPressed(evt);
             }
         });
         getContentPane().add(CNIC);
@@ -295,12 +311,22 @@ public class SignupGUI2 extends javax.swing.JFrame {
         getContentPane().add(addressBtn);
         addressBtn.setBounds(200, 320, 360, 80);
 
+        homeBtn.setText("jButton2");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(homeBtn);
+        homeBtn.setBounds(40, 0, 180, 60);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        // TODO add your handling code here:
+        new AboutUsGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
@@ -354,18 +380,33 @@ public class SignupGUI2 extends javax.swing.JFrame {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         phoneError.setVisible(false);
         CNICerror.setVisible(false);
+        fillAll.setVisible(false);
 
         cnic = CNIC.getText();
         phoneNum = phone.getText();
         add = address.getText();
         gen = gender.getItemAt(gender.getSelectedIndex());
+        
+        if(gen.toLowerCase().equals("male"))
+            gen = "M";
+        else if(gen.toLowerCase().equals("female"))
+            gen = "F";
+        else if(gen.toLowerCase().equals("other"))
+            gen = "O";
+        
+        boolean isEmpty = cnic.equals("") || phoneNum.equals("") || gen.equals("")|| add.equals("");
 
-        if (cnic.length() != 13) {
+        if (isEmpty) {
+            fillAll.setVisible(true);
+        }
+        else if (cnic.length() != 13) {
             CNICerror.setVisible(true);
-        } else if (phoneNum.length() != 11) {
+        } 
+        else if (phoneNum.length() != 11) {
             phoneError.setVisible(true);
-        } else {
-            HomePageGUI.s3.setVisible(true);
+        }
+        else {
+            new SignupGUI3().setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_nextBtnActionPerformed
@@ -409,6 +450,29 @@ public class SignupGUI2 extends javax.swing.JFrame {
     private void addressBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressBtnActionPerformed
         address.setVisible(true);
     }//GEN-LAST:event_addressBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        new HomePageGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void CNICKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CNICKeyPressed
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c) || evt.getKeyCode() == 8) {
+            CNIC.setEditable(true);
+        }
+        else
+            CNIC.setEditable(false);
+    }//GEN-LAST:event_CNICKeyPressed
+
+    private void phoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyPressed
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c) || evt.getKeyCode() == 8) {
+            phone.setEditable(true);
+        }
+        else
+            phone.setEditable(false);
+    }//GEN-LAST:event_phoneKeyPressed
 
     /**
      * @param args the command line arguments
@@ -471,7 +535,9 @@ public class SignupGUI2 extends javax.swing.JFrame {
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
     private javax.swing.JButton cnicBtn;
+    private javax.swing.JLabel fillAll;
     public javax.swing.JComboBox<String> gender;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton nextBtn;
     public javax.swing.JTextField phone;

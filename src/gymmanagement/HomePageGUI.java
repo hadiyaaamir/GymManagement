@@ -11,14 +11,10 @@ package gymmanagement;
  */
 public class HomePageGUI extends javax.swing.JFrame {
 
-    public static SignupGUI1 s1 = new SignupGUI1();
-    public static SignupGUI2 s2 = new SignupGUI2();
-    public static SignupGUI3 s3 = new SignupGUI3();
-    
+       
     public HomePageGUI() {
         initComponents();
-        
-        
+               
         
         signUpHover.setVisible(false);
         loginHover.setVisible(false);
@@ -215,7 +211,8 @@ public class HomePageGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        // TODO add your handling code here:
+        new AboutUsGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed

@@ -1,6 +1,9 @@
 package gymmanagement;
 
 import gymmanagement.HomePageGUI.*;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author PC
@@ -12,6 +15,14 @@ public class SignupGUI1 extends javax.swing.JFrame {
     public static String pass;
     public static String cpass;
     public static String mail;
+    
+    String url = "jdbc:mysql://localhost:3306/gym_db";
+
+    String user = "root";
+    String password = "";
+
+    Connection conn;
+    Statement myStmt;
 
     public SignupGUI1() {
         initComponents();
@@ -24,11 +35,14 @@ public class SignupGUI1 extends javax.swing.JFrame {
         firstName.setVisible(false);
         lastName.setVisible(false);
         email.setVisible(false);
-        password.setVisible(false);
+        passw.setVisible(false);
         confirm.setVisible(false);
 
         passError.setVisible(false);
         mismatchError.setVisible(false);
+        fillAll.setVisible(false);
+        emailKharab.setVisible(false);
+        existsError.setVisible(false);
 
     }
 
@@ -41,11 +55,14 @@ public class SignupGUI1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        emailKharab = new javax.swing.JLabel();
+        fillAll = new javax.swing.JLabel();
+        existsError = new javax.swing.JLabel();
         passError = new javax.swing.JLabel();
         mismatchError = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         confirm = new javax.swing.JPasswordField();
-        password = new javax.swing.JPasswordField();
+        passw = new javax.swing.JPasswordField();
         lastName = new javax.swing.JTextField();
         firstName = new javax.swing.JTextField();
         xHover = new javax.swing.JLabel();
@@ -64,6 +81,7 @@ public class SignupGUI1 extends javax.swing.JFrame {
         emailBtn = new javax.swing.JButton();
         passBtn = new javax.swing.JButton();
         cpassBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -71,6 +89,21 @@ public class SignupGUI1 extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
+
+        emailKharab.setForeground(new java.awt.Color(192, 0, 0));
+        emailKharab.setText("*Email already exists*");
+        getContentPane().add(emailKharab);
+        emailKharab.setBounds(200, 300, 300, 14);
+
+        fillAll.setForeground(new java.awt.Color(192, 0, 0));
+        fillAll.setText("* Please fill all fields *");
+        getContentPane().add(fillAll);
+        fillAll.setBounds(470, 480, 300, 14);
+
+        existsError.setForeground(new java.awt.Color(192, 0, 0));
+        existsError.setText("* Please enter a valid email address *");
+        getContentPane().add(existsError);
+        existsError.setBounds(200, 300, 300, 14);
 
         passError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/mismatchError.PNG"))); // NOI18N
         getContentPane().add(passError);
@@ -83,7 +116,6 @@ public class SignupGUI1 extends javax.swing.JFrame {
         email.setBackground(new java.awt.Color(56, 85, 98));
         email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         email.setForeground(new java.awt.Color(255, 255, 255));
-        email.setText(" ");
         email.setBorder(null);
         email.setCaretColor(new java.awt.Color(255, 255, 255));
         email.setSelectionColor(new java.awt.Color(56, 85, 98));
@@ -108,18 +140,17 @@ public class SignupGUI1 extends javax.swing.JFrame {
         getContentPane().add(confirm);
         confirm.setBounds(208, 378, 360, 30);
 
-        password.setBackground(new java.awt.Color(56, 85, 98));
-        password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        password.setForeground(new java.awt.Color(255, 255, 255));
-        password.setBorder(null);
-        password.setSelectionColor(new java.awt.Color(56, 85, 98));
-        getContentPane().add(password);
-        password.setBounds(208, 320, 360, 30);
+        passw.setBackground(new java.awt.Color(56, 85, 98));
+        passw.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        passw.setForeground(new java.awt.Color(255, 255, 255));
+        passw.setBorder(null);
+        passw.setSelectionColor(new java.awt.Color(56, 85, 98));
+        getContentPane().add(passw);
+        passw.setBounds(208, 320, 360, 30);
 
         lastName.setBackground(new java.awt.Color(56, 85, 98));
         lastName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lastName.setForeground(new java.awt.Color(255, 255, 255));
-        lastName.setText(" ");
         lastName.setBorder(null);
         lastName.setCaretColor(new java.awt.Color(255, 255, 255));
         lastName.setSelectionColor(new java.awt.Color(56, 85, 98));
@@ -139,7 +170,6 @@ public class SignupGUI1 extends javax.swing.JFrame {
         firstName.setBackground(new java.awt.Color(56, 85, 98));
         firstName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         firstName.setForeground(new java.awt.Color(255, 255, 255));
-        firstName.setText(" ");
         firstName.setBorder(null);
         firstName.setCaretColor(new java.awt.Color(255, 255, 255));
         firstName.setSelectionColor(new java.awt.Color(56, 85, 98));
@@ -313,12 +343,22 @@ public class SignupGUI1 extends javax.swing.JFrame {
         getContentPane().add(cpassBtn);
         cpassBtn.setBounds(200, 370, 370, 40);
 
+        homeBtn.setText("jButton2");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(homeBtn);
+        homeBtn.setBounds(40, 0, 180, 60);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        // TODO add your handling code here:
+        new AboutUsGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
@@ -371,28 +411,71 @@ public class SignupGUI1 extends javax.swing.JFrame {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
 
+        fillAll.setVisible(false);
         mismatchError.setVisible(false);
-        mismatchError.setVisible(false);
+        passError.setVisible(false);
+        emailKharab.setVisible(false);
+        existsError.setVisible(false);
 
         fname = firstName.getText();
         lname = lastName.getText();
-        pass = new String(password.getPassword());
+        pass = new String(passw.getPassword());
         cpass = new String(confirm.getPassword());
         mail = email.getText();
+        
+        boolean isEmpty = fname.equals("") || lname.equals("") || pass.equals("")|| cpass.equals("")|| mail.equals("");
 
-        if (!pass.equals(cpass)) {
-            passError.setVisible(true);
+        if (isEmpty) {
+            fillAll.setVisible(true);
         } 
+        else if(emailExists()) {
+            emailKharab.setVisible(true);
+        }
+        else if (!mail.contains("@")) {
+            existsError.setVisible(true);
+        }
         else if (pass.length() <= 6) {
             mismatchError.setVisible(true);
         } 
+        else if (!pass.equals(cpass)) {
+            passError.setVisible(true);
+        } 
+        
         else {
-            HomePageGUI.s2.setVisible(true);
+            new SignupGUI2().setVisible(true);
             this.setVisible(false);
         }
 
     }//GEN-LAST:event_nextBtnActionPerformed
 
+    private boolean emailExists() {  
+            
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            myStmt = conn.createStatement();
+            
+            String sql = "select email from Member where email = '" + mail + "';";
+            ResultSet rs = myStmt.executeQuery(sql);
+
+
+                //member
+                while (rs.next()) {
+                    String s = rs.getString("email");
+                    if (mail.equals(s)) {
+                        return true;
+                    }
+                }
+                return false;
+        } 
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SignupGUI1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    
+    
     private void nextBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseEntered
 
     }//GEN-LAST:event_nextBtnMouseEntered
@@ -442,8 +525,13 @@ public class SignupGUI1 extends javax.swing.JFrame {
     }//GEN-LAST:event_emailBtnActionPerformed
 
     private void passBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passBtnActionPerformed
-        password.setVisible(true);
+        passw.setVisible(true);
     }//GEN-LAST:event_passBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        new HomePageGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_homeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -497,15 +585,19 @@ public class SignupGUI1 extends javax.swing.JFrame {
     private javax.swing.JButton cpassBtn;
     public javax.swing.JTextField email;
     private javax.swing.JButton emailBtn;
+    private javax.swing.JLabel emailKharab;
+    private javax.swing.JLabel existsError;
+    private javax.swing.JLabel fillAll;
     public javax.swing.JTextField firstName;
     private javax.swing.JButton fnameBtn;
+    private javax.swing.JButton homeBtn;
     public javax.swing.JTextField lastName;
     private javax.swing.JButton lnameBtn;
     private javax.swing.JLabel mismatchError;
     private javax.swing.JButton nextBtn;
     private javax.swing.JButton passBtn;
     private javax.swing.JLabel passError;
-    public javax.swing.JPasswordField password;
+    public javax.swing.JPasswordField passw;
     private javax.swing.JButton teamBtn;
     private javax.swing.JLabel teamHover;
     private javax.swing.JLabel x;
