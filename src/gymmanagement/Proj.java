@@ -5,10 +5,12 @@ package gymmanagement;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.sql.*;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Date;  
 /**
  *
  * @author PC
@@ -17,7 +19,10 @@ public class Proj {
 
     public static void main(String[] args) {
         
-        String url = "jdbc:mysql://localhost:3306/gym_db";
+//        Date d=new Date("26-Nov-2021");  
+//        int year=d.getYear();  
+
+        /*String url = "jdbc:mysql://localhost:3306/gym_db";
 
         String user = "root";
         String password = "";
@@ -35,6 +40,24 @@ public class Proj {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }*/
+//        for (int i = 2021; i > (2021-90); i--) {
+//            System.out.println(i);
+//        }
+
+        String[] datasets = {"australia", "ds"};
+        String[] groups = {"J", "O"};
+        
+        System.out.println(datasets[1]);
+        for (int i = 0; i < 5; i++) {
+            int r = (int)(Math.random()*2);
+            System.out.println(groups[r]);
+        }
+        
+        System.out.println(datasets[0]);
+        for (int i = 0; i < 5; i++) {
+            int r = (int)(Math.random()*2);
+            System.out.println(groups[r]);
         }
 
     }

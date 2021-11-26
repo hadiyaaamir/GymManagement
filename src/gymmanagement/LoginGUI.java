@@ -21,6 +21,10 @@ public class LoginGUI extends javax.swing.JFrame {
 
     public static String e;
     public static String pass;
+    public static String memberid = "";
+    public static String managerid = "";
+    public static String trainerid = "";
+    
 
     public LoginGUI() {
         initComponents();
@@ -118,6 +122,7 @@ public class LoginGUI extends javax.swing.JFrame {
         getContentPane().add(kuchKharab);
         kuchKharab.setBounds(232, 355, 300, 14);
 
+        passwordText.setEditable(false);
         passwordText.setBackground(new java.awt.Color(56, 85, 98));
         passwordText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         passwordText.setForeground(new java.awt.Color(255, 255, 255));
@@ -299,7 +304,7 @@ public class LoginGUI extends javax.swing.JFrame {
             myStmt = conn.createStatement();
         
 
-            String sql = "select email, password from Manager where email = '" + e + "';";
+            String sql = "select email, password, ManagerID from Manager where email = '" + e + "';";
             ResultSet rs = myStmt.executeQuery(sql);
 
             //manager
@@ -310,8 +315,10 @@ public class LoginGUI extends javax.swing.JFrame {
                         type = "man";
                         
                         String p = rs.getString("password");
+                        
                         if (p.equals(pass)) {
                             System.out.println("manager login successful");
+                            managerid = rs.getString("ManagerID");
                             //manager home gui
                         } else {
                             kuchKharab.setVisible(true);
@@ -323,7 +330,7 @@ public class LoginGUI extends javax.swing.JFrame {
             
             if (type.equals("") || type.equals("t")) {
 
-                sql = "select email, password from Trainer where email = '" + e + "';";
+                sql = "select email, password, TrainerID from Trainer where email = '" + e + "';";
                 rs = myStmt.executeQuery(sql);
 
                 //trainer
@@ -335,6 +342,7 @@ public class LoginGUI extends javax.swing.JFrame {
                         String p = rs.getString("password");
                         if (p.equals(pass)) {
                             System.out.println("trainer login successful");
+                            trainerid = rs.getString("TrainerID");
                             //trainer home gui
                         } 
                         else {
@@ -349,7 +357,7 @@ public class LoginGUI extends javax.swing.JFrame {
             
             if (type.equals("") || type.equals("m")) {
 
-                sql = "select email, password from Member where email = '" + e + "';";
+                sql = "select email, password, MemberID from Member where email = '" + e + "';";
                 rs = myStmt.executeQuery(sql);
 
 
@@ -362,7 +370,10 @@ public class LoginGUI extends javax.swing.JFrame {
                         String p = rs.getString("password");
                         if (p.equals(pass)) {
                             System.out.println("member login successful");
+                            memberid = rs.getString("MemberID");
                             //member home gui
+                            //temp
+                            new MemberPersonalDetailsGUI().setVisible(true);
                         } 
                         else {
                             kuchKharab.setVisible(true);
@@ -455,15 +466,6 @@ public class LoginGUI extends javax.swing.JFrame {
         email.setVisible(true);
     }//GEN-LAST:event_emailTextMouseClicked
 
-    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextActionPerformed
-
-    private void passwordTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextMouseClicked
-        passwordText.setVisible(false);
-        passwor.setVisible(true);
-    }//GEN-LAST:event_passwordTextMouseClicked
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new SignupGUI1().setVisible(true);
         this.setVisible(false);
@@ -489,6 +491,15 @@ public class LoginGUI extends javax.swing.JFrame {
         new HomePageGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTextActionPerformed
+
+    private void passwordTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextMouseClicked
+        passwordText.setVisible(false);
+        passwor.setVisible(true);
+    }//GEN-LAST:event_passwordTextMouseClicked
 
     /**
      * @param args the command line arguments

@@ -434,7 +434,7 @@ public class SignupGUI1 extends javax.swing.JFrame {
         else if (!mail.contains("@")) {
             existsError.setVisible(true);
         }
-        else if (pass.length() <= 6) {
+        else if (pass.length() < 6) {
             mismatchError.setVisible(true);
         } 
         else if (!pass.equals(cpass)) {

@@ -6,6 +6,7 @@
 package gymmanagement;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 
 /**
  *
@@ -27,10 +28,14 @@ public class SignupGUI3 extends javax.swing.JFrame {
         xHover.setVisible(false);
         bmiHover.setVisible(false);
 
-        age.setVisible(false);
+//        age.setVisible(false);
         height.setVisible(false);
         weight.setVisible(false);
         fillAll.setVisible(false);
+        
+        Methods m = new Methods();
+        agee = m.getAge(SignupGUI2.y, SignupGUI2.m);
+        age.setText(agee + "");
 
         bmi.setText(BMI + "");
 
@@ -158,6 +163,7 @@ public class SignupGUI3 extends javax.swing.JFrame {
         getContentPane().add(weight);
         weight.setBounds(477, 218, 50, 30);
 
+        age.setEditable(false);
         age.setBackground(new java.awt.Color(56, 85, 98));
         age.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         age.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,7 +187,7 @@ public class SignupGUI3 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(age);
-        age.setBounds(250, 220, 50, 30);
+        age.setBounds(250, 218, 50, 30);
 
         xHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x hover.PNG"))); // NOI18N
         getContentPane().add(xHover);
@@ -526,12 +532,12 @@ public class SignupGUI3 extends javax.swing.JFrame {
     }//GEN-LAST:event_calculateMouseExited
 
     private void ageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageKeyPressed
-        char c = evt.getKeyChar();
-        if(Character.isDigit(c) || evt.getKeyCode() == 8) {
-            age.setEditable(true);
-        }
-        else
-            age.setEditable(false);
+//        char c = evt.getKeyChar();
+//        if(Character.isDigit(c) || evt.getKeyCode() == 8) {
+//            age.setEditable(true);
+//        }
+//        else
+//            age.setEditable(false);
     }//GEN-LAST:event_ageKeyPressed
 
     private void weightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_weightKeyPressed

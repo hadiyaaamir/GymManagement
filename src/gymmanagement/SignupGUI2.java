@@ -15,6 +15,10 @@ public class SignupGUI2 extends javax.swing.JFrame {
     public static String phoneNum;
     public static String add;
     public static String gen;
+    public static String dob;
+    
+    public static String y;
+    public static String m;
 
     public SignupGUI2() {
         initComponents();
@@ -31,6 +35,7 @@ public class SignupGUI2 extends javax.swing.JFrame {
         phoneError.setVisible(false);
         CNICerror.setVisible(false);
         fillAll.setVisible(false);
+        ageError.setVisible(false);
 
     }
 
@@ -44,6 +49,10 @@ public class SignupGUI2 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        ageError = new javax.swing.JLabel();
+        year = new javax.swing.JComboBox<>();
+        month = new javax.swing.JComboBox<>();
+        day = new javax.swing.JComboBox<>();
         fillAll = new javax.swing.JLabel();
         phoneError = new javax.swing.JLabel();
         CNICerror = new javax.swing.JLabel();
@@ -78,15 +87,70 @@ public class SignupGUI2 extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(190, 430, 170, 50);
 
+        ageError.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        ageError.setForeground(new java.awt.Color(192, 0, 0));
+        ageError.setText("* Must be atleast 18 years old *");
+        getContentPane().add(ageError);
+        ageError.setBounds(200, 350, 300, 13);
+
+        year.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        year.setForeground(new java.awt.Color(56, 85, 98));
+        year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932" }));
+        year.setBorder(null);
+        year.setLightWeightPopupEnabled(false);
+        year.setMinimumSize(new java.awt.Dimension(150, 35));
+        year.setName("Gender"); // NOI18N
+        year.setPreferredSize(new java.awt.Dimension(150, 35));
+        year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(year);
+        year.setBounds(470, 317, 70, 30);
+
+        month.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        month.setForeground(new java.awt.Color(56, 85, 98));
+        month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        month.setBorder(null);
+        month.setLightWeightPopupEnabled(false);
+        month.setMinimumSize(new java.awt.Dimension(150, 35));
+        month.setName("Gender"); // NOI18N
+        month.setPreferredSize(new java.awt.Dimension(150, 35));
+        month.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthActionPerformed(evt);
+            }
+        });
+        getContentPane().add(month);
+        month.setBounds(395, 317, 60, 30);
+
+        day.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        day.setForeground(new java.awt.Color(56, 85, 98));
+        day.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        day.setBorder(null);
+        day.setLightWeightPopupEnabled(false);
+        day.setMinimumSize(new java.awt.Dimension(150, 35));
+        day.setName("Gender"); // NOI18N
+        day.setPreferredSize(new java.awt.Dimension(150, 35));
+        day.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayActionPerformed(evt);
+            }
+        });
+        getContentPane().add(day);
+        day.setBounds(320, 317, 60, 30);
+
         fillAll.setForeground(new java.awt.Color(192, 0, 0));
         fillAll.setText("* Please fill all fields *");
         getContentPane().add(fillAll);
         fillAll.setBounds(470, 480, 300, 14);
 
+        phoneError.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         phoneError.setForeground(new java.awt.Color(192, 0, 0));
         phoneError.setText("* Phone number length is incorrect *");
         getContentPane().add(phoneError);
-        phoneError.setBounds(200, 300, 300, 14);
+        phoneError.setBounds(200, 299, 300, 13);
 
         CNICerror.setForeground(new java.awt.Color(192, 0, 0));
         CNICerror.setText("* CNIC length is incorrect *");
@@ -106,7 +170,8 @@ public class SignupGUI2 extends javax.swing.JFrame {
         address.setHighlighter(null);
         address.setSelectionColor(new java.awt.Color(56, 85, 98));
         getContentPane().add(address);
-        address.setBounds(205, 326, 350, 60);
+        address.setBounds(207, 366, 350, 50);
+        address.getAccessibleContext().setAccessibleDescription("");
 
         gender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gender.setForeground(new java.awt.Color(56, 85, 98));
@@ -309,7 +374,7 @@ public class SignupGUI2 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(addressBtn);
-        addressBtn.setBounds(200, 320, 360, 80);
+        addressBtn.setBounds(200, 360, 360, 60);
 
         homeBtn.setText("jButton2");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -387,6 +452,12 @@ public class SignupGUI2 extends javax.swing.JFrame {
         add = address.getText();
         gen = gender.getItemAt(gender.getSelectedIndex());
         
+        String d = day.getItemAt(day.getSelectedIndex());
+        m = month.getItemAt(month.getSelectedIndex());
+        y = year.getItemAt(year.getSelectedIndex());
+        dob = y + "-" + m + "-" + d;
+        System.out.println(dob);
+        
         if(gen.toLowerCase().equals("male"))
             gen = "M";
         else if(gen.toLowerCase().equals("female"))
@@ -410,7 +481,7 @@ public class SignupGUI2 extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_nextBtnActionPerformed
-
+    
     private void nextBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseEntered
 
     }//GEN-LAST:event_nextBtnMouseEntered
@@ -474,6 +545,18 @@ public class SignupGUI2 extends javax.swing.JFrame {
             phone.setEditable(false);
     }//GEN-LAST:event_phoneKeyPressed
 
+    private void dayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dayActionPerformed
+
+    private void monthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthActionPerformed
+
+    private void yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -531,14 +614,17 @@ public class SignupGUI2 extends javax.swing.JFrame {
     private javax.swing.JLabel aboutHover;
     public javax.swing.JTextArea address;
     private javax.swing.JButton addressBtn;
+    private javax.swing.JLabel ageError;
     private javax.swing.JLabel background;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
     private javax.swing.JButton cnicBtn;
+    public javax.swing.JComboBox<String> day;
     private javax.swing.JLabel fillAll;
     public javax.swing.JComboBox<String> gender;
     private javax.swing.JButton homeBtn;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JComboBox<String> month;
     private javax.swing.JButton nextBtn;
     public javax.swing.JTextField phone;
     private javax.swing.JButton phoneBtn;
@@ -548,5 +634,6 @@ public class SignupGUI2 extends javax.swing.JFrame {
     private javax.swing.JLabel x;
     private javax.swing.JButton xBtn;
     private javax.swing.JLabel xHover;
+    public javax.swing.JComboBox<String> year;
     // End of variables declaration//GEN-END:variables
 }
