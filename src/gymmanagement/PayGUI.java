@@ -483,12 +483,11 @@ public class PayGUI extends javax.swing.JFrame {
         } else {
 //            HomePageGUI.s3.setVisible(true);
             this.setVisible(false);
+            createMember();
+            LoginGUI.memberid = mid;
+            addBankDetails();
+            addTransaction();
         }
-
-        createMember();
-        LoginGUI.memberid = mid;
-        addBankDetails();
-        addTransaction();
 
     }//GEN-LAST:event_nextBtnActionPerformed
 
@@ -541,9 +540,10 @@ public class PayGUI extends javax.swing.JFrame {
             String sql = "INSERT INTO `transactions`(`TransID`, `PersonID`, "
                     + "`Amount`, `Date`, `type`) "
                     + "VALUES ('" + transID() + "','" + mid + "','" + amountt
-                    + "', curdate()),'"+type+"';";
+                    + "', curdate(), '" + type + "');";
             int rs = myStmt.executeUpdate(sql);
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             Logger.getLogger(PayGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

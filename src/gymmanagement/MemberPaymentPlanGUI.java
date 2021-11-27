@@ -123,14 +123,14 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         healthBtn = new javax.swing.JButton();
         paymentBtn = new javax.swing.JButton();
         bankBtn = new javax.swing.JButton();
-        profileBtn = new javax.swing.JButton();
-        logbookBtn = new javax.swing.JButton();
-        phistoryBtn = new javax.swing.JButton();
-        logoutBtn = new javax.swing.JButton();
         personalBtn = new javax.swing.JButton();
         monthlyBtn = new javax.swing.JButton();
         biannualBtn = new javax.swing.JButton();
         annualBtn = new javax.swing.JButton();
+        phistoryBtn = new javax.swing.JButton();
+        logbookBtn = new javax.swing.JButton();
+        profileBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -368,64 +368,6 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         getContentPane().add(bankBtn);
         bankBtn.setBounds(20, 410, 160, 60);
 
-        profileBtn.setText("jButton1");
-        profileBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                profileBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                profileBtnMouseExited(evt);
-            }
-        });
-        getContentPane().add(profileBtn);
-        profileBtn.setBounds(540, 50, 190, 50);
-
-        logbookBtn.setText("jButton1");
-        logbookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logbookBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                logbookBtnMouseExited(evt);
-            }
-        });
-        getContentPane().add(logbookBtn);
-        logbookBtn.setBounds(540, 100, 190, 40);
-
-        phistoryBtn.setText("jButton1");
-        phistoryBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                phistoryBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                phistoryBtnMouseExited(evt);
-            }
-        });
-        phistoryBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phistoryBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(phistoryBtn);
-        phistoryBtn.setBounds(540, 140, 190, 40);
-
-        logoutBtn.setText("jButton1");
-        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseExited(evt);
-            }
-        });
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(logoutBtn);
-        logoutBtn.setBounds(540, 180, 190, 40);
-
         personalBtn.setText("jButton1");
         personalBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -461,6 +403,74 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         });
         getContentPane().add(annualBtn);
         annualBtn.setBounds(580, 210, 170, 200);
+
+        phistoryBtn.setText("jButton1");
+        phistoryBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                phistoryBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                phistoryBtnMouseExited(evt);
+            }
+        });
+        phistoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phistoryBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(phistoryBtn);
+        phistoryBtn.setBounds(540, 140, 190, 40);
+
+        logbookBtn.setText("jButton1");
+        logbookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logbookBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logbookBtnMouseExited(evt);
+            }
+        });
+        logbookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logbookBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logbookBtn);
+        logbookBtn.setBounds(540, 100, 190, 40);
+
+        profileBtn.setText("jButton1");
+        profileBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                profileBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                profileBtnMouseExited(evt);
+            }
+        });
+        profileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(profileBtn);
+        profileBtn.setBounds(540, 50, 190, 50);
+
+        logoutBtn.setText("jButton1");
+        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseExited(evt);
+            }
+        });
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logoutBtn);
+        logoutBtn.setBounds(540, 180, 190, 40);
 
         pack();
         setLocationRelativeTo(null);
@@ -577,74 +587,6 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
             
     }//GEN-LAST:event_iconBtnActionPerformed
 
-    private void profileBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseEntered
-        if(ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(false);
-            phistoryDD.setVisible(false);
-            ProfileDD.setVisible(true);
-        }
-    }//GEN-LAST:event_profileBtnMouseEntered
-
-    private void profileBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseExited
-        ProfileDD.setVisible(false);
-        if(ddOpen)
-            dropdown.setVisible(true);
-    }//GEN-LAST:event_profileBtnMouseExited
-
-    private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
-        if(ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(true);
-            logoutDD.setVisible(false);
-            phistoryDD.setVisible(false);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_logbookBtnMouseEntered
-
-    private void logbookBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseExited
-        LogDD.setVisible(false);
-        if(ddOpen)
-            dropdown.setVisible(true);
-    }//GEN-LAST:event_logbookBtnMouseExited
-
-    private void phistoryBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phistoryBtnMouseEntered
-        if(ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(false);
-            phistoryDD.setVisible(true);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_phistoryBtnMouseEntered
-
-    private void phistoryBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phistoryBtnMouseExited
-        phistoryDD.setVisible(false);
-        if(ddOpen)
-            dropdown.setVisible(true);
-    }//GEN-LAST:event_phistoryBtnMouseExited
-
-    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
-        if(ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(true);
-            phistoryDD.setVisible(false);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_logoutBtnMouseEntered
-
-    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
-        logoutDD.setVisible(false);
-        if(ddOpen)
-            dropdown.setVisible(true);
-    }//GEN-LAST:event_logoutBtnMouseExited
-
-    private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phistoryBtnActionPerformed
-
     private void healthBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healthBtnActionPerformed
         new MemberHealthDetailsGUI().setVisible(true);
         this.setVisible(false);
@@ -705,9 +647,94 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_bankBtnActionPerformed
 
+    private void phistoryBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phistoryBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(false);
+            phistoryDD.setVisible(true);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_phistoryBtnMouseEntered
+
+    private void phistoryBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phistoryBtnMouseExited
+        phistoryDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_phistoryBtnMouseExited
+
+    private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
+        new MemberpayhistoryGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_phistoryBtnActionPerformed
+
+    private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(true);
+            logoutDD.setVisible(false);
+            phistoryDD.setVisible(false);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_logbookBtnMouseEntered
+
+    private void logbookBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseExited
+        LogDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_logbookBtnMouseExited
+
+    private void logbookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logbookBtnActionPerformed
+        new MemberLogBookGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_logbookBtnActionPerformed
+
+    private void profileBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(false);
+            phistoryDD.setVisible(false);
+            ProfileDD.setVisible(true);
+        }
+    }//GEN-LAST:event_profileBtnMouseEntered
+
+    private void profileBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseExited
+        ProfileDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_profileBtnMouseExited
+
+    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
+        new MemberPersonalDetailsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_profileBtnActionPerformed
+
+    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(true);
+            phistoryDD.setVisible(false);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_logoutBtnMouseEntered
+
+    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
+        logoutDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnMouseExited
+
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        LoginGUI.type = "";
         this.setVisible(false);
         new HomePageGUI().setVisible(true);
+
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
