@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class MemberLogBookGUI extends javax.swing.JFrame {
+public class TrainerLogBookGUI extends javax.swing.JFrame {
 
     boolean ddOpen = false;
     boolean editable = false;
@@ -29,12 +29,13 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
     Connection conn;
     Statement myStmt;
 
-    public MemberLogBookGUI() {
+    public TrainerLogBookGUI() {
         initComponents();
 
         classHover.setVisible(false);
         teamHover.setVisible(false);
         aboutHover.setVisible(false);
+        memberhover.setVisible(false);
         xHover.setVisible(false);
         iconHover.setVisible(false);
 
@@ -65,7 +66,7 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
 
             String sql = "SELECT `Date`, `StartTime`, `Endtime` "
                     + "FROM `log`"
-                    + "WHERE personID = '" + LoginGUI.memberid + "';";
+                    + "WHERE personID = '" + LoginGUI.trainerid + "';";
             ResultSet rs = myStmt.executeQuery(sql);
 
             ResultSetMetaData rsd = rs.getMetaData();
@@ -87,13 +88,13 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
                 dft.addRow(v2);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MemberLogBookGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TrainerLogBookGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     void setValues() {
        
-        id.setText("Member ID: " + LoginGUI.memberid);
+        id.setText("Trainer ID: " + LoginGUI.trainerid);
 
     }
 
@@ -109,18 +110,16 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
         header = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         logTable = new javax.swing.JTable();
+        aboutHover = new javax.swing.JLabel();
+        classHover = new javax.swing.JLabel();
+        memberhover = new javax.swing.JLabel();
+        teamHover = new javax.swing.JLabel();
         iconHover = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
-        aboutHover = new javax.swing.JLabel();
-        classHover = new javax.swing.JLabel();
-        teamHover = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
-        aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
-        teamBtn = new javax.swing.JButton();
-        classBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
@@ -128,6 +127,10 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
         phistoryBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
+        MemberBtn = new javax.swing.JButton();
+        teamBtn = new javax.swing.JButton();
+        classBtn = new javax.swing.JButton();
+        aboutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -200,13 +203,37 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(170, 190, 452, 250);
 
+        aboutHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/about us hover.PNG"))); // NOI18N
+        getContentPane().add(aboutHover);
+        aboutHover.setBounds(235, 16, 100, 60);
+
+        classHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/classes hover.PNG"))); // NOI18N
+        getContentPane().add(classHover);
+        classHover.setBounds(570, 16, 100, 60);
+
+        memberhover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/our team hover.PNG"))); // NOI18N
+        memberhover.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                memberhoverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                memberhoverMouseExited(evt);
+            }
+        });
+        getContentPane().add(memberhover);
+        memberhover.setBounds(467, 16, 100, 60);
+
+        teamHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/our team hover.PNG"))); // NOI18N
+        getContentPane().add(teamHover);
+        teamHover.setBounds(355, 16, 100, 60);
+
         iconHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/icon hover.PNG"))); // NOI18N
         getContentPane().add(iconHover);
         iconHover.setBounds(676, 8, 50, 40);
 
         id.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         id.setForeground(new java.awt.Color(56, 85, 98));
-        id.setText("Member ID: ");
+        id.setText("Trainer ID: ");
         getContentPane().add(id);
         id.setBounds(20, 130, 150, 30);
 
@@ -218,41 +245,9 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
         getContentPane().add(x);
         x.setBounds(730, -10, 60, 60);
 
-        aboutHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/about us hover.PNG"))); // NOI18N
-        getContentPane().add(aboutHover);
-        aboutHover.setBounds(351, 16, 100, 60);
-
-        classHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/classes hover.PNG"))); // NOI18N
-        getContentPane().add(classHover);
-        classHover.setBounds(581, 16, 100, 60);
-
-        teamHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/our team hover.PNG"))); // NOI18N
-        getContentPane().add(teamHover);
-        teamHover.setBounds(472, 16, 100, 60);
-
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/log book.PNG"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/trainer log.PNG"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 770, 495);
-
-        aboutBtn.setText("jButton1");
-        aboutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                aboutBtnMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                aboutBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                aboutBtnMouseExited(evt);
-            }
-        });
-        aboutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(aboutBtn);
-        aboutBtn.setBounds(350, 3, 100, 50);
 
         xBtn.setText("jButton1");
         xBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,40 +265,6 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
         });
         getContentPane().add(xBtn);
         xBtn.setBounds(735, 10, 20, 20);
-
-        teamBtn.setText("jButton1");
-        teamBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                teamBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                teamBtnMouseExited(evt);
-            }
-        });
-        teamBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                teamBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(teamBtn);
-        teamBtn.setBounds(475, 10, 90, 40);
-
-        classBtn.setText("jButton1");
-        classBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                classBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                classBtnMouseExited(evt);
-            }
-        });
-        classBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(classBtn);
-        classBtn.setBounds(590, 10, 70, 40);
 
         homeBtn.setText("jButton2");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -403,26 +364,84 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
         getContentPane().add(logoutBtn);
         logoutBtn.setBounds(540, 180, 190, 40);
 
+        MemberBtn.setText("jButton1");
+        MemberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MemberBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MemberBtnMouseExited(evt);
+            }
+        });
+        MemberBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MemberBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(MemberBtn);
+        MemberBtn.setBounds(470, 10, 90, 40);
+
+        teamBtn.setText("jButton1");
+        teamBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                teamBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                teamBtnMouseExited(evt);
+            }
+        });
+        teamBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teamBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(teamBtn);
+        teamBtn.setBounds(355, 10, 90, 40);
+
+        classBtn.setText("jButton1");
+        classBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                classBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                classBtnMouseExited(evt);
+            }
+        });
+        classBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(classBtn);
+        classBtn.setBounds(580, 10, 70, 40);
+
+        aboutBtn.setText("jButton1");
+        aboutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aboutBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                aboutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                aboutBtnMouseExited(evt);
+            }
+        });
+        aboutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(aboutBtn);
+        aboutBtn.setBounds(235, 3, 100, 50);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_aboutBtnActionPerformed
-
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
         System.exit(0);
     }//GEN-LAST:event_xBtnActionPerformed
-
-    private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_teamBtnActionPerformed
-
-    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_classBtnActionPerformed
 
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered
         xHover.setVisible(true);
@@ -431,34 +450,6 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
     private void xBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseExited
         xHover.setVisible(false);
     }//GEN-LAST:event_xBtnMouseExited
-
-    private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
-
-    }//GEN-LAST:event_aboutBtnMouseClicked
-
-    private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
-        aboutHover.setVisible(true);
-    }//GEN-LAST:event_aboutBtnMouseEntered
-
-    private void aboutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseExited
-        aboutHover.setVisible(false);
-    }//GEN-LAST:event_aboutBtnMouseExited
-
-    private void teamBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseEntered
-        teamHover.setVisible(true);
-    }//GEN-LAST:event_teamBtnMouseEntered
-
-    private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
-        teamHover.setVisible(false);
-    }//GEN-LAST:event_teamBtnMouseExited
-
-    private void classBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseEntered
-        classHover.setVisible(true);
-    }//GEN-LAST:event_classBtnMouseEntered
-
-    private void classBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseExited
-        classHover.setVisible(false);
-    }//GEN-LAST:event_classBtnMouseExited
 
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
@@ -544,7 +535,7 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_phistoryBtnMouseExited
 
     private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
-        new MemberLogBookGUI().setVisible(true);
+        new TrainerLogBookGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_phistoryBtnActionPerformed
 
@@ -553,7 +544,7 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logTableKeyPressed
 
     private void logbookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logbookBtnActionPerformed
-        new MemberLogBookGUI().setVisible(true);
+        new TrainerLogBookGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_logbookBtnActionPerformed
 
@@ -586,6 +577,67 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    private void memberhoverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberhoverMouseEntered
+
+    }//GEN-LAST:event_memberhoverMouseEntered
+
+    private void memberhoverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberhoverMouseExited
+
+    }//GEN-LAST:event_memberhoverMouseExited
+
+    private void MemberBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseEntered
+        memberhover.setVisible(true);
+    }//GEN-LAST:event_MemberBtnMouseEntered
+
+    private void MemberBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseExited
+        memberhover.setVisible(false);
+    }//GEN-LAST:event_MemberBtnMouseExited
+
+    private void MemberBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemberBtnActionPerformed
+        // member details
+    }//GEN-LAST:event_MemberBtnActionPerformed
+
+    private void teamBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseEntered
+        teamHover.setVisible(true);
+    }//GEN-LAST:event_teamBtnMouseEntered
+
+    private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
+        teamHover.setVisible(false);
+    }//GEN-LAST:event_teamBtnMouseExited
+
+    private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_teamBtnActionPerformed
+
+    private void classBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseEntered
+        classHover.setVisible(true);
+    }//GEN-LAST:event_classBtnMouseEntered
+
+    private void classBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseExited
+        classHover.setVisible(false);
+    }//GEN-LAST:event_classBtnMouseExited
+
+    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classBtnActionPerformed
+
+    private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
+
+    }//GEN-LAST:event_aboutBtnMouseClicked
+
+    private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
+        aboutHover.setVisible(true);
+    }//GEN-LAST:event_aboutBtnMouseEntered
+
+    private void aboutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseExited
+        aboutHover.setVisible(false);
+    }//GEN-LAST:event_aboutBtnMouseExited
+
+    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
+        new AboutUsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_aboutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -603,14 +655,15 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MemberLogBookGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrainerLogBookGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MemberLogBookGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrainerLogBookGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MemberLogBookGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrainerLogBookGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MemberLogBookGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrainerLogBookGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
    
@@ -619,13 +672,14 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MemberLogBookGUI().setVisible(true);
+                new TrainerLogBookGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogDD;
+    private javax.swing.JButton MemberBtn;
     private javax.swing.JLabel ProfileDD;
     private javax.swing.JButton aboutBtn;
     private javax.swing.JLabel aboutHover;
@@ -644,6 +698,7 @@ public class MemberLogBookGUI extends javax.swing.JFrame {
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel logoutDD;
+    private javax.swing.JLabel memberhover;
     private javax.swing.JButton phistoryBtn;
     private javax.swing.JLabel phistoryDD;
     private javax.swing.JButton profileBtn;

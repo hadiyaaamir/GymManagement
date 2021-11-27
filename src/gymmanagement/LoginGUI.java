@@ -344,7 +344,9 @@ public class LoginGUI extends javax.swing.JFrame {
                             System.out.println("trainer login successful");
                             trainerid = rs.getString("TrainerID");
                             //trainer home gui
-                        } 
+                            //temp 
+                            new TrainerPersonalDetailsGUI().setVisible(true);
+                        }
                         else {
                             kuchKharab.setVisible(true);
                         }

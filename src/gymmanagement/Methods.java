@@ -38,6 +38,20 @@ public class Methods {
             Logger.getLogger(Methods.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    void updateTrainer(String type, String value, String id) {
+
+        try {
+            Connection myConn = DriverManager.getConnection(url, user, password);
+            Statement myStmt = myConn.createStatement();
+            
+            String sql = "update Trainer set " + type + " = '" + value + "' where TrainerID = '" + id + "';";
+            int rs = myStmt.executeUpdate(sql);
+        } 
+        
+        catch (SQLException ex) {
+            Logger.getLogger(Methods.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     int getAge(String y, String m) {
         
