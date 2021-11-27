@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author PC
  */
 public class PayGUI extends javax.swing.JFrame {
-
+    public static String type;
     public static String namee;
     public static int amountt = 0;
     public static String number;
@@ -54,12 +54,15 @@ public class PayGUI extends javax.swing.JFrame {
         if (plan.equals("m")) {
             amountt = 3000;
             amount.setText("Rs 3000");
+            type = "Monthly Plan";
         } else if (plan.equals("y")) {
             amountt = 30000;
             amount.setText("Rs 30,000");
+              type = "Annual Plan";
         } else if (plan.equals("b")) {
             amountt = 16000;
             amount.setText("Rs 16,000");
+              type = "Bi-annual Plan";
         }
 
     }
@@ -536,9 +539,9 @@ public class PayGUI extends javax.swing.JFrame {
             myStmt = conn.createStatement();
 
             String sql = "INSERT INTO `transactions`(`TransID`, `PersonID`, "
-                    + "`Amount`, `Date`) "
+                    + "`Amount`, `Date`, `type`) "
                     + "VALUES ('" + transID() + "','" + mid + "','" + amountt
-                    + "', curdate());";
+                    + "', curdate()),'"+type+"';";
             int rs = myStmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(PayGUI.class.getName()).log(Level.SEVERE, null, ex);

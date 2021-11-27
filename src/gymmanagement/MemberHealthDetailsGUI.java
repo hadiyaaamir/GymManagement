@@ -461,6 +461,11 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
                 logoutBtnMouseExited(evt);
             }
         });
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(logoutBtn);
         logoutBtn.setBounds(540, 180, 190, 40);
 
@@ -801,6 +806,11 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         new MemberBankDetailsGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bankBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+         this.setVisible(false);
+        new HomePageGUI().setVisible(true);
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -468,6 +468,11 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
                 logoutBtnMouseExited(evt);
             }
         });
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(logoutBtn);
         logoutBtn.setBounds(540, 180, 190, 40);
 
@@ -665,7 +670,7 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnMouseExited
 
     private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_phistoryBtnActionPerformed
 
     private void healthBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healthBtnActionPerformed
@@ -757,6 +762,11 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
     private void bankTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bankTableKeyPressed
 
     }//GEN-LAST:event_bankTableKeyPressed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        this.setVisible(false);
+       new HomePageGUI().setVisible(true);
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
