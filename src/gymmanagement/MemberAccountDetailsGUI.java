@@ -5,12 +5,15 @@
  */
 package gymmanagement;
 
+import static gymmanagement.MemberBankDetailsGUI.bankTable;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -40,6 +43,7 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
         monthError.setVisible(false);
         cvvError.setVisible(false);
         accError.setVisible(false);
+        accError1.setVisible(false);
 
         x.setVisible(false);
         
@@ -55,7 +59,13 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         monthError = new javax.swing.JLabel();
+        accError1 = new javax.swing.JLabel();
         accError = new javax.swing.JLabel();
         cvvError = new javax.swing.JLabel();
         year = new javax.swing.JComboBox<>();
@@ -78,10 +88,36 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/card no.PNG"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(206, 230, 130, 30);
+
+        jPanel4.setBackground(new java.awt.Color(56, 85, 98));
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(0, 0, 762, 2);
+
+        jPanel3.setBackground(new java.awt.Color(56, 85, 98));
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(0, 433, 761, 2);
+
+        jPanel2.setBackground(new java.awt.Color(56, 85, 98));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(761, 0, 2, 440);
+
+        jPanel1.setBackground(new java.awt.Color(56, 85, 98));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 2, 440);
+
         monthError.setForeground(new java.awt.Color(192, 0, 0));
         monthError.setText("* Enter valid expiry date *");
         getContentPane().add(monthError);
         monthError.setBounds(200, 322, 300, 14);
+
+        accError1.setForeground(new java.awt.Color(192, 0, 0));
+        accError1.setText("* Enter a unique card number *");
+        getContentPane().add(accError1);
+        accError1.setBounds(200, 266, 300, 14);
 
         accError.setForeground(new java.awt.Color(192, 0, 0));
         accError.setText("* Enter valid Card Number *");
@@ -190,7 +226,7 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(accNum);
-        accNum.setBounds(340, 227, 220, 30);
+        accNum.setBounds(340, 230, 220, 30);
 
         name.setBackground(new java.awt.Color(56, 85, 98));
         name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -215,7 +251,7 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(350, 170, 210, 30);
+        name.setBounds(350, 172, 210, 30);
 
         x.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x.PNG"))); // NOI18N
         getContentPane().add(x);
@@ -279,12 +315,60 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
         x.setVisible(false);
     }//GEN-LAST:event_xBtnMouseExited
 
+    
+    void updateTable() {
+        
+        int c;
+        
+        try {            
+            Connection myConn = DriverManager.getConnection(url, user, password);
+            Statement myStmt = myConn.createStatement();
+            
+            String sql = "SELECT `CardNum`, `ExpiryMonth`, `ExpiryYear`, "
+                    + "`CardHoldersName`, `DefaultCard` FROM `bankdetails`"
+                    + "WHERE PersonID = '" + LoginGUI.memberid + "';";
+            ResultSet rs = myStmt.executeQuery(sql);
+            
+            ResultSetMetaData rsd = rs.getMetaData();
+            c = rsd.getColumnCount();
+            DefaultTableModel dft = (DefaultTableModel)bankTable.getModel();
+            dft.setRowCount(0);
+            
+            while(rs.next()) {
+                Vector v2 = new Vector();
+                
+                for(int i = 1; i <= c; i++) {
+                    v2.add(rs.getString("CardNum"));
+                    v2.add(rs.getString("CardHoldersName"));
+                    
+                    String exp = rs.getString("ExpiryMonth") + "/" + rs.getString("ExpiryYear");
+                    v2.add(exp);
+                    
+                    if(rs.getInt("DefaultCard") == 1)
+                        v2.add("Default");
+                    else
+                        v2.add("");
+                }
+                
+                dft.addRow(v2);
+            }
+        } 
+        
+        catch (SQLException ex) {
+            Logger.getLogger(MemberBankDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+    
+    
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
 
         accError.setVisible(false);
         monthError.setVisible(false);
         cvvError.setVisible(false);
         fillAll.setVisible(false);
+        accError1.setVisible(false);
 
         LocalDate currentdate = LocalDate.now();
         int currentMonth = currentdate.getMonthValue();
@@ -316,187 +400,43 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
         
         else {
 //            HomePageGUI.s3.setVisible(true);
+            addBankDetails();
+            updateTable();
             this.setVisible(false);
         }
 
 //        LoginGUI.memberid = mid;
-        addBankDetails();
+        
         
 
     }//GEN-LAST:event_nextBtnActionPerformed
 
     void addBankDetails() {
 
+        accError1.setVisible(false);
+        
         try {
             conn = DriverManager.getConnection(url, user, password);
             myStmt = conn.createStatement();
 
             String sql = "INSERT INTO `bankdetails`(`PersonID`, `CardNum`, "
                     + "`CVV`, `ExpiryMonth`, `ExpiryYear`, `CardHoldersName`, `DefaultCard`) "
-                    + "VALUES ('" + mid + "','" + number + "','" + CVV + "',"
+                    + "VALUES ('" + LoginGUI.memberid + "','" + number + "','" + CVV + "',"
                     + "'" + m + "','" + y + "','" + namee + "', '0');";
             int rs = myStmt.executeUpdate(sql);
         } 
         
+        
+        catch (SQLIntegrityConstraintViolationException e) {
+            accError1.setVisible(true);
+        }
         catch (SQLException ex) {
             Logger.getLogger(MemberAccountDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+         
     }
 
-//    String transID() {
-//        int row_id = 0;
-//
-//        try {
-//            conn = DriverManager.getConnection(url, user, password);
-//            myStmt = conn.createStatement();
-//
-//            String sql3 = "select count(*) as row_id from Transactions";
-//            ResultSet rs3 = myStmt.executeQuery(sql3);
-//
-//            while (rs3.next()) {
-//                row_id = rs3.getInt("row_id");
-//            }
-//
-//            String t_id = (row_id + 1) + "";
-//            return t_id;
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MemberAccountDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return "";
-//    }
-
-//    void addTransaction() {
-//        try {
-//            conn = DriverManager.getConnection(url, user, password);
-//            myStmt = conn.createStatement();
-//
-//            String sql = "INSERT INTO `transactions`(`TransID`, `PersonID`, "
-//                    + "`Amount`, `Date`) "
-//                    + "VALUES ('" + transID() + "','" + mid + "','" + amountt
-//                    + "', curdate());";
-//            int rs = myStmt.executeUpdate(sql);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MemberAccountDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-
-//    String createPhysique() {
-//
-//        double w = SignupGUI3.w;
-//        double h = SignupGUI3.h;
-//        double BMI = SignupGUI3.BMI;
-//        String p_id = physiqueID();
-//
-//        try {
-//            conn = DriverManager.getConnection(url, user, password);
-//            myStmt = conn.createStatement();
-//
-//            String sql = "INSERT INTO `physique`"
-//                    + "(`PhysiqueID`, `Height`, `Weight`, `BMI`) "
-//                    + "VALUES ('" + p_id + "','" + h + "','" + w + "','" + BMI + "');";
-//
-//            int rs = myStmt.executeUpdate(sql);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MemberAccountDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        return p_id;
-//    }
-
-//    private void createMember() {
-//
-//        String fname = SignupGUI1.fname;
-//        String lname = SignupGUI1.lname;
-//        String pass = SignupGUI1.pass;
-//        String cpass = SignupGUI1.cpass;
-//        String mail = SignupGUI1.mail;
-//
-//        String cnic = SignupGUI2.cnic;
-//        String phoneNum = SignupGUI2.phoneNum;
-//        String add = SignupGUI2.add;
-//        String gen = SignupGUI2.gen;
-//        String dob = SignupGUI2.dob;
-//
-////        int agee = SignupGUI3.agee;
-//
-//        String p_id = PaymentPlanGUI.p_id;
-//
-//        mid = memberID();
-//
-//        try {
-//            conn = DriverManager.getConnection(url, user, password);
-//            myStmt = conn.createStatement();
-//
-//            String sql = "INSERT INTO `member`(`MemberID`, `Firstname`, "
-//                    + "`Lastname`, `email`, `password`, `CNIC`, "
-//                    + "`PhoneNum`, `PhysiqueID`, `Address`, `Gender`, `Active`,"
-//                    + " `CurrentMember`, `PlanID`, `SignupDate`, `DateOfBirth`) "
-//                    
-//                    + "VALUES ('" + mid + "','" + fname + "','" + lname + "','"
-//                    + mail + "','" + pass + "','" + cnic + "','"
-//                    + phoneNum + "','" + createPhysique() + "','" + add + "','"
-//                    + gen + "', '1', '1', '" + p_id + "', CURDATE(), '"+ dob +"');";
-//
-//            int rs = myStmt.executeUpdate(sql);
-//
-//            System.out.println(memberID() + " " + fname);
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MemberAccountDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
-
-//    String memberID() {
-//
-//        int row_id = 0;
-//
-//        try {
-//            conn = DriverManager.getConnection(url, user, password);
-//            myStmt = conn.createStatement();
-//
-//            String sql2 = "select count(*) as row_id from Member";
-//            ResultSet rs2 = myStmt.executeQuery(sql2);
-//
-//            while (rs2.next()) {
-//                row_id = rs2.getInt("row_id");
-//            }
-//
-//            String mem_id = "M" + (row_id + 1);
-//            return mem_id;
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MemberAccountDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        return "";
-//    }
-
-//    String physiqueID() {
-//
-//        int row_id = 0;
-//
-//        try {
-//            conn = DriverManager.getConnection(url, user, password);
-//            myStmt = conn.createStatement();
-//
-//            String sql3 = "select count(*) as row_id from Physique";
-//            ResultSet rs3 = myStmt.executeQuery(sql3);
-//
-//            while (rs3.next()) {
-//                row_id = rs3.getInt("row_id");
-//            }
-//
-//            String p_id = row_id + 1 + "";
-//            return p_id;
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MemberAccountDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        return "";
-//    }
 
     private void nextBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseEntered
 
@@ -751,11 +691,17 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accError;
+    private javax.swing.JLabel accError1;
     public javax.swing.JTextField accNum;
     private javax.swing.JLabel background;
     public javax.swing.JTextField cvv;
     private javax.swing.JLabel cvvError;
     private javax.swing.JLabel fillAll;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     public javax.swing.JComboBox<String> month;
     private javax.swing.JLabel monthError;
     public javax.swing.JTextField name;
