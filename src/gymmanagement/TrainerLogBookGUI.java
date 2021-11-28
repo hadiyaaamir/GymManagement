@@ -44,7 +44,7 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
         dropdown.setVisible(false);
         LogDD.setVisible(false);
         logoutDD.setVisible(false);
-        phistoryDD.setVisible(false);
+        salaryDD.setVisible(false);
         ProfileDD.setVisible(false);
 
         logTable.getColumnModel().getColumn(0).setPreferredWidth(200);
@@ -125,12 +125,12 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
         profileBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        logoutBtn = new javax.swing.JButton();
         MemberBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
         aboutBtn = new javax.swing.JButton();
         SalaryyBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -149,7 +149,7 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
 
         logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tLoutdrop.PNG"))); // NOI18N
         getContentPane().add(logoutDD);
-        logoutDD.setBounds(540, 60, 189, 170);
+        logoutDD.setBounds(540, 57, 189, 170);
 
         ProfileDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tprofdrop.PNG"))); // NOI18N
         getContentPane().add(ProfileDD);
@@ -330,23 +330,6 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(70, 90, 560, 380);
 
-        logoutBtn.setText("jButton1");
-        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseExited(evt);
-            }
-        });
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(logoutBtn);
-        logoutBtn.setBounds(540, 180, 190, 40);
-
         MemberBtn.setText("jButton1");
         MemberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -435,6 +418,23 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
         getContentPane().add(SalaryyBtn);
         SalaryyBtn.setBounds(540, 140, 190, 40);
 
+        logoutBtn.setText("jButton1");
+        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseExited(evt);
+            }
+        });
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logoutBtn);
+        logoutBtn.setBounds(540, 180, 190, 40);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -475,7 +475,7 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
             dropdown.setVisible(false);
             LogDD.setVisible(false);
             logoutDD.setVisible(false);
-            phistoryDD.setVisible(false);
+            salaryDD.setVisible(false);
             ProfileDD.setVisible(false);
 
             ddOpen = false;
@@ -488,7 +488,7 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
             dropdown.setVisible(false);
             LogDD.setVisible(false);
             logoutDD.setVisible(false);
-            phistoryDD.setVisible(false);
+            salaryDD.setVisible(false);
             ProfileDD.setVisible(true);
         }
     }//GEN-LAST:event_profileBtnMouseEntered
@@ -505,7 +505,7 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
             dropdown.setVisible(false);
             LogDD.setVisible(true);
             logoutDD.setVisible(false);
-            phistoryDD.setVisible(false);
+            salaryDD.setVisible(false);
             ProfileDD.setVisible(false);
         }
     }//GEN-LAST:event_logbookBtnMouseEntered
@@ -527,33 +527,9 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logbookBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        new MemberPersonalDetailsGUI().setVisible(true);
+        new TrainerPersonalDetailsGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_profileBtnActionPerformed
-
-    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
-        if (ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(true);
-            phistoryDD.setVisible(false);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_logoutBtnMouseEntered
-
-    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
-        logoutDD.setVisible(false);
-        if (ddOpen) {
-            dropdown.setVisible(true);
-        }
-    }//GEN-LAST:event_logoutBtnMouseExited
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        LoginGUI.type = "";
-        this.setVisible(false);
-        new HomePageGUI().setVisible(true);
-
-    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void memberhoverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberhoverMouseEntered
 
@@ -637,6 +613,31 @@ public class TrainerLogBookGUI extends javax.swing.JFrame {
         new TrainerSalaryGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_SalaryyBtnActionPerformed
+
+    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(true);
+            salaryDD.setVisible(false);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_logoutBtnMouseEntered
+
+    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
+        logoutDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnMouseExited
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        if (ddOpen) {
+            LoginGUI.type = "";
+            this.setVisible(false);
+            new HomePageGUI().setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments

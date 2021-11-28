@@ -580,10 +580,11 @@ public class MemberpayhistoryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnMouseExited
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        LoginGUI.type = "";
-        this.setVisible(false);
-        new HomePageGUI().setVisible(true);
-
+        if (ddOpen) {
+            LoginGUI.type = "";
+            this.setVisible(false);
+            new HomePageGUI().setVisible(true);
+        }
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**

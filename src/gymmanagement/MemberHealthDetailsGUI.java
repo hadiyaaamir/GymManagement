@@ -59,6 +59,7 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         Saved = new javax.swing.JLabel();
         logoutDD = new javax.swing.JLabel();
         phistoryDD = new javax.swing.JLabel();
@@ -68,6 +69,7 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         id1 = new javax.swing.JLabel();
         bmi = new javax.swing.JLabel();
         iconHover = new javax.swing.JLabel();
+        id2 = new javax.swing.JLabel();
         penhover = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         age = new javax.swing.JLabel();
@@ -97,6 +99,7 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         phistoryBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
+        arrowBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,6 +108,10 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/arrow-30-24.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(710, 235, 34, 40);
 
         Saved.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Saved.setForeground(new java.awt.Color(56, 85, 98));
@@ -147,6 +154,12 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         iconHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/icon hover.PNG"))); // NOI18N
         getContentPane().add(iconHover);
         iconHover.setBounds(676, 8, 50, 40);
+
+        id2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        id2.setForeground(new java.awt.Color(56, 85, 98));
+        id2.setText("next");
+        getContentPane().add(id2);
+        id2.setBounds(710, 260, 30, 30);
 
         penhover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/pen hover.PNG"))); // NOI18N
         getContentPane().add(penhover);
@@ -470,6 +483,16 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(profileBtn);
         profileBtn.setBounds(540, 50, 190, 50);
+
+        arrowBtn.setText("jButton1");
+        arrowBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        arrowBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arrowBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(arrowBtn);
+        arrowBtn.setBounds(702, 238, 40, 50);
 
         logoutBtn.setText("jButton1");
         logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -815,6 +838,10 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_profileBtnActionPerformed
 
+    private void arrowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrowBtnActionPerformed
+        new HealthAndAllergies().setVisible(true);
+    }//GEN-LAST:event_arrowBtnActionPerformed
+
     private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
         if (ddOpen) {
             dropdown.setVisible(false);
@@ -833,10 +860,11 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnMouseExited
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        LoginGUI.type = "";
-        this.setVisible(false);
-        new HomePageGUI().setVisible(true);
-
+        if (ddOpen) {
+            LoginGUI.type = "";
+            this.setVisible(false);
+            new HomePageGUI().setVisible(true);
+        }
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
@@ -912,6 +940,7 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JButton aboutBtn;
     private javax.swing.JLabel aboutHover;
     private javax.swing.JLabel age;
+    private javax.swing.JButton arrowBtn;
     private javax.swing.JLabel background;
     private javax.swing.JButton bankBtn;
     private javax.swing.JLabel bmi;
@@ -928,6 +957,8 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
     private javax.swing.JLabel id1;
+    private javax.swing.JLabel id2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;

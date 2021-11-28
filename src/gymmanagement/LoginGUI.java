@@ -67,10 +67,8 @@ public class LoginGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(764, 493));
         setMinimumSize(new java.awt.Dimension(764, 493));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(764, 493));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -308,7 +306,7 @@ public class LoginGUI extends javax.swing.JFrame {
             ResultSet rs = myStmt.executeQuery(sql);
 
             //manager
-            if (type.equals("") || type.equals("m")) {
+            if (type.equals("") || type.equals("man")) {
                 while (rs.next()) {
                     String s = rs.getString("email");
                     if (e.equals(s)) {
@@ -319,6 +317,8 @@ public class LoginGUI extends javax.swing.JFrame {
                         if (p.equals(pass)) {
                             System.out.println("manager login successful");
                             managerid = rs.getString("ManagerID");
+                            memberid = "";
+                            trainerid = "";
                             //manager home gui
                         } else {
                             kuchKharab.setVisible(true);
@@ -343,6 +343,8 @@ public class LoginGUI extends javax.swing.JFrame {
                         if (p.equals(pass)) {
                             System.out.println("trainer login successful");
                             trainerid = rs.getString("TrainerID");
+                            memberid = "";
+                            managerid = "";
                             //trainer home gui
                             //temp 
                             new TrainerPersonalDetailsGUI().setVisible(true);
@@ -373,6 +375,8 @@ public class LoginGUI extends javax.swing.JFrame {
                         if (p.equals(pass)) {
                             System.out.println("member login successful");
                             memberid = rs.getString("MemberID");
+                            managerid = "";
+                            trainerid = "";
                             //member home gui
                             //temp
                             new MemberPersonalDetailsGUI().setVisible(true);

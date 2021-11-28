@@ -611,23 +611,6 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_iconBtnActionPerformed
 
-    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
-        if (ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(true);
-            phistoryDD.setVisible(false);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_logoutBtnMouseEntered
-
-    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
-        logoutDD.setVisible(false);
-        if (ddOpen) {
-            dropdown.setVisible(true);
-        }
-    }//GEN-LAST:event_logoutBtnMouseExited
-
     private void healthBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healthBtnActionPerformed
         new MemberHealthDetailsGUI().setVisible(true);
         this.setVisible(false);
@@ -725,13 +708,6 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bankTableKeyPressed
 
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-       LoginGUI.type = "";
-       this.setVisible(false);
-       new HomePageGUI().setVisible(true);
-       
-    }//GEN-LAST:event_logoutBtnActionPerformed
-
     private void phistoryBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phistoryBtnMouseEntered
         if (ddOpen) {
             dropdown.setVisible(false);
@@ -797,6 +773,32 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
         new MemberPersonalDetailsGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_profileBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        if (ddOpen) {
+            LoginGUI.type = "";
+            this.setVisible(false);
+            new HomePageGUI().setVisible(true);
+        }
+
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
+        logoutDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnMouseExited
+
+    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(true);
+            phistoryDD.setVisible(false);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_logoutBtnMouseEntered
 
     /**
      * @param args the command line arguments
@@ -922,6 +924,9 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel id;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logbookBtn;
+    private javax.swing.JButton logbookBtn1;
+    private javax.swing.JButton logbookBtn2;
+    private javax.swing.JButton logbookBtn3;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel logoutDD;
     private javax.swing.JButton paymentBtn;

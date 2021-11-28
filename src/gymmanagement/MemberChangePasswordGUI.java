@@ -145,7 +145,7 @@ public class MemberChangePasswordGUI extends javax.swing.JFrame {
         conpass.setBorder(null);
         conpass.setSelectionColor(new java.awt.Color(56, 85, 98));
         getContentPane().add(conpass);
-        conpass.setBounds(470, 330, 170, 30);
+        conpass.setBounds(470, 328, 170, 30);
 
         newpass.setBackground(new java.awt.Color(56, 85, 98));
         newpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -153,7 +153,7 @@ public class MemberChangePasswordGUI extends javax.swing.JFrame {
         newpass.setBorder(null);
         newpass.setSelectionColor(new java.awt.Color(56, 85, 98));
         getContentPane().add(newpass);
-        newpass.setBounds(440, 278, 200, 30);
+        newpass.setBounds(440, 277, 200, 30);
 
         oldpass.setBackground(new java.awt.Color(56, 85, 98));
         oldpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -161,7 +161,7 @@ public class MemberChangePasswordGUI extends javax.swing.JFrame {
         oldpass.setBorder(null);
         oldpass.setSelectionColor(new java.awt.Color(56, 85, 98));
         getContentPane().add(oldpass);
-        oldpass.setBounds(430, 225, 210, 30);
+        oldpass.setBounds(430, 228, 210, 30);
 
         mismatchError.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         mismatchError.setForeground(new java.awt.Color(192, 0, 0));
@@ -738,10 +738,11 @@ public class MemberChangePasswordGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnMouseExited
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        LoginGUI.type = "";
-        this.setVisible(false);
-        new HomePageGUI().setVisible(true);
-
+        if (ddOpen) {
+            LoginGUI.type = "";
+            this.setVisible(false);
+            new HomePageGUI().setVisible(true);
+        }
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**

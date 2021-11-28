@@ -47,13 +47,12 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         dropdown.setVisible(false);
         LogDD.setVisible(false);
         logoutDD.setVisible(false);
-        phistoryDD.setVisible(false);
+        salaryDD.setVisible(false);
         ProfileDD.setVisible(false);
 
         bankTable.getColumnModel().getColumn(0).setPreferredWidth(200);
         bankTable.getColumnModel().getColumn(1).setPreferredWidth(200);
         bankTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-        bankTable.getColumnModel().getColumn(3).setPreferredWidth(100);
 
         setValues();
         updateTable();
@@ -68,9 +67,8 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
             Connection myConn = DriverManager.getConnection(url, user, password);
             Statement myStmt = myConn.createStatement();
 
-            String sql = "SELECT `CardNum`, `ExpiryMonth`, `ExpiryYear`, "
-                    + "`CardHoldersName`, `DefaultCard` FROM `bankdetails`"
-                    + "WHERE PersonID = '" + LoginGUI.trainerid + "';";
+            String sql = "SELECT `Name`, `IBAN`, `DefaultAcc` FROM `trainerbank` "
+                    + "WHERE TrainerID = '" + LoginGUI.trainerid + "';";
             ResultSet rs = myStmt.executeQuery(sql);
 
             ResultSetMetaData rsd = rs.getMetaData();
@@ -82,11 +80,8 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
                 Vector v2 = new Vector();
 
                 for (int i = 1; i <= c; i++) {
-                    v2.add(rs.getString("CardNum"));
-                    v2.add(rs.getString("CardHoldersName"));
-
-                    String exp = rs.getString("ExpiryMonth") + "/" + rs.getString("ExpiryYear");
-                    v2.add(exp);
+                    v2.add(rs.getString("IBAN"));
+                    v2.add(rs.getString("Name"));
 
                     if (rs.getInt("DefaultCard") == 1) {
                         v2.add("Default");
@@ -103,25 +98,9 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
     }
 
     void setValues() {
-        try {
-            Connection myConn = DriverManager.getConnection(url, user, password);
-            Statement myStmt = myConn.createStatement();
+       
+        id.setText("Trainer ID: " + LoginGUI.trainerid);
 
-            String sql = "SELECT `PlanID` FROM `trainer` "
-                    + "where `trainerID` = '" + LoginGUI.trainerid + "';";
-
-            ResultSet rs = myStmt.executeQuery(sql);
-
-            while (rs.next()) {
-
-                id.setText("Trainer ID: " + LoginGUI.trainerid);
-//               oldPlan = rs.getString("PlanID");
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(TrainerBankDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -161,12 +140,12 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         iconBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
         defBtn = new javax.swing.JButton();
-        logoutBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
         MemberBtn = new javax.swing.JButton();
         SalaryyBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -178,7 +157,7 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         selectError.setForeground(new java.awt.Color(204, 0, 0));
         selectError.setText("Please select a row");
         getContentPane().add(selectError);
-        selectError.setBounds(280, 167, 180, 20);
+        selectError.setBounds(280, 169, 180, 20);
 
         xHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x hover.PNG"))); // NOI18N
         getContentPane().add(xHover);
@@ -194,7 +173,7 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
 
         logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tLoutdrop.PNG"))); // NOI18N
         getContentPane().add(logoutDD);
-        logoutDD.setBounds(540, 60, 189, 170);
+        logoutDD.setBounds(540, 57, 189, 170);
 
         ProfileDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tprofdrop.PNG"))); // NOI18N
         getContentPane().add(ProfileDD);
@@ -235,9 +214,9 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
 
         header.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         header.setForeground(new java.awt.Color(56, 85, 98));
-        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/table header.PNG"))); // NOI18N
+        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/trainer bank header.PNG"))); // NOI18N
         getContentPane().add(header);
-        header.setBounds(280, 185, 460, 30);
+        header.setBounds(277, 174, 460, 40);
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
@@ -249,18 +228,18 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         bankTable.setForeground(new java.awt.Color(56, 85, 98));
         bankTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Card Number", "Cardholder's Name", "Expiry", ""
+                "Account Number", "Account Name", ""
             }
         ));
         bankTable.setGridColor(new java.awt.Color(255, 255, 255));
@@ -273,9 +252,14 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(bankTable);
+        if (bankTable.getColumnModel().getColumnCount() > 0) {
+            bankTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            bankTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            bankTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+        }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(280, 190, 452, 210);
+        jScrollPane1.setBounds(282, 190, 452, 210);
 
         iconHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/icon hover.PNG"))); // NOI18N
         getContentPane().add(iconHover);
@@ -341,6 +325,11 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         bankBtn.setBounds(20, 334, 160, 60);
 
         personalBtn.setText("jButton1");
+        personalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personalBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(personalBtn);
         personalBtn.setBounds(10, 190, 180, 60);
 
@@ -450,23 +439,6 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(defBtn);
         defBtn.setBounds(440, 420, 130, 40);
 
-        logoutBtn.setText("jButton1");
-        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseExited(evt);
-            }
-        });
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(logoutBtn);
-        logoutBtn.setBounds(540, 180, 190, 40);
-
         deleteBtn.setText("jButton3");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -544,6 +516,23 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(SalaryyBtn);
         SalaryyBtn.setBounds(540, 140, 190, 40);
 
+        logoutBtn.setText("jButton1");
+        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseExited(evt);
+            }
+        });
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logoutBtn);
+        logoutBtn.setBounds(540, 180, 190, 40);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -579,7 +568,7 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
             dropdown.setVisible(false);
             LogDD.setVisible(false);
             logoutDD.setVisible(false);
-            phistoryDD.setVisible(false);
+            salaryDD.setVisible(false);
             ProfileDD.setVisible(false);
 
             ddOpen = false;
@@ -587,25 +576,8 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_iconBtnActionPerformed
 
-    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
-        if (ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(true);
-            phistoryDD.setVisible(false);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_logoutBtnMouseEntered
-
-    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
-        logoutDD.setVisible(false);
-        if (ddOpen) {
-            dropdown.setVisible(true);
-        }
-    }//GEN-LAST:event_logoutBtnMouseExited
-
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        new MemberAccountDetailsGUI().setVisible(true);
+        new TrainerAccountDetailsGUI().setVisible(true);
         delete.setVisible(false);
         def.setVisible(false);
         selectError.setVisible(false);
@@ -631,8 +603,8 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
                 conn = DriverManager.getConnection(url, user, password);
                 myStmt = conn.createStatement();
 
-                String sql = "Update `bankdetails` set DefaultCard = '0' "
-                        + "WHERE DefaultCard = '" + 1 + "' and PersonID = '" + LoginGUI.memberid + "';";
+                String sql = "Update `trainerbank` set DefaultAcc = '0' "
+                        + "WHERE DefaultAcc = '" + 1 + "' and TrainerID = '" + LoginGUI.trainerid + "';";
                 int rs = myStmt.executeUpdate(sql);
 
             } catch (SQLException ex) {
@@ -641,7 +613,7 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
 
             // set new default
             Methods m = new Methods();
-            m.updateBank("DefaultCard", "1", LoginGUI.memberid, CardNum);
+            m.updateBank("DefaultCard", "1", LoginGUI.trainerid, CardNum);
 
             updateTable();
             //Methods m = m.updateMember(url, url, url)
@@ -666,12 +638,12 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         else {
             selectError.setVisible(false);
             CardNum = model.getValueAt(selectedIndex, 0).toString();
-            Def = model.getValueAt(selectedIndex, 3).toString();
+            Def = model.getValueAt(selectedIndex, 2).toString();
 
             delete.setVisible(false);
 
             if (Def.equals("")) {
-                new DeletePopup().setVisible(true);
+                new DeletePopupTrainer().setVisible(true);
             } else {
                 delete.setVisible(true);
             }
@@ -686,19 +658,12 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bankTableKeyPressed
 
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-       LoginGUI.type = "";
-       this.setVisible(false);
-       new HomePageGUI().setVisible(true);
-       
-    }//GEN-LAST:event_logoutBtnActionPerformed
-
     private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
         if (ddOpen) {
             dropdown.setVisible(false);
             LogDD.setVisible(true);
             logoutDD.setVisible(false);
-            phistoryDD.setVisible(false);
+            salaryDD.setVisible(false);
             ProfileDD.setVisible(false);
         }
     }//GEN-LAST:event_logbookBtnMouseEntered
@@ -720,7 +685,7 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
             dropdown.setVisible(false);
             LogDD.setVisible(false);
             logoutDD.setVisible(false);
-            phistoryDD.setVisible(false);
+            salaryDD.setVisible(false);
             ProfileDD.setVisible(true);
         }
     }//GEN-LAST:event_profileBtnMouseEntered
@@ -733,7 +698,7 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnMouseExited
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        new MemberPersonalDetailsGUI().setVisible(true);
+        new TrainerPersonalDetailsGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_profileBtnActionPerformed
 
@@ -834,6 +799,36 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
         new TrainerSalaryGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_SalaryyBtnActionPerformed
+
+    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(true);
+            salaryDD.setVisible(false);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_logoutBtnMouseEntered
+
+    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
+        logoutDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnMouseExited
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        if (ddOpen) {
+            LoginGUI.type = "";
+            this.setVisible(false);
+            new HomePageGUI().setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void personalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalBtnActionPerformed
+        new TrainerPersonalDetailsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_personalBtnActionPerformed
 
     /**
      * @param args the command line arguments

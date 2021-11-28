@@ -15,11 +15,10 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
 
     boolean ddOpen = false;
     boolean editable = false;
-    String newPlan = "";
-    String oldPlan = "";
 
     public static String CardNum;
     public static String Def;
+    double amountt;
 
     String url = "jdbc:mysql://localhost:3306/gym_db";
 
@@ -37,9 +36,7 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         aboutHover.setVisible(false);
         xHover.setVisible(false);
         iconHover.setVisible(false);
-
-      
-
+        
         dropdown.setVisible(false);
         LogDD.setVisible(false);
         logoutDD.setVisible(false);
@@ -65,7 +62,7 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
 
             String sql = "SELECT `Date`, `Amount`, `Type` "
                     + "FROM `transactions`"
-                    + "WHERE PersonID = '" + LoginGUI.memberid + "';";
+                    + "WHERE PersonID = '" + LoginGUI.trainerid + "';";
             ResultSet rs = myStmt.executeQuery(sql);
 
             ResultSetMetaData rsd = rs.getMetaData();
@@ -101,9 +98,9 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        logoutDD = new javax.swing.JLabel();
         dropdown = new javax.swing.JLabel();
         salaryDD = new javax.swing.JLabel();
-        logoutDD = new javax.swing.JLabel();
         ProfileDD = new javax.swing.JLabel();
         LogDD = new javax.swing.JLabel();
         header = new javax.swing.JLabel();
@@ -114,6 +111,7 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         memberhover = new javax.swing.JLabel();
         classHover = new javax.swing.JLabel();
         aboutHover = new javax.swing.JLabel();
+        id1 = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
@@ -122,7 +120,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         SalaryyBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         logbookBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
@@ -130,6 +127,7 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         classBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         MemberBtn = new javax.swing.JButton();
+        getSalaryBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -138,6 +136,10 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
+        logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tLoutdrop.PNG"))); // NOI18N
+        getContentPane().add(logoutDD);
+        logoutDD.setBounds(540, 57, 189, 170);
+
         dropdown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tdrop.PNG"))); // NOI18N
         getContentPane().add(dropdown);
         dropdown.setBounds(540, 50, 200, 180);
@@ -145,10 +147,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         salaryDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tsaldrop.PNG"))); // NOI18N
         getContentPane().add(salaryDD);
         salaryDD.setBounds(540, 55, 190, 170);
-
-        logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tLoutdrop.PNG"))); // NOI18N
-        getContentPane().add(logoutDD);
-        logoutDD.setBounds(540, 60, 189, 170);
 
         ProfileDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tprofdrop.PNG"))); // NOI18N
         getContentPane().add(ProfileDD);
@@ -230,11 +228,17 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         getContentPane().add(aboutHover);
         aboutHover.setBounds(235, 16, 100, 60);
 
+        id1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        id1.setForeground(new java.awt.Color(56, 85, 98));
+        id1.setText("Trainer ID: ");
+        getContentPane().add(id1);
+        id1.setBounds(10, 130, 150, 30);
+
         id.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         id.setForeground(new java.awt.Color(56, 85, 98));
         id.setText("Trainer ID: ");
         getContentPane().add(id);
-        id.setBounds(20, 130, 150, 30);
+        id.setBounds(10, 130, 150, 30);
 
         xHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x hover.PNG"))); // NOI18N
         getContentPane().add(xHover);
@@ -307,10 +311,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         });
         getContentPane().add(SalaryyBtn);
         SalaryyBtn.setBounds(540, 140, 190, 40);
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 90, 560, 380);
 
         logbookBtn.setText("jButton1");
         logbookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -434,6 +434,15 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         getContentPane().add(MemberBtn);
         MemberBtn.setBounds(470, 10, 90, 40);
 
+        getSalaryBtn.setText("jButton1");
+        getSalaryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getSalaryBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(getSalaryBtn);
+        getSalaryBtn.setBounds(290, 440, 210, 40);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -548,7 +557,7 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnMouseExited
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        new MemberPersonalDetailsGUI().setVisible(true);
+        new TrainerPersonalDetailsGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_profileBtnActionPerformed
 
@@ -637,6 +646,104 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_memberhoverMouseExited
 
+    private void getSalaryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSalaryBtnActionPerformed
+        
+        //classes will be paid for + added as soon as they are bought
+        //collect monthly salary only   
+        
+        try {        
+            
+            String date = "" ;
+            String m = "";
+            String y = "";
+            
+            //find out last month salary paid
+            
+            Connection myConn = DriverManager.getConnection(url, user, password);
+            Statement myStmt = myConn.createStatement();
+
+            String sql = "SELECT `Date`, `Type` "
+                    + "FROM `transactions`"
+                    + "WHERE PersonID = '" + LoginGUI.trainerid + "';";
+            ResultSet rs = myStmt.executeQuery(sql);
+            
+            while(rs.next()) {
+                if(rs.getString("Type").toLowerCase().equals("monthly salary")) {
+                    date = rs.getString("Date");
+                }
+            }
+            
+            //if no salary EVER, then get hiredate
+            if(date.equals("")) {    
+            
+                sql = "SELECT `hiredate` "
+                    + "FROM `trainer`"
+                    + "WHERE TrainerID = '" + LoginGUI.trainerid + "';";
+                rs = myStmt.executeQuery(sql);
+                
+                while(rs.next()) {
+                    date = rs.getString("hiredate");
+                }
+                
+            }
+            
+            m = date.substring(5,7);
+            y = date.substring(0,4);
+            
+            //salary to be paid
+            Methods meth = new Methods();
+            amountt = meth.getNumMonths(y, m) * Double.parseDouble(TrainerOtherDetailsGUI.Sal);
+            
+            addTransaction();
+        } 
+        
+        catch (SQLException ex) {
+            Logger.getLogger(TrainerSalaryGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_getSalaryBtnActionPerformed
+
+    String transID() {
+        int row_id = 0;
+
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            myStmt = conn.createStatement();
+
+            String sql3 = "select count(*) as row_id from Transactions";
+            ResultSet rs3 = myStmt.executeQuery(sql3);
+
+            while (rs3.next()) {
+                row_id = rs3.getInt("row_id");
+            }
+
+            String t_id = (row_id + 1) + "";
+            return t_id;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PayGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+
+    void addTransaction() {
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            myStmt = conn.createStatement();
+
+            String type = "Monthly Salary";
+            
+            String sql = "INSERT INTO `transactions`(`TransID`, `PersonID`, "
+                    + "`Amount`, `Date`, `type`) "
+                    + "VALUES ('" + transID() + "','" + LoginGUI.trainerid + "','" + amountt
+                    + "', curdate(), '" + type + "');";
+            int rs = myStmt.executeUpdate(sql);
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(PayGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -1706,12 +1813,13 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
     private javax.swing.JLabel dropdown;
+    private javax.swing.JButton getSalaryBtn;
     private javax.swing.JLabel header;
     private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel id1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;
