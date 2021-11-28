@@ -541,6 +541,8 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        new MemberClassesGUI().setVisible(true);
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered

@@ -112,22 +112,22 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
         monthError.setForeground(new java.awt.Color(192, 0, 0));
         monthError.setText("* Enter valid expiry date *");
         getContentPane().add(monthError);
-        monthError.setBounds(200, 322, 300, 14);
+        monthError.setBounds(200, 322, 300, 16);
 
         accError1.setForeground(new java.awt.Color(192, 0, 0));
         accError1.setText("* Enter a unique card number *");
         getContentPane().add(accError1);
-        accError1.setBounds(200, 266, 300, 14);
+        accError1.setBounds(200, 266, 300, 16);
 
         accError.setForeground(new java.awt.Color(192, 0, 0));
         accError.setText("* Enter valid Card Number *");
         getContentPane().add(accError);
-        accError.setBounds(200, 266, 300, 14);
+        accError.setBounds(200, 266, 300, 16);
 
         cvvError.setForeground(new java.awt.Color(192, 0, 0));
         cvvError.setText("* Enter valid CVV *");
         getContentPane().add(cvvError);
-        cvvError.setBounds(200, 380, 300, 14);
+        cvvError.setBounds(200, 380, 300, 16);
 
         year.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         year.setForeground(new java.awt.Color(56, 85, 98));
@@ -164,7 +164,7 @@ public class MemberAccountDetailsGUI extends javax.swing.JFrame {
         fillAll.setForeground(new java.awt.Color(192, 0, 0));
         fillAll.setText("* Please fill all fields *");
         getContentPane().add(fillAll);
-        fillAll.setBounds(440, 390, 300, 14);
+        fillAll.setBounds(440, 390, 300, 16);
 
         cvv.setBackground(new java.awt.Color(56, 85, 98));
         cvv.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

@@ -93,17 +93,17 @@ public class SignupGUI1 extends javax.swing.JFrame {
         emailKharab.setForeground(new java.awt.Color(192, 0, 0));
         emailKharab.setText("*Email already exists*");
         getContentPane().add(emailKharab);
-        emailKharab.setBounds(200, 300, 300, 14);
+        emailKharab.setBounds(200, 300, 300, 16);
 
         fillAll.setForeground(new java.awt.Color(192, 0, 0));
         fillAll.setText("* Please fill all fields *");
         getContentPane().add(fillAll);
-        fillAll.setBounds(470, 480, 300, 14);
+        fillAll.setBounds(470, 480, 300, 16);
 
         existsError.setForeground(new java.awt.Color(192, 0, 0));
         existsError.setText("* Please enter a valid email address *");
         getContentPane().add(existsError);
-        existsError.setBounds(200, 300, 300, 14);
+        existsError.setBounds(200, 300, 300, 16);
 
         passError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/mismatchError.PNG"))); // NOI18N
         getContentPane().add(passError);
@@ -369,10 +369,6 @@ public class SignupGUI1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_teamBtnActionPerformed
 
-    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_classBtnActionPerformed
-
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered
         xHover.setVisible(true);
     }//GEN-LAST:event_xBtnMouseEntered
@@ -400,14 +396,6 @@ public class SignupGUI1 extends javax.swing.JFrame {
     private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
         teamHover.setVisible(false);
     }//GEN-LAST:event_teamBtnMouseExited
-
-    private void classBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseEntered
-        classHover.setVisible(true);
-    }//GEN-LAST:event_classBtnMouseEntered
-
-    private void classBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseExited
-        classHover.setVisible(false);
-    }//GEN-LAST:event_classBtnMouseExited
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
 
@@ -532,6 +520,18 @@ public class SignupGUI1 extends javax.swing.JFrame {
         new HomePageGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classBtnActionPerformed
+
+    private void classBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseExited
+        classHover.setVisible(false);
+    }//GEN-LAST:event_classBtnMouseExited
+
+    private void classBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseEntered
+        classHover.setVisible(true);
+    }//GEN-LAST:event_classBtnMouseEntered
 
     /**
      * @param args the command line arguments

@@ -2,25 +2,25 @@ package gymmanagement;
 
 import gymmanagement.HomePageGUI.*;
 import java.sql.*;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author PC
  */
-public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
-
-    public static String fname;
-    public static String lname;
-    public static String mail;
-    public static String CNIC;
-    public static String phone;
-    public static String gen;
-    public static String add;
+public class MemberClassesGUI extends javax.swing.JFrame {
 
     boolean ddOpen = false;
-    
+    boolean editable = false;
+    String newPlan = "";
+    String oldPlan = "";
+
+    public static String CardNum;
+    public static String Def;
+
     String url = "jdbc:mysql://localhost:3306/gym_db";
 
     String user = "root";
@@ -29,7 +29,7 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
     Connection conn;
     Statement myStmt;
 
-    public MemberPersonalDetailsGUI() {
+    public MemberClassesGUI() {
         initComponents();
 
         classHover.setVisible(false);
@@ -37,107 +37,134 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         aboutHover.setVisible(false);
         xHover.setVisible(false);
         iconHover.setVisible(false);
-        penhover.setVisible(false);
 
-        Saved.setVisible(false);
+        added.setVisible(false);
+        def.setVisible(false);
+        delete.setVisible(false);
+        selectError.setVisible(false);
+
         dropdown.setVisible(false);
         LogDD.setVisible(false);
         logoutDD.setVisible(false);
         phistoryDD.setVisible(false);
         ProfileDD.setVisible(false);
-        
-        phoneError.setVisible(false);
-        fillAll.setVisible(false);
-        
+
+        bankTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+        bankTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+        bankTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+        bankTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+
         setValues();
+        updateTable();
 
     }
 
-    
+    void updateTable() {
+
+        int c;
+
+        try {
+            Connection myConn = DriverManager.getConnection(url, user, password);
+            Statement myStmt = myConn.createStatement();
+
+            String sql = "SELECT `CardNum`, `ExpiryMonth`, `ExpiryYear`, "
+                    + "`CardHoldersName`, `DefaultCard` FROM `bankdetails`"
+                    + "WHERE PersonID = '" + LoginGUI.memberid + "';";
+            ResultSet rs = myStmt.executeQuery(sql);
+
+            ResultSetMetaData rsd = rs.getMetaData();
+            c = rsd.getColumnCount();
+            DefaultTableModel dft = (DefaultTableModel) bankTable.getModel();
+            dft.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v2 = new Vector();
+
+                for (int i = 1; i <= c; i++) {
+                    v2.add(rs.getString("CardNum"));
+                    v2.add(rs.getString("CardHoldersName"));
+
+                    String exp = rs.getString("ExpiryMonth") + "/" + rs.getString("ExpiryYear");
+                    v2.add(exp);
+
+                    if (rs.getInt("DefaultCard") == 1) {
+                        v2.add("Default");
+                    } else {
+                        v2.add("");
+                    }
+                }
+
+                dft.addRow(v2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberClassesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     void setValues() {
         try {
             Connection myConn = DriverManager.getConnection(url, user, password);
             Statement myStmt = myConn.createStatement();
-            
-            String sql = "SELECT `Firstname`, `Lastname`, `email`, "
-                    + "`CNIC`, `PhoneNum`, `Address`, `Gender` FROM `member` "
+
+            String sql = "SELECT `PlanID` FROM `member` "
                     + "where `MemberID` = '" + LoginGUI.memberid + "';";
-            
+
             ResultSet rs = myStmt.executeQuery(sql);
-            
-            while(rs.next()) {
-               firstName.setText(rs.getString("Firstname"));
-               lastName.setText(rs.getString("Lastname"));
-               email.setText(rs.getString("email"));
-               cnic.setText(rs.getString("cnic"));
-               phoneNum.setText(rs.getString("PhoneNum"));
-               address.setText(rs.getString("Address"));
-               
-               id.setText("Member ID: " + LoginGUI.memberid);
-               
-               String g = rs.getString("gender");
-               
-               if(g.toLowerCase().equals("m"))
-                   gender.setText("Male");
-               else if(g.toLowerCase().equals("f"))
-                   gender.setText("Female");
-               else
-                   gender.setText("Other");
+
+            while (rs.next()) {
+
+                id.setText("Member ID: " + LoginGUI.memberid);
+//               oldPlan = rs.getString("PlanID");
+
             }
-            
-        } 
-        
-        catch (SQLException ex) {
-            Logger.getLogger(MemberPersonalDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberClassesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        selectError = new javax.swing.JLabel();
+        buttons = new javax.swing.JLabel();
+        delete = new javax.swing.JLabel();
+        def = new javax.swing.JLabel();
+        added = new javax.swing.JLabel();
         logoutDD = new javax.swing.JLabel();
         phistoryDD = new javax.swing.JLabel();
         LogDD = new javax.swing.JLabel();
         ProfileDD = new javax.swing.JLabel();
         dropdown = new javax.swing.JLabel();
-        phoneError = new javax.swing.JLabel();
-        id1 = new javax.swing.JLabel();
-        Saved = new javax.swing.JLabel();
-        gender = new javax.swing.JLabel();
+        header = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        bankTable1 = new javax.swing.JTable();
         iconHover = new javax.swing.JLabel();
-        penhover = new javax.swing.JLabel();
-        email = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
-        cnic = new javax.swing.JLabel();
-        fillAll = new javax.swing.JLabel();
-        address = new javax.swing.JTextArea();
-        lastName = new javax.swing.JTextField();
-        phoneNum = new javax.swing.JTextField();
-        firstName = new javax.swing.JTextField();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
         aboutHover = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         classHover = new javax.swing.JLabel();
         teamHover = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
-        nextBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
-        chPassBtn = new javax.swing.JButton();
-        editBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         healthBtn = new javax.swing.JButton();
         paymentBtn = new javax.swing.JButton();
         bankBtn = new javax.swing.JButton();
         personalBtn = new javax.swing.JButton();
+        addBtn = new javax.swing.JButton();
+        defBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
         phistoryBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
-        logoutBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,9 +174,33 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(510, 431, 170, 50);
+        selectError.setForeground(new java.awt.Color(204, 0, 0));
+        selectError.setText("Please select a row");
+        getContentPane().add(selectError);
+        selectError.setBounds(280, 167, 180, 20);
+
+        buttons.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttons.setForeground(new java.awt.Color(56, 85, 98));
+        buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/bank buttons.PNG"))); // NOI18N
+        getContentPane().add(buttons);
+        buttons.setBounds(295, 420, 422, 40);
+
+        delete.setForeground(new java.awt.Color(204, 0, 0));
+        delete.setText("Default card cannot be deleted");
+        getContentPane().add(delete);
+        delete.setBounds(575, 460, 180, 20);
+
+        def.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        def.setForeground(new java.awt.Color(56, 85, 98));
+        def.setText("Set as Default!");
+        getContentPane().add(def);
+        def.setBounds(462, 460, 110, 20);
+
+        added.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        added.setForeground(new java.awt.Color(56, 85, 98));
+        added.setText("Added!");
+        getContentPane().add(added);
+        added.setBounds(340, 460, 60, 20);
 
         logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/dropdown logout hover.PNG"))); // NOI18N
         getContentPane().add(logoutDD);
@@ -171,138 +222,59 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(dropdown);
         dropdown.setBounds(540, 50, 200, 180);
 
-        phoneError.setForeground(new java.awt.Color(192, 0, 0));
-        phoneError.setText("* Phone number length is incorrect *");
-        getContentPane().add(phoneError);
-        phoneError.setBounds(480, 290, 300, 16);
+        header.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        header.setForeground(new java.awt.Color(56, 85, 98));
+        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/table header.PNG"))); // NOI18N
+        getContentPane().add(header);
+        header.setBounds(280, 185, 460, 30);
 
-        id1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        id1.setForeground(new java.awt.Color(56, 85, 98));
-        id1.setText("Edit");
-        getContentPane().add(id1);
-        id1.setBounds(650, 150, 150, 30);
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jScrollPane2.setOpaque(false);
 
-        Saved.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Saved.setForeground(new java.awt.Color(56, 85, 98));
-        Saved.setText("Saved!");
-        getContentPane().add(Saved);
-        Saved.setBounds(690, 450, 300, 14);
+        bankTable1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        bankTable1.setForeground(new java.awt.Color(56, 85, 98));
+        bankTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Date", "Time", "Trainer", "Category", "Available"
+            }
+        ));
+        bankTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        bankTable1.setRequestFocusEnabled(false);
+        bankTable1.setRowHeight(20);
+        bankTable1.setSelectionBackground(new java.awt.Color(56, 85, 98));
+        bankTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bankTable1KeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(bankTable1);
 
-        gender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        gender.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(gender);
-        gender.setBounds(650, 310, 70, 30);
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(100, 170, 640, 230);
 
         iconHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/icon hover.PNG"))); // NOI18N
         getContentPane().add(iconHover);
         iconHover.setBounds(676, 8, 50, 40);
-
-        penhover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/pen hover.PNG"))); // NOI18N
-        getContentPane().add(penhover);
-        penhover.setBounds(627, 115, 70, 50);
-
-        email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        email.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(email);
-        email.setBounds(280, 311, 260, 30);
 
         id.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         id.setForeground(new java.awt.Color(56, 85, 98));
         id.setText("Member ID: ");
         getContentPane().add(id);
         id.setBounds(20, 120, 150, 30);
-
-        cnic.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cnic.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(cnic);
-        cnic.setBounds(280, 256, 170, 30);
-
-        fillAll.setForeground(new java.awt.Color(192, 0, 0));
-        fillAll.setText("* Please fill all fields *");
-        getContentPane().add(fillAll);
-        fillAll.setBounds(580, 480, 300, 16);
-
-        address.setEditable(false);
-        address.setBackground(new java.awt.Color(56, 85, 98));
-        address.setColumns(1);
-        address.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        address.setForeground(new java.awt.Color(255, 255, 255));
-        address.setLineWrap(true);
-        address.setRows(3);
-        address.setAutoscrolls(false);
-        address.setBorder(null);
-        address.setCaretColor(new java.awt.Color(255, 255, 255));
-        address.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        address.setHighlighter(null);
-        address.setPreferredSize(new java.awt.Dimension(300, 370));
-        address.setSelectionColor(new java.awt.Color(56, 85, 98));
-        getContentPane().add(address);
-        address.setBounds(300, 370, 410, 50);
-
-        lastName.setEditable(false);
-        lastName.setBackground(new java.awt.Color(56, 85, 98));
-        lastName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lastName.setForeground(new java.awt.Color(255, 255, 255));
-        lastName.setBorder(null);
-        lastName.setCaretColor(new java.awt.Color(255, 255, 255));
-        lastName.setSelectionColor(new java.awt.Color(56, 85, 98));
-        lastName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lastNameMouseClicked(evt);
-            }
-        });
-        lastName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameActionPerformed(evt);
-            }
-        });
-        getContentPane().add(lastName);
-        lastName.setBounds(578, 202, 140, 30);
-
-        phoneNum.setEditable(false);
-        phoneNum.setBackground(new java.awt.Color(56, 85, 98));
-        phoneNum.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        phoneNum.setForeground(new java.awt.Color(255, 255, 255));
-        phoneNum.setBorder(null);
-        phoneNum.setCaretColor(new java.awt.Color(255, 255, 255));
-        phoneNum.setSelectionColor(new java.awt.Color(56, 85, 98));
-        phoneNum.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                phoneNumMouseClicked(evt);
-            }
-        });
-        phoneNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneNumActionPerformed(evt);
-            }
-        });
-        phoneNum.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                phoneNumKeyPressed(evt);
-            }
-        });
-        getContentPane().add(phoneNum);
-        phoneNum.setBounds(580, 257, 140, 30);
-
-        firstName.setEditable(false);
-        firstName.setBackground(new java.awt.Color(56, 85, 98));
-        firstName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        firstName.setForeground(new java.awt.Color(255, 255, 255));
-        firstName.setBorder(null);
-        firstName.setCaretColor(new java.awt.Color(255, 255, 255));
-        firstName.setSelectionColor(new java.awt.Color(56, 85, 98));
-        firstName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                firstNameMouseClicked(evt);
-            }
-        });
-        firstName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstNameActionPerformed(evt);
-            }
-        });
-        getContentPane().add(firstName);
-        firstName.setBounds(320, 203, 130, 30);
 
         xHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x hover.PNG"))); // NOI18N
         getContentPane().add(xHover);
@@ -316,6 +288,10 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(aboutHover);
         aboutHover.setBounds(351, 16, 100, 60);
 
+        jCheckBox1.setText("jCheckBox1");
+        getContentPane().add(jCheckBox1);
+        jCheckBox1.setBounds(170, 130, 160, 20);
+
         classHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/classes hover.PNG"))); // NOI18N
         getContentPane().add(classHover);
         classHover.setBounds(581, 16, 100, 60);
@@ -324,7 +300,7 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(teamHover);
         teamHover.setBounds(472, 16, 100, 60);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/personal details member.PNG"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/member bank details.PNG"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 770, 495);
 
@@ -382,23 +358,6 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(teamBtn);
         teamBtn.setBounds(475, 10, 90, 40);
 
-        nextBtn.setText("jButton1");
-        nextBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                nextBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                nextBtnMouseExited(evt);
-            }
-        });
-        nextBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(nextBtn);
-        nextBtn.setBounds(530, 438, 150, 40);
-
         homeBtn.setText("jButton2");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,32 +366,6 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(homeBtn);
         homeBtn.setBounds(40, 0, 180, 60);
-
-        chPassBtn.setText("jButton1");
-        chPassBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chPassBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(chPassBtn);
-        chPassBtn.setBounds(250, 440, 250, 40);
-
-        editBtn.setText("jButton1");
-        editBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                editBtnMouseExited(evt);
-            }
-        });
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(editBtn);
-        editBtn.setBounds(630, 120, 50, 50);
 
         iconBtn.setText("jButton1");
         iconBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -470,17 +403,61 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         paymentBtn.setBounds(20, 330, 160, 70);
 
         bankBtn.setText("jButton1");
-        bankBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bankBtnActionPerformed(evt);
-            }
-        });
         getContentPane().add(bankBtn);
         bankBtn.setBounds(20, 410, 160, 60);
 
         personalBtn.setText("jButton1");
+        personalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personalBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(personalBtn);
         personalBtn.setBounds(10, 190, 180, 60);
+
+        addBtn.setText("jButton1");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addBtn);
+        addBtn.setBounds(300, 420, 130, 40);
+
+        defBtn.setText("jButton2");
+        defBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                defBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(defBtn);
+        defBtn.setBounds(440, 420, 130, 40);
+
+        logoutBtn.setText("jButton1");
+        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseExited(evt);
+            }
+        });
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logoutBtn);
+        logoutBtn.setBounds(540, 180, 190, 40);
+
+        deleteBtn.setText("jButton3");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(deleteBtn);
+        deleteBtn.setBounds(590, 420, 120, 40);
 
         phistoryBtn.setText("jButton1");
         phistoryBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -532,23 +509,6 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(profileBtn);
         profileBtn.setBounds(540, 50, 190, 50);
-
-        logoutBtn.setText("jButton1");
-        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseExited(evt);
-            }
-        });
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(logoutBtn);
-        logoutBtn.setBounds(540, 180, 190, 40);
 
         classBtn.setText("jButton1");
         classBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -611,108 +571,15 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
     private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
         teamHover.setVisible(false);
     }//GEN-LAST:event_teamBtnMouseExited
-   
-    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
 
-        fillAll.setVisible(false);
-        phoneError.setVisible(false);
-
-        fname = firstName.getText();
-        lname = lastName.getText();
-        phone = phoneNum.getText();
-        add = address.getText();
-
-        boolean isEmpty = fname.equals("") || lname.equals("") || phone.equals("")|| address.equals("");
-
-        if (isEmpty) {
-            fillAll.setVisible(true);
-        } 
-        
-        else if (phone.length() != 11) {
-            phoneError.setVisible(true);
-        } 
-        
-        else {
-            //save into database
-            Methods m = new Methods();
-            String mid = LoginGUI.memberid;
-            
-            m.updateMember("Firstname", fname, mid);
-            m.updateMember("Lastname", lname, mid);
-            m.updateMember("PhoneNum", phone, mid);
-            m.updateMember("Address", add, mid);
-            
-            nextBtn.setVisible(false);
-            jPanel1.setVisible(true);
-            
-            Saved.setVisible(true);
-            penhover.setVisible(false);
-            firstName.setEditable(false);
-            lastName.setEditable(false);
-            phoneNum.setEditable(false);
-            address.setEditable(false);
-            
-        }
-
-    }//GEN-LAST:event_nextBtnActionPerformed
-
-
-    private void nextBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseEntered
-
-    }//GEN-LAST:event_nextBtnMouseEntered
-
-    private void nextBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseExited
-
-    }//GEN-LAST:event_nextBtnMouseExited
-
-    private void firstNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstNameMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameMouseClicked
-
-    private void firstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameActionPerformed
-
-    private void lastNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lastNameMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameMouseClicked
-
-    private void lastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
         //dashboard
         this.setVisible(false);
     }//GEN-LAST:event_homeBtnActionPerformed
 
-    private void phoneNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneNumMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNumMouseClicked
-
-    private void phoneNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNumActionPerformed
-
-    private void phoneNumKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneNumKeyPressed
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c) || evt.getKeyCode() == 8) {
-            phoneNum.setEditable(true);
-        } else {
-            phoneNum.setEditable(false);
-        }
-    }//GEN-LAST:event_phoneNumKeyPressed
-
-    private void editBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseEntered
-
-    }//GEN-LAST:event_editBtnMouseEntered
-
-    private void editBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseExited
-        //penhover.setVisible(false);
-    }//GEN-LAST:event_editBtnMouseExited
-
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
-       // iconHover.setVisible(true);
+        // iconHover.setVisible(true);
     }//GEN-LAST:event_iconBtnMouseEntered
 
     private void iconBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseExited
@@ -720,57 +587,115 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_iconBtnMouseExited
 
     private void iconBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconBtnActionPerformed
-        if(!ddOpen) {
+        if (!ddOpen) {
             iconHover.setVisible(true);
             dropdown.setVisible(true);
             ddOpen = true;
-        }
-        
-        else {
+        } else {
             iconHover.setVisible(false);
             dropdown.setVisible(false);
             LogDD.setVisible(false);
             logoutDD.setVisible(false);
             phistoryDD.setVisible(false);
             ProfileDD.setVisible(false);
-            
+
             ddOpen = false;
         }
-            
+
     }//GEN-LAST:event_iconBtnActionPerformed
-
-    private void chPassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chPassBtnActionPerformed
-        new MemberChangePasswordGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_chPassBtnActionPerformed
-
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        penhover.setVisible(true);
-        firstName.setEditable(true);
-        lastName.setEditable(true);
-        phoneNum.setEditable(true);
-        address.setEditable(true);
-        
-        nextBtn.setVisible(true);
-        jPanel1.setVisible(false);
-        Saved.setVisible(false);
-        
-    }//GEN-LAST:event_editBtnActionPerformed
 
     private void healthBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healthBtnActionPerformed
         new MemberHealthDetailsGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_healthBtnActionPerformed
 
+    private void personalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalBtnActionPerformed
+        new MemberPersonalDetailsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_personalBtnActionPerformed
+
     private void paymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentBtnActionPerformed
         new MemberPaymentPlanGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_paymentBtnActionPerformed
 
-    private void bankBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankBtnActionPerformed
-        new MemberBankDetailsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_bankBtnActionPerformed
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        new MemberAccountDetailsGUI().setVisible(true);
+        delete.setVisible(false);
+        def.setVisible(false);
+        selectError.setVisible(false);
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void defBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defBtnActionPerformed
+
+        delete.setVisible(false);
+        
+        DefaultTableModel model = (DefaultTableModel) bankTable.getModel();
+        int selectedIndex = bankTable.getSelectedRow();
+
+        if (selectedIndex == -1) {
+            selectError.setVisible(true);
+        }
+
+        else {
+            selectError.setVisible(false);
+            CardNum = model.getValueAt(selectedIndex, 0).toString();
+
+            // remove old default 
+            try {
+                conn = DriverManager.getConnection(url, user, password);
+                myStmt = conn.createStatement();
+
+                String sql = "Update `bankdetails` set DefaultCard = '0' "
+                        + "WHERE DefaultCard = '" + 1 + "' and PersonID = '" + LoginGUI.memberid + "';";
+                int rs = myStmt.executeUpdate(sql);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(MemberClassesGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // set new default
+            Methods m = new Methods();
+            m.updateBank("DefaultCard", "1", LoginGUI.memberid, CardNum);
+
+            updateTable();
+            //Methods m = m.updateMember(url, url, url)
+
+            added.setVisible(false);
+            def.setVisible(true);
+            delete.setVisible(false);
+        }
+    }//GEN-LAST:event_defBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+
+        def.setVisible(false);
+        
+        DefaultTableModel model = (DefaultTableModel) bankTable.getModel();
+        int selectedIndex = bankTable.getSelectedRow();
+
+        if (selectedIndex == -1) {
+            selectError.setVisible(true);
+        }
+        
+        else {
+            selectError.setVisible(false);
+            CardNum = model.getValueAt(selectedIndex, 0).toString();
+            Def = model.getValueAt(selectedIndex, 3).toString();
+
+            delete.setVisible(false);
+
+            if (Def.equals("")) {
+                new DeletePopup().setVisible(true);
+            } else {
+                delete.setVisible(true);
+            }
+
+            updateTable();
+        }
+
+
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void phistoryBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phistoryBtnMouseEntered
         if (ddOpen) {
@@ -838,6 +763,22 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_profileBtnActionPerformed
 
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        if (ddOpen) {
+            LoginGUI.type = "";
+            this.setVisible(false);
+            new HomePageGUI().setVisible(true);
+        }
+
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
+        logoutDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnMouseExited
+
     private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
         if (ddOpen) {
             dropdown.setVisible(false);
@@ -847,21 +788,6 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
             ProfileDD.setVisible(false);
         }
     }//GEN-LAST:event_logoutBtnMouseEntered
-
-    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
-        logoutDD.setVisible(false);
-        if (ddOpen) {
-            dropdown.setVisible(true);
-        }
-    }//GEN-LAST:event_logoutBtnMouseExited
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        if (ddOpen) {
-            LoginGUI.type = "";
-            this.setVisible(false);
-            new HomePageGUI().setVisible(true);
-        }
-    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void classBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseEntered
         classHover.setVisible(true);
@@ -876,6 +802,10 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         this.setVisible(false);
         new MemberClassesGUI().setVisible(true);
     }//GEN-LAST:event_classBtnActionPerformed
+
+    private void bankTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bankTable1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bankTable1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -894,14 +824,126 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MemberPersonalDetailsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MemberClassesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MemberPersonalDetailsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MemberClassesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MemberPersonalDetailsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MemberClassesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MemberPersonalDetailsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MemberClassesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -922,7 +964,7 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MemberPersonalDetailsGUI().setVisible(true);
+                new MemberClassesGUI().setVisible(true);
             }
         });
     }
@@ -930,42 +972,38 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogDD;
     private javax.swing.JLabel ProfileDD;
-    private javax.swing.JLabel Saved;
     private javax.swing.JButton aboutBtn;
     private javax.swing.JLabel aboutHover;
-    public javax.swing.JTextArea address;
+    private javax.swing.JButton addBtn;
+    private javax.swing.JLabel added;
     private javax.swing.JLabel background;
     private javax.swing.JButton bankBtn;
-    private javax.swing.JButton chPassBtn;
+    public static javax.swing.JTable bankTable1;
+    private javax.swing.JLabel buttons;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
-    private javax.swing.JLabel cnic;
+    private javax.swing.JLabel def;
+    private javax.swing.JButton defBtn;
+    public static javax.swing.JLabel delete;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel dropdown;
-    private javax.swing.JButton editBtn;
-    private javax.swing.JLabel email;
-    private javax.swing.JLabel fillAll;
-    public javax.swing.JTextField firstName;
-    private javax.swing.JLabel gender;
+    private javax.swing.JLabel header;
     private javax.swing.JButton healthBtn;
     private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
-    private javax.swing.JLabel id1;
-    private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField lastName;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel logoutDD;
-    private javax.swing.JButton nextBtn;
     private javax.swing.JButton paymentBtn;
-    private javax.swing.JLabel penhover;
     private javax.swing.JButton personalBtn;
     private javax.swing.JButton phistoryBtn;
     private javax.swing.JLabel phistoryDD;
-    private javax.swing.JLabel phoneError;
-    public javax.swing.JTextField phoneNum;
     private javax.swing.JButton profileBtn;
+    public static javax.swing.JLabel selectError;
     private javax.swing.JButton teamBtn;
     private javax.swing.JLabel teamHover;
     private javax.swing.JLabel x;
