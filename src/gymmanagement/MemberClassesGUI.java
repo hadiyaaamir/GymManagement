@@ -15,11 +15,11 @@ public class MemberClassesGUI extends javax.swing.JFrame {
 
     boolean ddOpen = false;
     boolean editable = false;
-    String newPlan = "";
-    String oldPlan = "";
+    
 
-    public static String CardNum;
-    public static String Def;
+    public static String Fee;
+    public static String Sid;
+    public static String trid;
 
     String url = "jdbc:mysql://localhost:3306/gym_db";
 
@@ -37,10 +37,8 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         aboutHover.setVisible(false);
         xHover.setVisible(false);
         iconHover.setVisible(false);
-
-        added.setVisible(false);
-        def.setVisible(false);
-        delete.setVisible(false);
+        
+        bookedError.setVisible(false);
         selectError.setVisible(false);
 
         dropdown.setVisible(false);
@@ -48,11 +46,6 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         logoutDD.setVisible(false);
         phistoryDD.setVisible(false);
         ProfileDD.setVisible(false);
-
-        bankTable.getColumnModel().getColumn(0).setPreferredWidth(200);
-        bankTable.getColumnModel().getColumn(1).setPreferredWidth(200);
-        bankTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-        bankTable.getColumnModel().getColumn(3).setPreferredWidth(100);
 
         setValues();
         updateTable();
@@ -67,60 +60,59 @@ public class MemberClassesGUI extends javax.swing.JFrame {
             Connection myConn = DriverManager.getConnection(url, user, password);
             Statement myStmt = myConn.createStatement();
 
-            String sql = "SELECT `CardNum`, `ExpiryMonth`, `ExpiryYear`, "
-                    + "`CardHoldersName`, `DefaultCard` FROM `bankdetails`"
-                    + "WHERE PersonID = '" + LoginGUI.memberid + "';";
+            String sql;
+            if(MyClasses.isSelected()) {
+                sql = "SELECT `SessionID`, `Date`, `StartTime`, "
+                        + "`Firstname`, `Lastname`, Category, SessionFee "
+                        + "FROM `session` NATURAL JOIN trainer "
+                        + "WHERE MemberID = '"+ LoginGUI.memberid +"' "
+                        + "and TrainerID is not null;";
+            }
+            
+            else if(Available.isSelected()) {
+                sql = "SELECT `SessionID`, `Date`, `StartTime`, "
+                        + "`Firstname`, `Lastname`, Category, SessionFee "
+                        + "FROM `session` NATURAL JOIN trainer "
+                        + "WHERE MemberID is null "
+                        + "and TrainerID is not null;";
+            }
+            
+            else {
+                sql = "SELECT `SessionID`, `Date`, `StartTime`, "
+                        + "`Firstname`, `Lastname`, Category, SessionFee "
+                        + "FROM `session` NATURAL JOIN trainer "
+                        + "WHERE TrainerID is not null;";
+            }
+            
             ResultSet rs = myStmt.executeQuery(sql);
 
             ResultSetMetaData rsd = rs.getMetaData();
             c = rsd.getColumnCount();
-            DefaultTableModel dft = (DefaultTableModel) bankTable.getModel();
+            DefaultTableModel dft = (DefaultTableModel) classTable.getModel();
             dft.setRowCount(0);
 
             while (rs.next()) {
                 Vector v2 = new Vector();
 
                 for (int i = 1; i <= c; i++) {
-                    v2.add(rs.getString("CardNum"));
-                    v2.add(rs.getString("CardHoldersName"));
-
-                    String exp = rs.getString("ExpiryMonth") + "/" + rs.getString("ExpiryYear");
-                    v2.add(exp);
-
-                    if (rs.getInt("DefaultCard") == 1) {
-                        v2.add("Default");
-                    } else {
-                        v2.add("");
-                    }
+                    v2.add(rs.getString("SessionID"));
+                    v2.add(rs.getString("Date"));
+                    v2.add(rs.getString("Starttime"));
+                    v2.add(rs.getString("Firstname") + " " + rs.getString("Lastname"));
+                    v2.add(rs.getString("Category"));
+                    v2.add(rs.getString("SessionFee"));
                 }
 
                 dft.addRow(v2);
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             Logger.getLogger(MemberClassesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     void setValues() {
-        try {
-            Connection myConn = DriverManager.getConnection(url, user, password);
-            Statement myStmt = myConn.createStatement();
-
-            String sql = "SELECT `PlanID` FROM `member` "
-                    + "where `MemberID` = '" + LoginGUI.memberid + "';";
-
-            ResultSet rs = myStmt.executeQuery(sql);
-
-            while (rs.next()) {
-
-                id.setText("Member ID: " + LoginGUI.memberid);
-//               oldPlan = rs.getString("PlanID");
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(MemberClassesGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        id.setText("Member ID: " + LoginGUI.memberid);
     }
 
     @SuppressWarnings("unchecked")
@@ -128,10 +120,9 @@ public class MemberClassesGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         selectError = new javax.swing.JLabel();
+        Available = new javax.swing.JCheckBox();
         buttons = new javax.swing.JLabel();
-        delete = new javax.swing.JLabel();
-        def = new javax.swing.JLabel();
-        added = new javax.swing.JLabel();
+        bookedError = new javax.swing.JLabel();
         logoutDD = new javax.swing.JLabel();
         phistoryDD = new javax.swing.JLabel();
         LogDD = new javax.swing.JLabel();
@@ -139,13 +130,13 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         dropdown = new javax.swing.JLabel();
         header = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        bankTable1 = new javax.swing.JTable();
+        classTable = new javax.swing.JTable();
         iconHover = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
         aboutHover = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        MyClasses = new javax.swing.JCheckBox();
         classHover = new javax.swing.JLabel();
         teamHover = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
@@ -154,14 +145,8 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         teamBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
-        healthBtn = new javax.swing.JButton();
-        paymentBtn = new javax.swing.JButton();
-        bankBtn = new javax.swing.JButton();
-        personalBtn = new javax.swing.JButton();
-        addBtn = new javax.swing.JButton();
-        defBtn = new javax.swing.JButton();
+        bookBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
-        deleteBtn = new javax.swing.JButton();
         phistoryBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
@@ -177,30 +162,35 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         selectError.setForeground(new java.awt.Color(204, 0, 0));
         selectError.setText("Please select a row");
         getContentPane().add(selectError);
-        selectError.setBounds(280, 167, 180, 20);
+        selectError.setBounds(70, 400, 180, 20);
+
+        Available.setBackground(new java.awt.Color(255, 255, 255));
+        Available.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        Available.setForeground(new java.awt.Color(56, 85, 98));
+        Available.setText("Available Sessions");
+        Available.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                AvailableStateChanged(evt);
+            }
+        });
+        Available.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AvailableActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Available);
+        Available.setBounds(200, 175, 170, 20);
 
         buttons.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttons.setForeground(new java.awt.Color(56, 85, 98));
-        buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/bank buttons.PNG"))); // NOI18N
+        buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/book.PNG"))); // NOI18N
         getContentPane().add(buttons);
-        buttons.setBounds(295, 420, 422, 40);
+        buttons.setBounds(320, 420, 160, 50);
 
-        delete.setForeground(new java.awt.Color(204, 0, 0));
-        delete.setText("Default card cannot be deleted");
-        getContentPane().add(delete);
-        delete.setBounds(575, 460, 180, 20);
-
-        def.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        def.setForeground(new java.awt.Color(56, 85, 98));
-        def.setText("Set as Default!");
-        getContentPane().add(def);
-        def.setBounds(462, 460, 110, 20);
-
-        added.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        added.setForeground(new java.awt.Color(56, 85, 98));
-        added.setText("Added!");
-        getContentPane().add(added);
-        added.setBounds(340, 460, 60, 20);
+        bookedError.setForeground(new java.awt.Color(204, 0, 0));
+        bookedError.setText("Cannot book an already booked session");
+        getContentPane().add(bookedError);
+        bookedError.setBounds(510, 400, 250, 20);
 
         logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/dropdown logout hover.PNG"))); // NOI18N
         getContentPane().add(logoutDD);
@@ -224,9 +214,9 @@ public class MemberClassesGUI extends javax.swing.JFrame {
 
         header.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         header.setForeground(new java.awt.Color(56, 85, 98));
-        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/table header.PNG"))); // NOI18N
+        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/class header.PNG"))); // NOI18N
         getContentPane().add(header);
-        header.setBounds(280, 185, 460, 30);
+        header.setBounds(70, 200, 640, 30);
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,9 +224,9 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         jScrollPane2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jScrollPane2.setOpaque(false);
 
-        bankTable1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        bankTable1.setForeground(new java.awt.Color(56, 85, 98));
-        bankTable1.setModel(new javax.swing.table.DefaultTableModel(
+        classTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        classTable.setForeground(new java.awt.Color(56, 85, 98));
+        classTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -249,22 +239,22 @@ public class MemberClassesGUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Date", "Time", "Trainer", "Category", "Available"
+                "ID", "Date", "Time", "Trainer", "Category", "Fee"
             }
         ));
-        bankTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        bankTable1.setRequestFocusEnabled(false);
-        bankTable1.setRowHeight(20);
-        bankTable1.setSelectionBackground(new java.awt.Color(56, 85, 98));
-        bankTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        classTable.setGridColor(new java.awt.Color(255, 255, 255));
+        classTable.setRequestFocusEnabled(false);
+        classTable.setRowHeight(20);
+        classTable.setSelectionBackground(new java.awt.Color(56, 85, 98));
+        classTable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                bankTable1KeyPressed(evt);
+                classTableKeyPressed(evt);
             }
         });
-        jScrollPane2.setViewportView(bankTable1);
+        jScrollPane2.setViewportView(classTable);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(100, 170, 640, 230);
+        jScrollPane2.setBounds(70, 200, 640, 200);
 
         iconHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/icon hover.PNG"))); // NOI18N
         getContentPane().add(iconHover);
@@ -288,9 +278,22 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         getContentPane().add(aboutHover);
         aboutHover.setBounds(351, 16, 100, 60);
 
-        jCheckBox1.setText("jCheckBox1");
-        getContentPane().add(jCheckBox1);
-        jCheckBox1.setBounds(170, 130, 160, 20);
+        MyClasses.setBackground(new java.awt.Color(255, 255, 255));
+        MyClasses.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        MyClasses.setForeground(new java.awt.Color(56, 85, 98));
+        MyClasses.setText("My Classes");
+        MyClasses.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                MyClassesStateChanged(evt);
+            }
+        });
+        MyClasses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MyClassesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(MyClasses);
+        MyClasses.setBounds(70, 175, 130, 20);
 
         classHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/classes hover.PNG"))); // NOI18N
         getContentPane().add(classHover);
@@ -300,7 +303,7 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         getContentPane().add(teamHover);
         teamHover.setBounds(472, 16, 100, 60);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/member bank details.PNG"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/member classes.PNG"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 770, 495);
 
@@ -384,54 +387,14 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         getContentPane().add(iconBtn);
         iconBtn.setBounds(680, 0, 40, 50);
 
-        healthBtn.setText("jButton1");
-        healthBtn.addActionListener(new java.awt.event.ActionListener() {
+        bookBtn.setText("jButton2");
+        bookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                healthBtnActionPerformed(evt);
+                bookBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(healthBtn);
-        healthBtn.setBounds(20, 260, 160, 60);
-
-        paymentBtn.setText("jButton1");
-        paymentBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paymentBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(paymentBtn);
-        paymentBtn.setBounds(20, 330, 160, 70);
-
-        bankBtn.setText("jButton1");
-        getContentPane().add(bankBtn);
-        bankBtn.setBounds(20, 410, 160, 60);
-
-        personalBtn.setText("jButton1");
-        personalBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                personalBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(personalBtn);
-        personalBtn.setBounds(10, 190, 180, 60);
-
-        addBtn.setText("jButton1");
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(addBtn);
-        addBtn.setBounds(300, 420, 130, 40);
-
-        defBtn.setText("jButton2");
-        defBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                defBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(defBtn);
-        defBtn.setBounds(440, 420, 130, 40);
+        getContentPane().add(bookBtn);
+        bookBtn.setBounds(320, 420, 130, 50);
 
         logoutBtn.setText("jButton1");
         logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -449,15 +412,6 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         });
         getContentPane().add(logoutBtn);
         logoutBtn.setBounds(540, 180, 190, 40);
-
-        deleteBtn.setText("jButton3");
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(deleteBtn);
-        deleteBtn.setBounds(590, 420, 120, 40);
 
         phistoryBtn.setText("jButton1");
         phistoryBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -604,98 +558,61 @@ public class MemberClassesGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_iconBtnActionPerformed
 
-    private void healthBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healthBtnActionPerformed
-        new MemberHealthDetailsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_healthBtnActionPerformed
+    private void bookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookBtnActionPerformed
 
-    private void personalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalBtnActionPerformed
-        new MemberPersonalDetailsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_personalBtnActionPerformed
-
-    private void paymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentBtnActionPerformed
-        new MemberPaymentPlanGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_paymentBtnActionPerformed
-
-    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        new MemberAccountDetailsGUI().setVisible(true);
-        delete.setVisible(false);
-        def.setVisible(false);
-        selectError.setVisible(false);
-    }//GEN-LAST:event_addBtnActionPerformed
-
-    private void defBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defBtnActionPerformed
-
-        delete.setVisible(false);
+        System.out.println("button works");
         
-        DefaultTableModel model = (DefaultTableModel) bankTable.getModel();
-        int selectedIndex = bankTable.getSelectedRow();
+        bookedError.setVisible(false);
+        
+        DefaultTableModel model = (DefaultTableModel) classTable.getModel();
+        int selectedIndex = classTable.getSelectedRow();
 
         if (selectedIndex == -1) {
             selectError.setVisible(true);
         }
 
         else {
+            
             selectError.setVisible(false);
-            CardNum = model.getValueAt(selectedIndex, 0).toString();
-
-            // remove old default 
+            
+            Sid = model.getValueAt(selectedIndex, 0).toString();
+            String mid = null;
+            
+            //getting member id
             try {
                 conn = DriverManager.getConnection(url, user, password);
                 myStmt = conn.createStatement();
 
-                String sql = "Update `bankdetails` set DefaultCard = '0' "
-                        + "WHERE DefaultCard = '" + 1 + "' and PersonID = '" + LoginGUI.memberid + "';";
-                int rs = myStmt.executeUpdate(sql);
+                String sql = "Select MemberID, TrainerID from session "
+                        + "WHERE SessionID = '" + Sid + "';";
+                ResultSet rs = myStmt.executeQuery(sql);
+                
+                while(rs.next()) {
+                    mid = rs.getString("MemberID");
+                    trid = rs.getString("TrainerID");
+                    System.out.println(mid + " " + trid);
+                }
+                    
 
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) {
                 Logger.getLogger(MemberClassesGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            // set new default
-            Methods m = new Methods();
-            m.updateBank("DefaultCard", "1", LoginGUI.memberid, CardNum);
-
-            updateTable();
-            //Methods m = m.updateMember(url, url, url)
-
-            added.setVisible(false);
-            def.setVisible(true);
-            delete.setVisible(false);
-        }
-    }//GEN-LAST:event_defBtnActionPerformed
-
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-
-        def.setVisible(false);
-        
-        DefaultTableModel model = (DefaultTableModel) bankTable.getModel();
-        int selectedIndex = bankTable.getSelectedRow();
-
-        if (selectedIndex == -1) {
-            selectError.setVisible(true);
-        }
-        
-        else {
-            selectError.setVisible(false);
-            CardNum = model.getValueAt(selectedIndex, 0).toString();
-            Def = model.getValueAt(selectedIndex, 3).toString();
-
-            delete.setVisible(false);
-
-            if (Def.equals("")) {
-                new DeletePopup().setVisible(true);
-            } else {
-                delete.setVisible(true);
+            
+            
+            Fee = model.getValueAt(selectedIndex, 5).toString();            
+            System.out.println(mid + " " + trid);
+            if(mid != null) {
+                bookedError.setVisible(true);
             }
-
-            updateTable();
+            else {
+                bookedError.setVisible(false);
+                new BookPopup().setVisible(true);
+                updateTable();
+                
+            }
         }
-
-
-    }//GEN-LAST:event_deleteBtnActionPerformed
+    }//GEN-LAST:event_bookBtnActionPerformed
 
     private void phistoryBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phistoryBtnMouseEntered
         if (ddOpen) {
@@ -803,9 +720,27 @@ public class MemberClassesGUI extends javax.swing.JFrame {
         new MemberClassesGUI().setVisible(true);
     }//GEN-LAST:event_classBtnActionPerformed
 
-    private void bankTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bankTable1KeyPressed
+    private void classTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_classTableKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bankTable1KeyPressed
+    }//GEN-LAST:event_classTableKeyPressed
+
+    private void AvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableActionPerformed
+        MyClasses.setSelected(false);
+        updateTable();
+    }//GEN-LAST:event_AvailableActionPerformed
+
+    private void MyClassesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MyClassesStateChanged
+        
+    }//GEN-LAST:event_MyClassesStateChanged
+
+    private void MyClassesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyClassesActionPerformed
+        Available.setSelected(false);
+        updateTable();
+    }//GEN-LAST:event_MyClassesActionPerformed
+
+    private void AvailableStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AvailableStateChanged
+        
+    }//GEN-LAST:event_AvailableStateChanged
 
     /**
      * @param args the command line arguments
@@ -970,36 +905,29 @@ public class MemberClassesGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JCheckBox Available;
     private javax.swing.JLabel LogDD;
+    public static javax.swing.JCheckBox MyClasses;
     private javax.swing.JLabel ProfileDD;
     private javax.swing.JButton aboutBtn;
     private javax.swing.JLabel aboutHover;
-    private javax.swing.JButton addBtn;
-    private javax.swing.JLabel added;
     private javax.swing.JLabel background;
-    private javax.swing.JButton bankBtn;
-    public static javax.swing.JTable bankTable1;
+    private javax.swing.JButton bookBtn;
+    public static javax.swing.JLabel bookedError;
     private javax.swing.JLabel buttons;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
-    private javax.swing.JLabel def;
-    private javax.swing.JButton defBtn;
-    public static javax.swing.JLabel delete;
-    private javax.swing.JButton deleteBtn;
+    public static javax.swing.JTable classTable;
     private javax.swing.JLabel dropdown;
     private javax.swing.JLabel header;
-    private javax.swing.JButton healthBtn;
     private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel logoutDD;
-    private javax.swing.JButton paymentBtn;
-    private javax.swing.JButton personalBtn;
     private javax.swing.JButton phistoryBtn;
     private javax.swing.JLabel phistoryDD;
     private javax.swing.JButton profileBtn;
