@@ -240,7 +240,7 @@ public class LoginGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(classBtn);
-        classBtn.setBounds(620, 10, 80, 40);
+        classBtn.setBounds(610, 10, 90, 40);
 
         jButton1.setText("jButton1");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -320,6 +320,9 @@ public class LoginGUI extends javax.swing.JFrame {
                             memberid = "";
                             trainerid = "";
                             //manager home gui
+                            
+                            new ManagerMemberDetailsGUI().setVisible(true);
+                            
                         } else {
                             kuchKharab.setVisible(true);
                         }
@@ -412,11 +415,13 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnActionPerformed
 
     private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
+        new TeamGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_teamBtnActionPerformed
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        // TODO add your handling code here:
+        new ClassesGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered

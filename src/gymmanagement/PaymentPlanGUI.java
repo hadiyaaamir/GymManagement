@@ -49,13 +49,13 @@ public class PaymentPlanGUI extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
         aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
-        teamBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
         monthlyBtn = new javax.swing.JButton();
         byeBtn = new javax.swing.JButton();
         yearlyBtn = new javax.swing.JButton();
         conBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
+        teamBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -67,7 +67,7 @@ public class PaymentPlanGUI extends javax.swing.JFrame {
         fillAll.setForeground(new java.awt.Color(192, 0, 0));
         fillAll.setText("* Please choose a plan*");
         getContentPane().add(fillAll);
-        fillAll.setBounds(325, 190, 300, 16);
+        fillAll.setBounds(325, 190, 300, 14);
 
         ahover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/annual hover.PNG"))); // NOI18N
         getContentPane().add(ahover);
@@ -141,23 +141,6 @@ public class PaymentPlanGUI extends javax.swing.JFrame {
         });
         getContentPane().add(xBtn);
         xBtn.setBounds(735, 10, 20, 20);
-
-        teamBtn.setText("jButton1");
-        teamBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                teamBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                teamBtnMouseExited(evt);
-            }
-        });
-        teamBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                teamBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(teamBtn);
-        teamBtn.setBounds(505, 10, 90, 40);
 
         homeBtn.setText("jButton2");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +233,24 @@ public class PaymentPlanGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(classBtn);
-        classBtn.setBounds(620, 10, 70, 40);
+        classBtn.setBounds(610, 10, 90, 40);
+
+        teamBtn.setText("jButton1");
+        teamBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                teamBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                teamBtnMouseExited(evt);
+            }
+        });
+        teamBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teamBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(teamBtn);
+        teamBtn.setBounds(505, 10, 90, 40);
 
         pack();
         setLocationRelativeTo(null);
@@ -264,10 +264,6 @@ public class PaymentPlanGUI extends javax.swing.JFrame {
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
         System.exit(0);
     }//GEN-LAST:event_xBtnActionPerformed
-
-    private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_teamBtnActionPerformed
 
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered
         xHover.setVisible(true);
@@ -288,14 +284,6 @@ public class PaymentPlanGUI extends javax.swing.JFrame {
     private void aboutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseExited
         aboutHover.setVisible(false);
     }//GEN-LAST:event_aboutBtnMouseExited
-
-    private void teamBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseEntered
-        teamHover.setVisible(true);
-    }//GEN-LAST:event_teamBtnMouseEntered
-
-    private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
-        teamHover.setVisible(false);
-    }//GEN-LAST:event_teamBtnMouseExited
 
 
     private void conBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conBtnActionPerformed
@@ -382,8 +370,22 @@ public class PaymentPlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_classBtnMouseExited
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-     
+        new ClassesGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_classBtnActionPerformed
+
+    private void teamBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseEntered
+        teamHover.setVisible(true);
+    }//GEN-LAST:event_teamBtnMouseEntered
+
+    private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
+        teamHover.setVisible(false);
+    }//GEN-LAST:event_teamBtnMouseExited
+
+    private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
+        new TeamGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_teamBtnActionPerformed
 
     /**
      * @param args the command line arguments

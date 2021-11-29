@@ -65,6 +65,7 @@ public class Methods {
         if(currentMonth < Integer.parseInt(m))
             agee--;
         return agee;
+        
     }
     
     int getNumMonths(String y, String m) {
@@ -122,7 +123,7 @@ public class Methods {
             Connection myConn = DriverManager.getConnection(url, user, password);
             Statement myStmt = myConn.createStatement();
             
-            String sql = "update BankDetails set " + type + " = '" + value + 
+            String sql = "update TrainerBank set " + type + " = '" + value + 
                     "' where TrainerID = '" + id + "' and IBAN = '" + iban + "';";
             int rs = myStmt.executeUpdate(sql);
         } 

@@ -33,6 +33,7 @@ public class HomePageGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
         loginHover = new javax.swing.JLabel();
@@ -56,6 +57,16 @@ public class HomePageGUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(764, 470));
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/recept.PNG"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(653, 395, 110, 80);
 
         xHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x hover.PNG"))); // NOI18N
         getContentPane().add(xHover);
@@ -280,6 +291,11 @@ public class HomePageGUI extends javax.swing.JFrame {
         classHover.setVisible(false);
     }//GEN-LAST:event_classBtnMouseExited
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        new ReceptionGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -321,6 +337,7 @@ public class HomePageGUI extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel loginHover;
     private javax.swing.JLabel signUpHover;

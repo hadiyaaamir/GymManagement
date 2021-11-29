@@ -47,6 +47,9 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         logoutDD.setVisible(false);
         salaryDD.setVisible(false);
         ProfileDD.setVisible(false);
+        
+        bookedError.setVisible(false);
+        selectError.setVisible(false);
 
 
         setValues();
@@ -64,23 +67,29 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
 
             String sql;
             if(MyClasses.isSelected()) {
-                sql = "SELECT `SessionID`, `Date`, `StartTime`, "
-                        + "`Firstname`, `Lastname`, Category, SessionFee "
-                        + "FROM `session` NATURAL JOIN member "
-                        + "WHERE TrainerID = '"+ LoginGUI.trainerid +"';";
+                sql = "SELECT s.SessionID, s.Date, s.StartTime, "
+                        + "m.Firstname, m.Lastname, t.Category, t.SessionFee "
+                        + "FROM session s "
+                        + "JOIN member m on m.MemberID = s.MemberID "
+                        + "JOIN trainer t on t.TrainerID = s.TrainerID "
+                        + "WHERE s.TrainerID = '"+ LoginGUI.trainerid +"';";
             }
             
             else if(Available.isSelected()) {
-                sql = "SELECT `SessionID`, `Date`, `StartTime`, "
-                        + "`Firstname`, `Lastname`, Category, SessionFee "
-                        + "FROM `session` NATURAL JOIN member "
-                        + "WHERE TrainerID is null;";
+                sql = "SELECT s.SessionID, s.Date, s.StartTime, "
+                        + "m.Firstname, m.Lastname, t.Category, t.SessionFee "
+                        + "FROM session s "
+                        + "LEFT JOIN member m on m.MemberID = s.MemberID "
+                        + "LEFT JOIN trainer t on t.TrainerID = s.TrainerID "
+                        + "WHERE s.TrainerID is null;";
             }
             
             else {
-                sql = "SELECT `SessionID`, `Date`, `StartTime`, "
-                        + "`Firstname`, `Lastname`, Category, SessionFee "
-                        + "FROM `session` NATURAL JOIN member;";
+                sql = "SELECT s.SessionID, s.Date, s.StartTime, "
+                        + "m.Firstname, m.Lastname, t.Category, t.SessionFee "
+                        + "FROM session s "
+                        + "LEFT JOIN member m on m.MemberID = s.MemberID "
+                        + "LEFT JOIN trainer t on t.TrainerID = s.TrainerID;";
             }
             
             ResultSet rs = myStmt.executeQuery(sql);
@@ -147,13 +156,13 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         profileBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        MemberBtn = new javax.swing.JButton();
-        teamBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
         aboutBtn = new javax.swing.JButton();
         SalaryyBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         bookBtn = new javax.swing.JButton();
+        MemberBtn = new javax.swing.JButton();
+        teamBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -227,7 +236,7 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Date", "Time", "Trainer", "Category", "Fee"
+                "ID", "Date", "Time", "Member", "Category", "Fee"
             }
         ));
         classTable.setGridColor(new java.awt.Color(255, 255, 255));
@@ -407,40 +416,6 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(70, 90, 560, 380);
 
-        MemberBtn.setText("jButton1");
-        MemberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MemberBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                MemberBtnMouseExited(evt);
-            }
-        });
-        MemberBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MemberBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(MemberBtn);
-        MemberBtn.setBounds(470, 10, 90, 40);
-
-        teamBtn.setText("jButton1");
-        teamBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                teamBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                teamBtnMouseExited(evt);
-            }
-        });
-        teamBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                teamBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(teamBtn);
-        teamBtn.setBounds(355, 10, 90, 40);
-
         classBtn.setText("jButton1");
         classBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -520,6 +495,40 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         });
         getContentPane().add(bookBtn);
         bookBtn.setBounds(320, 420, 130, 50);
+
+        MemberBtn.setText("jButton1");
+        MemberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MemberBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MemberBtnMouseExited(evt);
+            }
+        });
+        MemberBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MemberBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(MemberBtn);
+        MemberBtn.setBounds(460, 0, 110, 60);
+
+        teamBtn.setText("jButton1");
+        teamBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                teamBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                teamBtnMouseExited(evt);
+            }
+        });
+        teamBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teamBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(teamBtn);
+        teamBtn.setBounds(355, 10, 100, 40);
 
         pack();
         setLocationRelativeTo(null);
@@ -604,13 +613,17 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logbookBtnMouseExited
 
     private void logbookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logbookBtnActionPerformed
-        new TrainerClassesGUI().setVisible(true);
-        this.setVisible(false);
+        if (ddOpen) {
+            new TrainerClassesGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_logbookBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        new TrainerPersonalDetailsGUI().setVisible(true);
-        this.setVisible(false);
+        if (ddOpen) {
+            new TrainerPersonalDetailsGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void memberhoverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberhoverMouseEntered
@@ -620,30 +633,6 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
     private void memberhoverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberhoverMouseExited
 
     }//GEN-LAST:event_memberhoverMouseExited
-
-    private void MemberBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseEntered
-        memberhover.setVisible(true);
-    }//GEN-LAST:event_MemberBtnMouseEntered
-
-    private void MemberBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseExited
-        memberhover.setVisible(false);
-    }//GEN-LAST:event_MemberBtnMouseExited
-
-    private void MemberBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemberBtnActionPerformed
-        // member details
-    }//GEN-LAST:event_MemberBtnActionPerformed
-
-    private void teamBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseEntered
-        teamHover.setVisible(true);
-    }//GEN-LAST:event_teamBtnMouseEntered
-
-    private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
-        teamHover.setVisible(false);
-    }//GEN-LAST:event_teamBtnMouseExited
-
-    private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_teamBtnActionPerformed
 
     private void classBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseEntered
         classHover.setVisible(true);
@@ -692,8 +681,10 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SalaryyBtnMouseExited
 
     private void SalaryyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaryyBtnActionPerformed
-        new TrainerSalaryGUI().setVisible(true);
-        this.setVisible(false);
+        if (ddOpen) {
+            new TrainerSalaryGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_SalaryyBtnActionPerformed
 
     private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
@@ -727,6 +718,7 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
 
     private void AvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableActionPerformed
         MyClasses.setSelected(false);
+        bookedError.setVisible(false);
         updateTable();
     }//GEN-LAST:event_AvailableActionPerformed
 
@@ -736,6 +728,7 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
 
     private void MyClassesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyClassesActionPerformed
         Available.setSelected(false);
+        bookedError.setVisible(false);
         updateTable();
     }//GEN-LAST:event_MyClassesActionPerformed
 
@@ -780,7 +773,10 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
                 Logger.getLogger(MemberClassesGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            Fee = model.getValueAt(selectedIndex, 5).toString();
+            if(model.getValueAt(selectedIndex, 5) == null)
+                Fee = null;
+            else
+                Fee = model.getValueAt(selectedIndex, 5).toString();
             
             if(trid != null) {
                 bookedError.setVisible(true);
@@ -807,6 +803,33 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_bookBtnActionPerformed
+
+    private void MemberBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseEntered
+        memberhover.setVisible(true);
+    }//GEN-LAST:event_MemberBtnMouseEntered
+
+    private void MemberBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseExited
+        memberhover.setVisible(false);
+    }//GEN-LAST:event_MemberBtnMouseExited
+
+    private void MemberBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemberBtnActionPerformed
+        System.out.println("works");
+        new TrainerMemberDetailsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MemberBtnActionPerformed
+
+    private void teamBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseEntered
+        teamHover.setVisible(true);
+    }//GEN-LAST:event_teamBtnMouseEntered
+
+    private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
+        teamHover.setVisible(false);
+    }//GEN-LAST:event_teamBtnMouseExited
+
+    private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
+        new TrainerteamDetailsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_teamBtnActionPerformed
 
     /**
      * @param args the command line arguments

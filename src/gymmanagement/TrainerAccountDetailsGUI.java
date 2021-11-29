@@ -5,7 +5,7 @@
  */
 package gymmanagement;
 
-import static gymmanagement.MemberBankDetailsGUI.bankTable;
+import static gymmanagement.TrainerBankDetailsGUI.bankTable;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -139,7 +139,7 @@ public class TrainerAccountDetailsGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(accNum);
-        accNum.setBounds(270, 250, 290, 30);
+        accNum.setBounds(270, 253, 290, 30);
 
         name.setBackground(new java.awt.Color(56, 85, 98));
         name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -210,7 +210,7 @@ public class TrainerAccountDetailsGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nextBtn);
-        nextBtn.setBounds(400, 340, 170, 50);
+        nextBtn.setBounds(300, 340, 170, 50);
 
         pack();
         setLocationRelativeTo(null);
@@ -253,7 +253,7 @@ public class TrainerAccountDetailsGUI extends javax.swing.JFrame {
                     v2.add(rs.getString("IBAN"));
                     v2.add(rs.getString("Name"));
 
-                    if (rs.getInt("DefaultCard") == 1) {
+                    if (rs.getInt("DefaultAcc") == 1) {
                         v2.add("Default");
                     } else {
                         v2.add("");

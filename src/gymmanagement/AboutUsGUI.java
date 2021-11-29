@@ -14,6 +14,9 @@ public class AboutUsGUI extends javax.swing.JFrame {
     /**
      * Creates new form HomePageGUI
      */
+    
+    
+    
     public AboutUsGUI() {
         initComponents();
         
@@ -212,8 +215,29 @@ public class AboutUsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_classBtnMouseExited
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        new HomePageGUI().setVisible(true);
-        this.setVisible(false);
+        
+        if(LoginGUI.trainerid.equals("") && LoginGUI.memberid.equals("") && LoginGUI.managerid.equals("")) {
+            new HomePageGUI().setVisible(true);
+            this.setVisible(false);
+        }
+        
+        else if (!LoginGUI.trainerid.equals("")) {
+           // new .setVisible(true); dashboard
+           new TrainerPersonalDetailsGUI().setVisible(true);
+            this.setVisible(false);
+        }
+        
+        else if (!LoginGUI.memberid.equals("")) {
+           // new .setVisible(true);
+           new MemberPersonalDetailsGUI().setVisible(true);
+           this.setVisible(false);
+        }
+        
+        else if (!LoginGUI.managerid.equals("")) {
+           // new .setVisible(true);
+           
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_homeBtnActionPerformed
 
     /**

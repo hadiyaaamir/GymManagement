@@ -1,7 +1,7 @@
 package gymmanagement;
 
 import gymmanagement.HomePageGUI.*;
-import static gymmanagement.MemberBankDetailsGUI.bankTable;
+import static gymmanagement.TrainerBankDetailsGUI.bankTable;
 import java.sql.*;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -96,7 +96,7 @@ public class DeletePopupTrainer extends javax.swing.JFrame {
                     v2.add(rs.getString("IBAN"));
                     v2.add(rs.getString("Name"));
 
-                    if (rs.getInt("DefaultCard") == 1) {
+                    if (rs.getInt("DefaultAcc") == 1) {
                         v2.add("Default");
                     } else {
                         v2.add("");
@@ -112,7 +112,7 @@ public class DeletePopupTrainer extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
 
-        String card = MemberBankDetailsGUI.CardNum;
+        String card = TrainerBankDetailsGUI.CardNum;
 
         try {
             Connection myConn = DriverManager.getConnection(url, user, password);
