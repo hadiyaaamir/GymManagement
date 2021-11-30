@@ -11,13 +11,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
+public class ManagerViewTrainerGUI2 extends javax.swing.JFrame {
 
     public static String sfee;
     public static String Sal;
     public static String cat;
     public static String desc;
-    public static String mid;
+    
 
     boolean ddOpen = false;
     
@@ -29,68 +29,116 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
     Connection conn;
     Statement myStmt;
 
-    public ManagerViewMemberGUI1() {
+    public ManagerViewTrainerGUI2() {
         initComponents();
 
         x.setVisible(false);
         
         setValues();
-        
+        updateHealth();
+        updateAlee();
         
     }
+
     
+    void updateHealth() {
+        int c;
+
+        try {
+            Connection myConn = DriverManager.getConnection(url, user, password);
+            Statement myStmt = myConn.createStatement();
+
+            String sql = "SELECT ConditionName FROM `healthconditions` "
+                    + "WHERE HealthID in ( "
+                    + "SELECT HealthID from healthrecord "
+                    + "WHERE PersonID = '"+ ManagerTrainerDetailsGUI.Sid +"');";
+            
+            ResultSet rs = myStmt.executeQuery(sql);
+
+            DefaultTableModel dft = (DefaultTableModel) health.getModel();
+            dft.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v2 = new Vector();
+                
+                    v2.add(rs.getString("ConditionName"));
+                    dft.addRow(v2);
+              
+            }
+            
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(HealthAndAllergies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void updateAlee() {
+        int c;
+
+        try {
+            Connection myConn = DriverManager.getConnection(url, user, password);
+            Statement myStmt = myConn.createStatement();
+
+            String sql = "SELECT Name FROM `allergies` "
+                    + "WHERE AllergyID in ( "
+                    + "SELECT AllergyID from allergyrecord "
+                    + "WHERE PersonID = '"+ ManagerTrainerDetailsGUI.Sid +"');";
+            
+            ResultSet rs = myStmt.executeQuery(sql);
+
+            DefaultTableModel dft = (DefaultTableModel) allergies.getModel();
+            dft.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v2 = new Vector();
+                
+                    v2.add(rs.getString("Name"));
+                    dft.addRow(v2);
+              
+            }
+        } 
+        
+        catch (SQLException ex) {
+            Logger.getLogger(HealthAndAllergies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     void setValues() {
         try {
             Connection myConn = DriverManager.getConnection(url, user, password);
             Statement myStmt = myConn.createStatement();
             
-            String sql = "SELECT * FROM `member` "
-                    + "where `memberID` = '" + ManagerMemberDetailsGUI.Sid + "';";
+            String sql = "SELECT `Firstname`, `Lastname`,"
+                    + "HireDate, DateOfBirth, Height, Weight, BMI "
+                    + "FROM `Trainer` Natural Join Physique "
+                    + "where `trainerID` = '" + ManagerTrainerDetailsGUI.Sid + "';";
             
             ResultSet rs = myStmt.executeQuery(sql);
             
             while(rs.next()) {
-                
+               height.setText( height.getText() + " " +rs.getString("height"));
                name.setText(rs.getString("firstname") + " " + rs.getString("lastname"));
+               weight.setText( weight.getText() + " " +rs.getString("weight"));
+               bmi.setText( bmi.getText() + " " +rs.getString("bmi"));
                
-               String hiredate = rs.getString("SignupDate");
+               String hiredate = rs.getString("HireDate");
                String y = hiredate.substring(0, 4);
                exp.setText(exp.getText() + " " + y);
                
-               email.setText(rs.getString("email"));
-               phone.setText(rs.getString("PhoneNum"));
-               cnic.setText(rs.getString("cnic"));
-               address.setText(rs.getString("address"));
+               String dob = rs.getString("DateofBirth");
+               String yr = dob.substring(0, 4);
+               String mm = dob.substring(5, 7);
                
-               String g = rs.getString("gender");
-               if(g.equals("M"))
-                   gen.setText("Male");
-               else if(g.equals("F"))
-                   gen.setText("Female");
-               else if(g.equals("O"))
-                   gen.setText("Other");
+               Methods m = new Methods();
+               age.setText(age.getText() + " " + m.getAge(yr, mm));
                
-               String p = rs.getString("planID");
-               if(p.equals("1"))
-                   plan.setText("Monthly Plan");
-               else if(p.equals("2"))
-                   plan.setText("Annual Plan");
-               else if(p.equals("3"))
-                   plan.setText("Biannual Plan");
-               
-               String a = rs.getString("Active");
-               if(a.equals("1"))
-                   active.setSelected(true);
-               else
-                   active.setSelected(false);
                
             }
             
         } 
         
         catch (SQLException ex) {
-            Logger.getLogger(ManagerViewMemberGUI1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManagerViewTrainerGUI2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -98,24 +146,20 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
+        id2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        viewclasses = new javax.swing.JLabel();
-        active = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        id2 = new javax.swing.JLabel();
-        Plan1 = new javax.swing.JLabel();
-        plan = new javax.swing.JLabel();
-        gender = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        health = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        allergies = new javax.swing.JTable();
         name = new javax.swing.JLabel();
-        gen = new javax.swing.JLabel();
-        address = new javax.swing.JLabel();
-        cnic = new javax.swing.JLabel();
-        phone = new javax.swing.JLabel();
-        email = new javax.swing.JLabel();
-        Plan = new javax.swing.JLabel();
-        add = new javax.swing.JLabel();
+        sess = new javax.swing.JLabel();
+        age = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
         x1 = new javax.swing.JLabel();
         exp = new javax.swing.JLabel();
@@ -125,9 +169,7 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
         xBtn = new javax.swing.JButton();
         xBtn1 = new javax.swing.JButton();
-        age3 = new javax.swing.JLabel();
         arrowBtn = new javax.swing.JButton();
-        vcbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -135,6 +177,26 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/arrow-30-24 - Copy.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(30, 250, 34, 40);
+
+        id2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        id2.setForeground(new java.awt.Color(56, 85, 98));
+        id2.setText("back");
+        getContentPane().add(id2);
+        id2.setBounds(28, 280, 30, 30);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/ag.PNG"))); // NOI18N
+        jLabel2.setText("jLabel1");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(220, 370, 330, 26);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/hc.PNG"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(220, 270, 330, 26);
 
         jPanel3.setBackground(new java.awt.Color(56, 85, 98));
         getContentPane().add(jPanel3);
@@ -148,56 +210,83 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(761, 0, 2, 800);
 
-        viewclasses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/vc.PNG"))); // NOI18N
-        getContentPane().add(viewclasses);
-        viewclasses.setBounds(510, 420, 170, 50);
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setBorder(null);
+        jScrollPane3.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jScrollPane3.setOpaque(false);
 
-        active.setBackground(new java.awt.Color(255, 255, 255));
-        active.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        active.setForeground(new java.awt.Color(56, 85, 98));
-        active.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                activeStateChanged(evt);
+        health.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        health.setForeground(new java.awt.Color(56, 85, 98));
+        health.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Health Conditions"
+            }
+        ));
+        health.setGridColor(new java.awt.Color(255, 255, 255));
+        health.setRequestFocusEnabled(false);
+        health.setRowHeight(20);
+        health.setSelectionBackground(new java.awt.Color(56, 85, 98));
+        health.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                healthKeyPressed(evt);
             }
         });
-        active.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                activeActionPerformed(evt);
+        jScrollPane3.setViewportView(health);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(220, 270, 330, 90);
+
+        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane4.setBorder(null);
+        jScrollPane4.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jScrollPane4.setOpaque(false);
+
+        allergies.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        allergies.setForeground(new java.awt.Color(56, 85, 98));
+        allergies.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Allergies"
+            }
+        ));
+        allergies.setGridColor(new java.awt.Color(255, 255, 255));
+        allergies.setRequestFocusEnabled(false);
+        allergies.setRowHeight(20);
+        allergies.setSelectionBackground(new java.awt.Color(56, 85, 98));
+        allergies.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                allergiesKeyPressed(evt);
             }
         });
-        getContentPane().add(active);
-        active.setBounds(350, 418, 130, 20);
+        jScrollPane4.setViewportView(allergies);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/arrow-30-24.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(710, 250, 34, 40);
-
-        id2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        id2.setForeground(new java.awt.Color(56, 85, 98));
-        id2.setText("next");
-        getContentPane().add(id2);
-        id2.setBounds(710, 280, 30, 30);
-
-        Plan1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        Plan1.setForeground(new java.awt.Color(56, 85, 98));
-        Plan1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Plan1.setText("Active:");
-        getContentPane().add(Plan1);
-        Plan1.setBounds(220, 410, 170, 30);
-
-        plan.setFont(new java.awt.Font("Segoe UI Semilight", 0, 16)); // NOI18N
-        plan.setForeground(new java.awt.Color(56, 85, 98));
-        plan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        plan.setText("email");
-        getContentPane().add(plan);
-        plan.setBounds(350, 370, 170, 30);
-
-        gender.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        gender.setForeground(new java.awt.Color(56, 85, 98));
-        gender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        gender.setText("Gender:");
-        getContentPane().add(gender);
-        gender.setBounds(220, 330, 170, 30);
+        getContentPane().add(jScrollPane4);
+        jScrollPane4.setBounds(220, 370, 330, 90);
 
         name.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
         name.setForeground(new java.awt.Color(56, 85, 98));
@@ -206,54 +295,19 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
         getContentPane().add(name);
         name.setBounds(180, 40, 410, 60);
 
-        gen.setFont(new java.awt.Font("Segoe UI Semilight", 0, 16)); // NOI18N
-        gen.setForeground(new java.awt.Color(56, 85, 98));
-        gen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        gen.setText("email");
-        getContentPane().add(gen);
-        gen.setBounds(350, 330, 170, 30);
+        sess.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
+        sess.setForeground(new java.awt.Color(56, 85, 98));
+        sess.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        sess.setText("Session Fee:");
+        getContentPane().add(sess);
+        sess.setBounds(220, 270, 170, 30);
 
-        address.setFont(new java.awt.Font("Segoe UI Semilight", 0, 16)); // NOI18N
-        address.setForeground(new java.awt.Color(56, 85, 98));
-        address.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        address.setText("email");
-        getContentPane().add(address);
-        address.setBounds(350, 290, 330, 30);
-
-        cnic.setFont(new java.awt.Font("Segoe UI Semilight", 0, 16)); // NOI18N
-        cnic.setForeground(new java.awt.Color(56, 85, 98));
-        cnic.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        cnic.setText("email");
-        getContentPane().add(cnic);
-        cnic.setBounds(350, 250, 170, 30);
-
-        phone.setFont(new java.awt.Font("Segoe UI Semilight", 0, 16)); // NOI18N
-        phone.setForeground(new java.awt.Color(56, 85, 98));
-        phone.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        phone.setText("email");
-        getContentPane().add(phone);
-        phone.setBounds(350, 210, 170, 30);
-
-        email.setFont(new java.awt.Font("Segoe UI Semilight", 0, 16)); // NOI18N
-        email.setForeground(new java.awt.Color(56, 85, 98));
-        email.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        email.setText("email");
-        getContentPane().add(email);
-        email.setBounds(350, 170, 170, 30);
-
-        Plan.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        Plan.setForeground(new java.awt.Color(56, 85, 98));
-        Plan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Plan.setText("Plan:");
-        getContentPane().add(Plan);
-        Plan.setBounds(220, 370, 170, 30);
-
-        add.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add.setForeground(new java.awt.Color(56, 85, 98));
-        add.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        add.setText("Address:");
-        getContentPane().add(add);
-        add.setBounds(220, 290, 170, 30);
+        age.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        age.setForeground(new java.awt.Color(56, 85, 98));
+        age.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        age.setText("Age:");
+        getContentPane().add(age);
+        age.setBounds(420, 210, 170, 30);
 
         x.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/x.PNG"))); // NOI18N
         getContentPane().add(x);
@@ -273,21 +327,21 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
         bmi.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         bmi.setForeground(new java.awt.Color(56, 85, 98));
         bmi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        bmi.setText("Phone no.:");
+        bmi.setText("BMI:");
         getContentPane().add(bmi);
         bmi.setBounds(220, 210, 170, 30);
 
         weight.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         weight.setForeground(new java.awt.Color(56, 85, 98));
         weight.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        weight.setText("CNIC:");
+        weight.setText("Weight:");
         getContentPane().add(weight);
-        weight.setBounds(220, 250, 170, 30);
+        weight.setBounds(420, 170, 170, 30);
 
         height.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         height.setForeground(new java.awt.Color(56, 85, 98));
         height.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        height.setText("Email:");
+        height.setText("Height:");
         getContentPane().add(height);
         height.setBounds(220, 170, 170, 30);
 
@@ -329,13 +383,6 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
         getContentPane().add(xBtn1);
         xBtn1.setBounds(735, 10, 20, 20);
 
-        age3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        age3.setForeground(new java.awt.Color(56, 85, 98));
-        age3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        age3.setText("Address:");
-        getContentPane().add(age3);
-        age3.setBounds(220, 290, 170, 30);
-
         arrowBtn.setText("jButton1");
         arrowBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrowBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -344,17 +391,7 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(arrowBtn);
-        arrowBtn.setBounds(702, 238, 40, 80);
-
-        vcbtn.setText("jButton1");
-        vcbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        vcbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vcbtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(vcbtn);
-        vcbtn.setBounds(512, 418, 170, 50);
+        arrowBtn.setBounds(12, 238, 50, 80);
 
         pack();
         setLocationRelativeTo(null);
@@ -385,31 +422,18 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_xBtn1ActionPerformed
 
-    private void activeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_activeStateChanged
+    private void healthKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_healthKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_healthKeyPressed
 
-    }//GEN-LAST:event_activeStateChanged
-
-    private void activeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeActionPerformed
-        Methods m = new Methods();
-        
-        if(active.isSelected()) {  
-            m.updateMember("Active", "1", ManagerMemberDetailsGUI.Sid);
-        }
-        else {
-            m.updateMember("Active", "0", ManagerMemberDetailsGUI.Sid);
-        }
-//        updateTable();
-    }//GEN-LAST:event_activeActionPerformed
+    private void allergiesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_allergiesKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allergiesKeyPressed
 
     private void arrowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrowBtnActionPerformed
-        new ManagerViewMemberGUI2().setVisible(true);
+        new ManagerViewTrainerGUI1().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_arrowBtnActionPerformed
-
-    private void vcbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vcbtnActionPerformed
-          new ManagerClassesGUI().setVisible(true);
-        
-    }//GEN-LAST:event_vcbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,13 +452,13 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManagerViewMemberGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerViewTrainerGUI2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManagerViewMemberGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerViewTrainerGUI2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManagerViewMemberGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerViewTrainerGUI2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManagerViewMemberGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerViewTrainerGUI2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -8632,37 +8656,31 @@ public class ManagerViewMemberGUI1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagerViewMemberGUI1().setVisible(true);
+                new ManagerViewTrainerGUI2().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Plan;
-    private javax.swing.JLabel Plan1;
-    public static javax.swing.JCheckBox active;
-    private javax.swing.JLabel add;
-    private javax.swing.JLabel address;
-    private javax.swing.JLabel age3;
+    private javax.swing.JLabel age;
+    public static javax.swing.JTable allergies;
     private javax.swing.JButton arrowBtn;
     private javax.swing.JLabel background;
     private javax.swing.JLabel bmi;
-    private javax.swing.JLabel cnic;
-    private javax.swing.JLabel email;
     private javax.swing.JLabel exp;
-    private javax.swing.JLabel gen;
-    private javax.swing.JLabel gender;
+    public static javax.swing.JTable health;
     private javax.swing.JLabel height;
     private javax.swing.JLabel id2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel name;
-    private javax.swing.JLabel phone;
-    private javax.swing.JLabel plan;
-    private javax.swing.JButton vcbtn;
-    private javax.swing.JLabel viewclasses;
+    private javax.swing.JLabel sess;
     private javax.swing.JLabel weight;
     private javax.swing.JLabel x;
     private javax.swing.JLabel x1;

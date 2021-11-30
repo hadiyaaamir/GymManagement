@@ -490,6 +490,11 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         fireBtn.setBounds(340, 420, 130, 50);
 
         hireBtn.setText("jButton1");
+        hireBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(hireBtn);
         hireBtn.setBounds(180, 420, 130, 50);
 
@@ -700,7 +705,7 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
 
             selectError.setVisible(false);
             Sid = model.getValueAt(selectedIndex, 0).toString();
-            new ManagerViewMemberGUI1().setVisible(true);
+            new ManagerViewTrainerGUI1().setVisible(true);
 
         }
     }//GEN-LAST:event_viewBtnActionPerformed
@@ -746,6 +751,10 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_fireBtnActionPerformed
+
+    private void hireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hireBtnActionPerformed
 
     /**
      * @param args the command line arguments

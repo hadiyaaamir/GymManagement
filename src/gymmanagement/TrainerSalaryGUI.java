@@ -90,7 +90,7 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
 
     void setValues() {
        
-        id.setText("Member ID: " + LoginGUI.memberid);
+        id.setText("Trainer ID: " + LoginGUI.trainerid);
 
     }
 
@@ -111,7 +111,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         memberhover = new javax.swing.JLabel();
         classHover = new javax.swing.JLabel();
         aboutHover = new javax.swing.JLabel();
-        id1 = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         xHover = new javax.swing.JLabel();
         x = new javax.swing.JLabel();
@@ -227,12 +226,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         aboutHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/about us hover.PNG"))); // NOI18N
         getContentPane().add(aboutHover);
         aboutHover.setBounds(235, 16, 100, 60);
-
-        id1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        id1.setForeground(new java.awt.Color(56, 85, 98));
-        id1.setText("Trainer ID: ");
-        getContentPane().add(id1);
-        id1.setBounds(10, 130, 150, 30);
 
         id.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         id.setForeground(new java.awt.Color(56, 85, 98));
@@ -1828,7 +1821,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
-    private javax.swing.JLabel id1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;
