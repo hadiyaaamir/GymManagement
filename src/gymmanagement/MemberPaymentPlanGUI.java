@@ -2,6 +2,7 @@ package gymmanagement;
 
 import gymmanagement.HomePageGUI.*;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,12 +12,12 @@ import java.util.logging.Logger;
  */
 public class MemberPaymentPlanGUI extends javax.swing.JFrame {
 
-    
+    boolean change = false;
     boolean ddOpen = false;
     boolean editable = false;
     String newPlan = "";
     String oldPlan = "";
-    
+
     String url = "jdbc:mysql://localhost:3306/gym_db";
 
     String user = "root";
@@ -28,6 +29,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     public MemberPaymentPlanGUI() {
         initComponents();
 
+        kuchKharab.setVisible(false);
         classHover.setVisible(false);
         teamHover.setVisible(false);
         aboutHover.setVisible(false);
@@ -40,56 +42,50 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         logoutDD.setVisible(false);
         phistoryDD.setVisible(false);
         ProfileDD.setVisible(false);
-        
+
         nextBtn.setVisible(false);
         done.setVisible(false);
-        
+
         setValues();
 
     }
 
-    
     void setValues() {
         try {
             Connection myConn = DriverManager.getConnection(url, user, password);
             Statement myStmt = myConn.createStatement();
-            
+
             String sql = "SELECT `PlanID` FROM `member` "
                     + "where `MemberID` = '" + LoginGUI.memberid + "';";
-            
+
             ResultSet rs = myStmt.executeQuery(sql);
-            
-            while(rs.next()) {
-               
-               id.setText("Member ID: " + LoginGUI.memberid);
-               oldPlan = rs.getString("PlanID");
-               
+
+            while (rs.next()) {
+
+                id.setText("Member ID: " + LoginGUI.memberid);
+                oldPlan = rs.getString("PlanID");
+
             }
-            
-            if(oldPlan.equals("1")) {
+
+            if (oldPlan.equals("1")) {
                 monthHover.setVisible(true);
                 annHover.setVisible(false);
                 biannHover.setVisible(false);
-            }
-            else if(oldPlan.equals("2")) {
+            } else if (oldPlan.equals("2")) {
                 monthHover.setVisible(false);
                 annHover.setVisible(true);
                 biannHover.setVisible(false);
-            }
-            else if(oldPlan.equals("3")) {
+            } else if (oldPlan.equals("3")) {
                 monthHover.setVisible(false);
                 annHover.setVisible(false);
                 biannHover.setVisible(true);
             }
-            
-            
-        } 
-        
-        catch (SQLException ex) {
+
+        } catch (SQLException ex) {
             Logger.getLogger(MemberPaymentPlanGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -110,6 +106,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         x = new javax.swing.JLabel();
         aboutHover = new javax.swing.JLabel();
         classHover = new javax.swing.JLabel();
+        kuchKharab = new javax.swing.JLabel();
         teamHover = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         aboutBtn = new javax.swing.JButton();
@@ -167,9 +164,9 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         getContentPane().add(ProfileDD);
         ProfileDD.setBounds(540, 50, 200, 180);
 
-        done.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/done btn.PNG"))); // NOI18N
+        done.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/paybtn.png"))); // NOI18N
         getContentPane().add(done);
-        done.setBounds(380, 430, 202, 50);
+        done.setBounds(380, 430, 204, 60);
 
         dropdown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/dropdown.PNG"))); // NOI18N
         getContentPane().add(dropdown);
@@ -177,7 +174,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
 
         Saved.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Saved.setForeground(new java.awt.Color(56, 85, 98));
-        Saved.setText("Saved!");
+        Saved.setText("Paid!");
         getContentPane().add(Saved);
         Saved.setBounds(600, 450, 300, 14);
 
@@ -206,6 +203,11 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         classHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/classes hover.PNG"))); // NOI18N
         getContentPane().add(classHover);
         classHover.setBounds(581, 16, 100, 60);
+
+        kuchKharab.setForeground(new java.awt.Color(192, 0, 0));
+        kuchKharab.setText("* Please wait for your current plan to expire *");
+        getContentPane().add(kuchKharab);
+        kuchKharab.setBounds(375, 415, 300, 14);
 
         teamHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/our team hover.PNG"))); // NOI18N
         getContentPane().add(teamHover);
@@ -516,20 +518,21 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
         teamHover.setVisible(false);
     }//GEN-LAST:event_teamBtnMouseExited
-   
+
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
 
-            //save into database
-            Methods m = new Methods();
-            String mid = LoginGUI.memberid;
-            
-            m.updateMember("PlanID", newPlan, mid);
-            
-            Saved.setVisible(true);
-            nextBtn.setVisible(false);
-            done.setVisible(false);
-            editBtn.setVisible(true);
-            editable = false;      
+        //save into database
+        Methods m = new Methods();
+        String mid = LoginGUI.memberid;
+
+        m.updateMember("PlanID", newPlan, mid);
+        addTransaction();
+
+        Saved.setVisible(true);
+        nextBtn.setVisible(false);
+        done.setVisible(false);
+        editBtn.setVisible(true);
+        editable = false;
 
     }//GEN-LAST:event_nextBtnActionPerformed
 
@@ -548,7 +551,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_homeBtnActionPerformed
 
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
-       // iconHover.setVisible(true);
+        // iconHover.setVisible(true);
     }//GEN-LAST:event_iconBtnMouseEntered
 
     private void iconBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseExited
@@ -556,23 +559,21 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_iconBtnMouseExited
 
     private void iconBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconBtnActionPerformed
-        if(!ddOpen) {
+        if (!ddOpen) {
             iconHover.setVisible(true);
             dropdown.setVisible(true);
             ddOpen = true;
-        }
-        
-        else {
+        } else {
             iconHover.setVisible(false);
             dropdown.setVisible(false);
             LogDD.setVisible(false);
             logoutDD.setVisible(false);
             phistoryDD.setVisible(false);
             ProfileDD.setVisible(false);
-            
+
             ddOpen = false;
         }
-            
+
     }//GEN-LAST:event_iconBtnActionPerformed
 
     private void healthBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healthBtnActionPerformed
@@ -589,17 +590,125 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editBtnMouseExited
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        nextBtn.setVisible(true);
-        done.setVisible(true);
+        kuchKharab.setVisible(false);
+        //classes will be paid for + added as soon as they are bought
+        //pay for new plan  
+        try {
+
+            String date = "";
+            String m = "";
+            String y = "";
+
+            //find out last month salary paid
+            Connection myConn = DriverManager.getConnection(url, user, password);
+            Statement myStmt = myConn.createStatement();
+
+            String sql = "SELECT max(Date) as maxdate, `Type` "
+                    + "FROM `transactions`"
+                    + "WHERE PersonID = '" + LoginGUI.memberid + "' "
+                    + "and type in('Monthly Plan','Annual Plan','Bi-annual Plan');";
+            ResultSet rs = myStmt.executeQuery(sql);
+
+            while (rs.next()) {
+                date = rs.getString("maxdate");
+            }
+
+            Methods meth = new Methods();
+
+            String newdate = meth.paymentdatecheck(date, Integer.parseInt(oldPlan));
+
+            int ncurrentMonth = Integer.parseInt(newdate.substring(5, 7));
+            int ncurrentYear = Integer.parseInt(newdate.substring(0, 4));
+            int ncurrentDate = Integer.parseInt(newdate.substring(8));
+            LocalDate currentdate = LocalDate.now();
+            int currentMonth = currentdate.getMonthValue();
+            int currentYear = currentdate.getYear();
+            int currentDate = currentdate.getDayOfMonth();
+
+            if (currentYear > ncurrentYear) {
+                change = true;
+            } else if (currentYear == ncurrentYear && currentMonth > ncurrentMonth) {
+                change = true;
+            } else if (currentYear == ncurrentYear && currentMonth == ncurrentMonth && currentDate > ncurrentDate) {
+                change = true;
+            } else {
+                change = false;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TrainerSalaryGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        editBtn.setVisible(false);
-        editable = true;
-        
-        Saved.setVisible(false);
+        if (!change) {
+            kuchKharab.setVisible(true);
+        } else {
+            kuchKharab.setVisible(false);
+            nextBtn.setVisible(true);
+            done.setVisible(true);
+
+            editBtn.setVisible(false);
+            editable = true;
+            Saved.setVisible(false);
+        }
     }//GEN-LAST:event_editBtnActionPerformed
+    void addTransaction() {
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            myStmt = conn.createStatement();
+            int amountt = 0;
+            String type = "";
+            String plan = newPlan;
+            
+            if (plan.equals("1")) {
+                amountt = 3000;
+                type = "Monthly Plan";
+            } 
+            else if (plan.equals("2")) {
+                amountt = 30000;
+                type = "Annual Plan";
+            }
+            else if (plan.equals("3")) {
+                amountt = 16000;
+                type = "Bi-annual Plan";
+            }
+            
+            String sql = "INSERT INTO `transactions`(`TransID`, `PersonID`, "
+                    + "`Amount`, `Date`, `type`) "
+                    + "VALUES ('" + transID() + "','" + LoginGUI.memberid + "','" + amountt
+                    + "', curdate(), '" + type + "');";
+            int rs = myStmt.executeUpdate(sql);
+        } 
+        
+        catch (SQLException ex) {
+            Logger.getLogger(PayGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    String transID() {
+        int row_id = 0;
+
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            myStmt = conn.createStatement();
+
+            String sql3 = "select count(*) as row_id from Transactions";
+            ResultSet rs3 = myStmt.executeQuery(sql3);
+
+            while (rs3.next()) {
+                row_id = rs3.getInt("row_id");
+            }
+
+            String t_id = (row_id + 1) + "";
+            return t_id;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PayGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
 
     private void monthlyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthlyBtnActionPerformed
-        if(editable) {
+        if (editable) {
             newPlan = "1";
             monthHover.setVisible(true);
             biannHover.setVisible(false);
@@ -608,7 +717,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_monthlyBtnActionPerformed
 
     private void biannualBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_biannualBtnActionPerformed
-        if(editable) {
+        if (editable) {
             newPlan = "3";
             monthHover.setVisible(false);
             biannHover.setVisible(true);
@@ -617,7 +726,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_biannualBtnActionPerformed
 
     private void annualBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annualBtnActionPerformed
-        if(editable) {
+        if (editable) {
             newPlan = "2";
             monthHover.setVisible(false);
             biannHover.setVisible(false);
@@ -828,6 +937,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
+    private javax.swing.JLabel kuchKharab;
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel logoutDD;

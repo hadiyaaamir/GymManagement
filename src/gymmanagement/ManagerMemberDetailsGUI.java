@@ -569,8 +569,10 @@ public class ManagerMemberDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logbookBtnMouseExited
 
     private void logbookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logbookBtnActionPerformed
-        new TrainerLogBookGUI().setVisible(true);
+        if(ddOpen) {
+        new ManagerLogbookGUI().setVisible(true);
         this.setVisible(false);
+        }
     }//GEN-LAST:event_logbookBtnActionPerformed
 
     private void profileBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseEntered
@@ -591,8 +593,10 @@ public class ManagerMemberDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBtnMouseExited
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        new TrainerPersonalDetailsGUI().setVisible(true);
+        if(ddOpen) {
+        new ManagerPersonalDetailsGUI().setVisible(true);
         this.setVisible(false);
+        }
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void MemberBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseEntered
@@ -634,8 +638,10 @@ public class ManagerMemberDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SalaryyBtnMouseExited
 
     private void SalaryyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaryyBtnActionPerformed
-        new TrainerSalaryGUI().setVisible(true);
-        this.setVisible(false);
+        if(ddOpen) {
+            new ManagerTranGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_SalaryyBtnActionPerformed
 
     private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
@@ -672,7 +678,7 @@ public class ManagerMemberDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_classBtnMouseExited
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        new TrainerClassesGUI().setVisible(true);
+        new ManagerAllClassesGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_classBtnActionPerformed
 

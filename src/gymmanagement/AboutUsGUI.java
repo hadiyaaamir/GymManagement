@@ -235,8 +235,8 @@ public class AboutUsGUI extends javax.swing.JFrame {
         
         else if (!LoginGUI.managerid.equals("")) {
            // new .setVisible(true);
-           
-            this.setVisible(false);
+           new ManagerPersonalDetailsGUI().setVisible(true);
+           this.setVisible(false);
         }
     }//GEN-LAST:event_homeBtnActionPerformed
 

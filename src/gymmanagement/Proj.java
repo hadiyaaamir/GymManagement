@@ -6,8 +6,12 @@ package gymmanagement;
  * and open the template in the editor.
  */
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Date;  
@@ -18,6 +22,36 @@ import java.util.Date;
 public class Proj {
 
     public static void main(String[] args) {
+        
+        
+        String dt = "2013-11-11";
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+        Date date = null;
+        try {
+            date = (Date)formatter.parse(dt);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+        Calendar now = Calendar.getInstance();    
+        now.setTime(date);
+
+
+
+        System.out.println("Current date : " + now.get(Calendar.DATE)+ "-" +(now.get(Calendar.MONTH) + 1) + "-"
+             + now.get(Calendar.YEAR));
+
+        now.add(Calendar.MONTH, 1);
+
+        System.out.println("date after 6 months : " +  now.get(Calendar.DATE)+"-" + (now.get(Calendar.MONTH) + 1) + "-"
+             + now.get(Calendar.YEAR));
+
+        
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH");  
+//        LocalDateTime now = LocalDateTime.now();  
+//        System.out.println(dtf.format(now));
         
 //        Date d=new Date("26-Nov-2021");  
 //        int year=d.getYear();  
@@ -45,20 +79,20 @@ public class Proj {
 //            System.out.println(i);
 //        }
 
-        String[] datasets = {"australia", "ds"};
-        String[] groups = {"J", "O"};
-        
-        System.out.println(datasets[1]);
-        for (int i = 0; i < 5; i++) {
-            int r = (int)(Math.random()*2);
-            System.out.println(groups[r]);
-        }
-        
-        System.out.println(datasets[0]);
-        for (int i = 0; i < 5; i++) {
-            int r = (int)(Math.random()*2);
-            System.out.println(groups[r]);
-        }
+//        String[] datasets = {"australia", "ds"};
+//        String[] groups = {"J", "O"};
+//        
+//        System.out.println(datasets[1]);
+//        for (int i = 0; i < 5; i++) {
+//            int r = (int)(Math.random()*2);
+//            System.out.println(groups[r]);
+//        }
+//        
+//        System.out.println(datasets[0]);
+//        for (int i = 0; i < 5; i++) {
+//            int r = (int)(Math.random()*2);
+//            System.out.println(groups[r]);
+//        }
 
     }
 

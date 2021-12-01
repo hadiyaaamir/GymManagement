@@ -320,7 +320,7 @@ public class ManagerViewTrainerGUI2 extends javax.swing.JFrame {
         exp.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         exp.setForeground(new java.awt.Color(56, 85, 98));
         exp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exp.setText("Member since");
+        exp.setText("Working at Lift and Press since");
         getContentPane().add(exp);
         exp.setBounds(170, 100, 430, 30);
 

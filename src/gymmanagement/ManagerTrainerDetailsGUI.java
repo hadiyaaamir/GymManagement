@@ -126,20 +126,20 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         memberhover = new javax.swing.JLabel();
         teamHover = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
-        aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
-        MemberBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
-        logbookBtn = new javax.swing.JButton();
-        profileBtn = new javax.swing.JButton();
-        SalaryyBtn = new javax.swing.JButton();
-        logoutBtn = new javax.swing.JButton();
-        classBtn = new javax.swing.JButton();
-        teamBtn = new javax.swing.JButton();
         fireBtn = new javax.swing.JButton();
         hireBtn = new javax.swing.JButton();
+        MemberBtn = new javax.swing.JButton();
+        aboutBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
+        profileBtn = new javax.swing.JButton();
+        logbookBtn = new javax.swing.JButton();
+        SalaryyBtn = new javax.swing.JButton();
+        classBtn = new javax.swing.JButton();
+        teamBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -289,26 +289,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(background);
         background.setBounds(0, 0, 770, 495);
 
-        aboutBtn.setText("jButton1");
-        aboutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                aboutBtnMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                aboutBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                aboutBtnMouseExited(evt);
-            }
-        });
-        aboutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(aboutBtn);
-        aboutBtn.setBounds(255, 3, 110, 50);
-
         xBtn.setText("jButton1");
         xBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -325,23 +305,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(xBtn);
         xBtn.setBounds(735, 10, 20, 20);
-
-        MemberBtn.setText("jButton1");
-        MemberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MemberBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                MemberBtnMouseExited(evt);
-            }
-        });
-        MemberBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MemberBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(MemberBtn);
-        MemberBtn.setBounds(470, 10, 100, 40);
 
         homeBtn.setText("jButton2");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -378,22 +341,77 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(iconBtn);
         iconBtn.setBounds(680, 0, 40, 50);
 
-        logbookBtn.setText("jButton1");
-        logbookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        fireBtn.setText("jButton1");
+        fireBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fireBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(fireBtn);
+        fireBtn.setBounds(340, 420, 130, 50);
+
+        hireBtn.setText("jButton1");
+        hireBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hireBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(hireBtn);
+        hireBtn.setBounds(180, 420, 130, 50);
+
+        MemberBtn.setText("jButton1");
+        MemberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logbookBtnMouseEntered(evt);
+                MemberBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                logbookBtnMouseExited(evt);
+                MemberBtnMouseExited(evt);
             }
         });
-        logbookBtn.addActionListener(new java.awt.event.ActionListener() {
+        MemberBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logbookBtnActionPerformed(evt);
+                MemberBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(logbookBtn);
-        logbookBtn.setBounds(540, 100, 190, 40);
+        getContentPane().add(MemberBtn);
+        MemberBtn.setBounds(470, 10, 100, 40);
+
+        aboutBtn.setText("jButton1");
+        aboutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aboutBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                aboutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                aboutBtnMouseExited(evt);
+            }
+        });
+        aboutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(aboutBtn);
+        aboutBtn.setBounds(255, 3, 110, 50);
+
+        logoutBtn.setText("jButton1");
+        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutBtnMouseExited(evt);
+            }
+        });
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logoutBtn);
+        logoutBtn.setBounds(540, 180, 190, 40);
 
         profileBtn.setText("jButton1");
         profileBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -412,6 +430,23 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(profileBtn);
         profileBtn.setBounds(540, 50, 190, 50);
 
+        logbookBtn.setText("jButton1");
+        logbookBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logbookBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logbookBtnMouseExited(evt);
+            }
+        });
+        logbookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logbookBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logbookBtn);
+        logbookBtn.setBounds(540, 100, 190, 40);
+
         SalaryyBtn.setText("jButton1");
         SalaryyBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -428,23 +463,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(SalaryyBtn);
         SalaryyBtn.setBounds(540, 140, 190, 40);
-
-        logoutBtn.setText("jButton1");
-        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                logoutBtnMouseExited(evt);
-            }
-        });
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(logoutBtn);
-        logoutBtn.setBounds(540, 180, 190, 40);
 
         classBtn.setText("jButton1");
         classBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -480,32 +498,9 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(teamBtn);
         teamBtn.setBounds(365, 10, 110, 40);
 
-        fireBtn.setText("jButton1");
-        fireBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fireBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(fireBtn);
-        fireBtn.setBounds(340, 420, 130, 50);
-
-        hireBtn.setText("jButton1");
-        hireBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hireBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(hireBtn);
-        hireBtn.setBounds(180, 420, 130, 50);
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
         System.exit(0);
@@ -518,18 +513,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
     private void xBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseExited
         xHover.setVisible(false);
     }//GEN-LAST:event_xBtnMouseExited
-
-    private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
-
-    }//GEN-LAST:event_aboutBtnMouseClicked
-
-    private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
-        aboutHover.setVisible(true);
-    }//GEN-LAST:event_aboutBtnMouseEntered
-
-    private void aboutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseExited
-        aboutHover.setVisible(false);
-    }//GEN-LAST:event_aboutBtnMouseExited
    
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
@@ -565,63 +548,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
             
     }//GEN-LAST:event_iconBtnActionPerformed
 
-    private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
-        if (ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(true);
-            logoutDD.setVisible(false);
-            transDD.setVisible(false);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_logbookBtnMouseEntered
-
-    private void logbookBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseExited
-        LogDD.setVisible(false);
-        if (ddOpen) {
-            dropdown.setVisible(true);
-        }
-    }//GEN-LAST:event_logbookBtnMouseExited
-
-    private void logbookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logbookBtnActionPerformed
-        new TrainerLogBookGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_logbookBtnActionPerformed
-
-    private void profileBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseEntered
-        if (ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(false);
-            transDD.setVisible(false);
-            ProfileDD.setVisible(true);
-        }
-    }//GEN-LAST:event_profileBtnMouseEntered
-
-    private void profileBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseExited
-        ProfileDD.setVisible(false);
-        if (ddOpen) {
-            dropdown.setVisible(true);
-        }
-    }//GEN-LAST:event_profileBtnMouseExited
-
-    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
-        new TrainerPersonalDetailsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_profileBtnActionPerformed
-
-    private void MemberBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseEntered
-   memberhover.setVisible(true);
-    }//GEN-LAST:event_MemberBtnMouseEntered
-
-    private void MemberBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseExited
-       memberhover.setVisible(false); 
-    }//GEN-LAST:event_MemberBtnMouseExited
-
-    private void MemberBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemberBtnActionPerformed
-        new ManagerTrainerDetailsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_MemberBtnActionPerformed
-
     private void memberhoverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberhoverMouseEntered
      
     }//GEN-LAST:event_memberhoverMouseEntered
@@ -629,66 +555,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
     private void memberhoverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberhoverMouseExited
      
     }//GEN-LAST:event_memberhoverMouseExited
-
-    private void SalaryyBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalaryyBtnMouseEntered
-        if (ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(false);
-            transDD.setVisible(true);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_SalaryyBtnMouseEntered
-
-    private void SalaryyBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalaryyBtnMouseExited
-        transDD.setVisible(false);
-        if (ddOpen) {
-            dropdown.setVisible(true);
-        }
-    }//GEN-LAST:event_SalaryyBtnMouseExited
-
-    private void SalaryyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaryyBtnActionPerformed
-        new TrainerSalaryGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_SalaryyBtnActionPerformed
-
-    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
-        if (ddOpen) {
-            dropdown.setVisible(false);
-            LogDD.setVisible(false);
-            logoutDD.setVisible(true);
-            transDD.setVisible(false);
-            ProfileDD.setVisible(false);
-        }
-    }//GEN-LAST:event_logoutBtnMouseEntered
-
-    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
-        logoutDD.setVisible(false);
-        if (ddOpen) {
-            dropdown.setVisible(true);
-        }
-    }//GEN-LAST:event_logoutBtnMouseExited
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        if (ddOpen) {
-            LoginGUI.type = "";
-            this.setVisible(false);
-            new HomePageGUI().setVisible(true);
-        }
-    }//GEN-LAST:event_logoutBtnActionPerformed
-
-    private void classBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseEntered
-        classHover.setVisible(true);
-    }//GEN-LAST:event_classBtnMouseEntered
-
-    private void classBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseExited
-        classHover.setVisible(false);
-    }//GEN-LAST:event_classBtnMouseExited
-
-    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        new TrainerClassesGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_classBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
 
@@ -705,23 +571,11 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
 
             selectError.setVisible(false);
             Sid = model.getValueAt(selectedIndex, 0).toString();
+            ManagerMemberDetailsGUI.Sid = model.getValueAt(selectedIndex, 0).toString();
             new ManagerViewTrainerGUI1().setVisible(true);
 
         }
     }//GEN-LAST:event_viewBtnActionPerformed
-
-    private void teamBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseEntered
-        teamHover.setVisible(true);
-    }//GEN-LAST:event_teamBtnMouseEntered
-
-    private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
-        teamHover.setVisible(false);
-    }//GEN-LAST:event_teamBtnMouseExited
-
-    private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        new ManagerTrainerDetailsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_teamBtnActionPerformed
 
     private void MyClientsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MyClientsStateChanged
 
@@ -753,8 +607,162 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_fireBtnActionPerformed
 
     private void hireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireBtnActionPerformed
-        // TODO add your handling code here:
+        new ManagerHireTrainerGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_hireBtnActionPerformed
+
+    private void MemberBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseEntered
+        memberhover.setVisible(true);
+    }//GEN-LAST:event_MemberBtnMouseEntered
+
+    private void MemberBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseExited
+        memberhover.setVisible(false);
+    }//GEN-LAST:event_MemberBtnMouseExited
+
+    private void MemberBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemberBtnActionPerformed
+        new ManagerMemberDetailsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MemberBtnActionPerformed
+
+    private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
+
+    }//GEN-LAST:event_aboutBtnMouseClicked
+
+    private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
+        aboutHover.setVisible(true);
+    }//GEN-LAST:event_aboutBtnMouseEntered
+
+    private void aboutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseExited
+        aboutHover.setVisible(false);
+    }//GEN-LAST:event_aboutBtnMouseExited
+
+    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
+        new AboutUsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_aboutBtnActionPerformed
+
+    private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(true);
+            transDD.setVisible(false);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_logoutBtnMouseEntered
+
+    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
+        logoutDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnMouseExited
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        if (ddOpen) {
+            LoginGUI.type = "";
+            this.setVisible(false);
+            new HomePageGUI().setVisible(true);
+        }
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void profileBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(false);
+            transDD.setVisible(false);
+            ProfileDD.setVisible(true);
+        }
+    }//GEN-LAST:event_profileBtnMouseEntered
+
+    private void profileBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBtnMouseExited
+        ProfileDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_profileBtnMouseExited
+
+    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
+        if(ddOpen) {
+            new ManagerPersonalDetailsGUI().setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_profileBtnActionPerformed
+
+    private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(true);
+            logoutDD.setVisible(false);
+            transDD.setVisible(false);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_logbookBtnMouseEntered
+
+    private void logbookBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseExited
+        LogDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_logbookBtnMouseExited
+
+    private void logbookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logbookBtnActionPerformed
+        if(ddOpen) {
+            new ManagerLogbookGUI().setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_logbookBtnActionPerformed
+
+    private void SalaryyBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalaryyBtnMouseEntered
+        if (ddOpen) {
+            dropdown.setVisible(false);
+            LogDD.setVisible(false);
+            logoutDD.setVisible(false);
+            transDD.setVisible(true);
+            ProfileDD.setVisible(false);
+        }
+    }//GEN-LAST:event_SalaryyBtnMouseEntered
+
+    private void SalaryyBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalaryyBtnMouseExited
+        transDD.setVisible(false);
+        if (ddOpen) {
+            dropdown.setVisible(true);
+        }
+    }//GEN-LAST:event_SalaryyBtnMouseExited
+
+    private void SalaryyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaryyBtnActionPerformed
+        if(ddOpen) {
+            new ManagerTranGUI().setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_SalaryyBtnActionPerformed
+
+    private void classBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseEntered
+        classHover.setVisible(true);
+    }//GEN-LAST:event_classBtnMouseEntered
+
+    private void classBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseExited
+        classHover.setVisible(false);
+    }//GEN-LAST:event_classBtnMouseExited
+
+    private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
+        new ManagerAllClassesGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_classBtnActionPerformed
+
+    private void teamBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseEntered
+        teamHover.setVisible(true);
+    }//GEN-LAST:event_teamBtnMouseEntered
+
+    private void teamBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamBtnMouseExited
+        teamHover.setVisible(false);
+    }//GEN-LAST:event_teamBtnMouseExited
+
+    private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
+        new ManagerTrainerDetailsGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_teamBtnActionPerformed
 
     /**
      * @param args the command line arguments
