@@ -25,7 +25,7 @@ public class ManagerChangeGUI extends javax.swing.JFrame {
     public static String gen;
     public static String dob;
 
-    boolean done = false;
+    boolean done;
     
     String url = "jdbc:mysql://localhost:3306/gym_db";
 
@@ -44,6 +44,8 @@ public class ManagerChangeGUI extends javax.swing.JFrame {
         phoneError.setVisible(false);
         cnicError.setVisible(false);
         added.setVisible(false);
+        
+        done = false;
         
     }
     

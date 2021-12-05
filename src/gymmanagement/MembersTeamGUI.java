@@ -115,11 +115,11 @@ public class MembersTeamGUI extends javax.swing.JFrame {
         aboutHover = new javax.swing.JLabel();
         classHover = new javax.swing.JLabel();
         teamHover = new javax.swing.JLabel();
+        idk = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
@@ -240,6 +240,10 @@ public class MembersTeamGUI extends javax.swing.JFrame {
         getContentPane().add(teamHover);
         teamHover.setBounds(463, 16, 100, 60);
 
+        idk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/our team.PNG"))); // NOI18N
+        getContentPane().add(idk);
+        idk.setBounds(460, 10, 150, 40);
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/memberteam.PNG"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 770, 495);
@@ -297,15 +301,6 @@ public class MembersTeamGUI extends javax.swing.JFrame {
         });
         getContentPane().add(teamBtn);
         teamBtn.setBounds(475, 10, 90, 40);
-
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
 
         iconBtn.setText("jButton1");
         iconBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -423,7 +418,7 @@ public class MembersTeamGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsMemberGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -463,11 +458,6 @@ public class MembersTeamGUI extends javax.swing.JFrame {
         teamHover.setVisible(false);
     }//GEN-LAST:event_teamBtnMouseExited
 
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
         // iconHover.setVisible(true);
@@ -535,8 +525,10 @@ public class MembersTeamGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_phistoryBtnMouseExited
 
     private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
-        new MemberpayhistoryGUI().setVisible(true);
-        this.setVisible(false);
+        if (ddOpen) {
+            new MemberpayhistoryGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_phistoryBtnActionPerformed
 
     private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
@@ -620,7 +612,7 @@ public class MembersTeamGUI extends javax.swing.JFrame {
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new MembersTeamGUI().setVisible(true);
+        new MemberClassesGUI().setVisible(true);
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void teamTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_teamTableKeyPressed
@@ -928,10 +920,10 @@ public class MembersTeamGUI extends javax.swing.JFrame {
     private javax.swing.JLabel classHover;
     private javax.swing.JLabel dropdown;
     private javax.swing.JLabel header;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
+    private javax.swing.JLabel idk;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;

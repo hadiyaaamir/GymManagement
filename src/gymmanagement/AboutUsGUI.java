@@ -45,7 +45,6 @@ public class AboutUsGUI extends javax.swing.JFrame {
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -149,15 +148,6 @@ public class AboutUsGUI extends javax.swing.JFrame {
         getContentPane().add(classBtn);
         classBtn.setBounds(620, 10, 80, 40);
 
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -171,11 +161,13 @@ public class AboutUsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnActionPerformed
 
     private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
+        new TeamGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_teamBtnActionPerformed
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        // TODO add your handling code here:
+        new ClassesGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered
@@ -213,32 +205,6 @@ public class AboutUsGUI extends javax.swing.JFrame {
     private void classBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBtnMouseExited
         classHover.setVisible(false);
     }//GEN-LAST:event_classBtnMouseExited
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        
-        if(LoginGUI.trainerid.equals("") && LoginGUI.memberid.equals("") && LoginGUI.managerid.equals("")) {
-            new HomePageGUI().setVisible(true);
-            this.setVisible(false);
-        }
-        
-        else if (!LoginGUI.trainerid.equals("")) {
-           // new .setVisible(true); dashboard
-           new TrainerPersonalDetailsGUI().setVisible(true);
-            this.setVisible(false);
-        }
-        
-        else if (!LoginGUI.memberid.equals("")) {
-           // new .setVisible(true);
-           new MemberPersonalDetailsGUI().setVisible(true);
-           this.setVisible(false);
-        }
-        
-        else if (!LoginGUI.managerid.equals("")) {
-           // new .setVisible(true);
-           new ManagerPersonalDetailsGUI().setVisible(true);
-           this.setVisible(false);
-        }
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,7 +250,6 @@ public class AboutUsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JButton classBtn;
     private javax.swing.JLabel classHover;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton teamBtn;
     private javax.swing.JLabel teamHover;
     private javax.swing.JLabel x;

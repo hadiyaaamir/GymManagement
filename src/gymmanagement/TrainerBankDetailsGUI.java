@@ -736,7 +736,7 @@ public class TrainerBankDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutBtnMouseExited
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsTrainerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 

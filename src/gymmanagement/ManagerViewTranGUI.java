@@ -129,9 +129,9 @@ public class ManagerViewTranGUI extends javax.swing.JFrame {
 
         header.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         header.setForeground(new java.awt.Color(56, 85, 98));
-        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/log table header.PNG"))); // NOI18N
+        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/table titles.PNG"))); // NOI18N
         getContentPane().add(header);
-        header.setBounds(170, 150, 460, 30);
+        header.setBounds(158, 144, 480, 30);
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));

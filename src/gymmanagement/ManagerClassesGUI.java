@@ -35,7 +35,7 @@ public class ManagerClassesGUI extends javax.swing.JFrame {
     public ManagerClassesGUI() {
         initComponents();
 
-      
+        x.setVisible(false);
         updateTable();
 
     }

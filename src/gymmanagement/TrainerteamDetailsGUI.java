@@ -102,14 +102,13 @@ public class TrainerteamDetailsGUI extends javax.swing.JFrame {
         dropdown = new javax.swing.JLabel();
         salaryDD = new javax.swing.JLabel();
         logoutDD = new javax.swing.JLabel();
+        LogDD = new javax.swing.JLabel();
+        ProfileDD = new javax.swing.JLabel();
         header = new javax.swing.JLabel();
         buttons = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         teamTable = new javax.swing.JTable();
         selectError = new javax.swing.JLabel();
-        ProfileDD = new javax.swing.JLabel();
-        LogDD = new javax.swing.JLabel();
-        id1 = new javax.swing.JLabel();
         gender = new javax.swing.JLabel();
         iconHover = new javax.swing.JLabel();
         penhover = new javax.swing.JLabel();
@@ -124,7 +123,6 @@ public class TrainerteamDetailsGUI extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
         aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
@@ -153,6 +151,14 @@ public class TrainerteamDetailsGUI extends javax.swing.JFrame {
         logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tLoutdrop.PNG"))); // NOI18N
         getContentPane().add(logoutDD);
         logoutDD.setBounds(540, 57, 189, 170);
+
+        LogDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tlogbookdrop.PNG"))); // NOI18N
+        getContentPane().add(LogDD);
+        LogDD.setBounds(540, 56, 190, 170);
+
+        ProfileDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tprofdrop.PNG"))); // NOI18N
+        getContentPane().add(ProfileDD);
+        ProfileDD.setBounds(540, 55, 190, 170);
 
         header.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         header.setForeground(new java.awt.Color(56, 85, 98));
@@ -208,20 +214,6 @@ public class TrainerteamDetailsGUI extends javax.swing.JFrame {
         selectError.setText("Please select a row");
         getContentPane().add(selectError);
         selectError.setBounds(70, 400, 180, 20);
-
-        ProfileDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tprofdrop.PNG"))); // NOI18N
-        getContentPane().add(ProfileDD);
-        ProfileDD.setBounds(540, 55, 190, 170);
-
-        LogDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tlogbookdrop.PNG"))); // NOI18N
-        getContentPane().add(LogDD);
-        LogDD.setBounds(540, 56, 190, 170);
-
-        id1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        id1.setForeground(new java.awt.Color(56, 85, 98));
-        id1.setText("Edit");
-        getContentPane().add(id1);
-        id1.setBounds(650, 150, 150, 30);
 
         gender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gender.setForeground(new java.awt.Color(255, 255, 255));
@@ -319,15 +311,6 @@ public class TrainerteamDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(xBtn);
         xBtn.setBounds(735, 10, 20, 20);
-
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
 
         viewBtn.setText("jButton2");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -479,7 +462,7 @@ public class TrainerteamDetailsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsTrainerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -507,11 +490,6 @@ public class TrainerteamDetailsGUI extends javax.swing.JFrame {
         aboutHover.setVisible(false);
     }//GEN-LAST:event_aboutBtnMouseExited
    
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
        // iconHover.setVisible(true);
@@ -1266,11 +1244,9 @@ public class TrainerteamDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel email;
     private javax.swing.JLabel gender;
     private javax.swing.JLabel header;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
-    private javax.swing.JLabel id1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logbookBtn;
     private javax.swing.JButton logoutBtn;

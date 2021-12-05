@@ -87,7 +87,6 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         chPassBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
@@ -180,7 +179,7 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         fillAll.setForeground(new java.awt.Color(192, 0, 0));
         fillAll.setText("* Please fill all fields *");
         getContentPane().add(fillAll);
-        fillAll.setBounds(280, 460, 300, 16);
+        fillAll.setBounds(280, 460, 300, 14);
 
         height.setEditable(false);
         height.setBackground(new java.awt.Color(56, 85, 98));
@@ -332,15 +331,6 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(nextBtn);
         nextBtn.setBounds(390, 438, 160, 50);
-
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
 
         chPassBtn.setText("jButton1");
         chPassBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -516,7 +506,7 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsMemberGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -525,7 +515,8 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnActionPerformed
 
     private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new MembersTeamGUI().setVisible(true);
     }//GEN-LAST:event_teamBtnActionPerformed
 
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered
@@ -598,11 +589,6 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     private void nextBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseExited
 
     }//GEN-LAST:event_nextBtnMouseExited
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
 //        iconHover.setVisible(true);
@@ -778,8 +764,10 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_phistoryBtnMouseExited
 
     private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
-        new MemberpayhistoryGUI().setVisible(true);
-        this.setVisible(false);
+        if (ddOpen) {
+            new MemberpayhistoryGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_phistoryBtnActionPerformed
 
     private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
@@ -954,7 +942,6 @@ public class MemberHealthDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel fillAll;
     private javax.swing.JButton healthBtn;
     public javax.swing.JTextField height;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;

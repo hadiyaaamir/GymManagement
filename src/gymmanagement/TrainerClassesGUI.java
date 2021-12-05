@@ -128,11 +128,8 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         dropdown = new javax.swing.JLabel();
-        header = new javax.swing.JLabel();
         Available = new javax.swing.JCheckBox();
         MyClasses = new javax.swing.JCheckBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        classTable = new javax.swing.JTable();
         bookedError = new javax.swing.JLabel();
         selectError = new javax.swing.JLabel();
         buttons = new javax.swing.JLabel();
@@ -140,6 +137,9 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         logoutDD = new javax.swing.JLabel();
         ProfileDD = new javax.swing.JLabel();
         LogDD = new javax.swing.JLabel();
+        header = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        classTable = new javax.swing.JTable();
         aboutHover = new javax.swing.JLabel();
         classHover = new javax.swing.JLabel();
         memberhover = new javax.swing.JLabel();
@@ -151,7 +151,6 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         xBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
@@ -174,12 +173,6 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         dropdown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tdrop.PNG"))); // NOI18N
         getContentPane().add(dropdown);
         dropdown.setBounds(540, 50, 200, 180);
-
-        header.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        header.setForeground(new java.awt.Color(56, 85, 98));
-        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tc.PNG"))); // NOI18N
-        getContentPane().add(header);
-        header.setBounds(70, 200, 640, 30);
 
         Available.setBackground(new java.awt.Color(255, 255, 255));
         Available.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -214,6 +207,44 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         });
         getContentPane().add(MyClasses);
         MyClasses.setBounds(70, 175, 130, 20);
+
+        bookedError.setForeground(new java.awt.Color(204, 0, 0));
+        bookedError.setText("Cannot book an already booked session");
+        getContentPane().add(bookedError);
+        bookedError.setBounds(510, 400, 250, 20);
+
+        selectError.setForeground(new java.awt.Color(204, 0, 0));
+        selectError.setText("Please select a row");
+        getContentPane().add(selectError);
+        selectError.setBounds(70, 400, 180, 20);
+
+        buttons.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttons.setForeground(new java.awt.Color(56, 85, 98));
+        buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/book.PNG"))); // NOI18N
+        getContentPane().add(buttons);
+        buttons.setBounds(320, 420, 160, 50);
+
+        salaryDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tsaldrop.PNG"))); // NOI18N
+        getContentPane().add(salaryDD);
+        salaryDD.setBounds(540, 55, 190, 170);
+
+        logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tLoutdrop.PNG"))); // NOI18N
+        getContentPane().add(logoutDD);
+        logoutDD.setBounds(540, 57, 189, 170);
+
+        ProfileDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tprofdrop.PNG"))); // NOI18N
+        getContentPane().add(ProfileDD);
+        ProfileDD.setBounds(540, 55, 190, 170);
+
+        LogDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tlogbookdrop.PNG"))); // NOI18N
+        getContentPane().add(LogDD);
+        LogDD.setBounds(540, 56, 190, 170);
+
+        header.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        header.setForeground(new java.awt.Color(56, 85, 98));
+        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tc.PNG"))); // NOI18N
+        getContentPane().add(header);
+        header.setBounds(70, 200, 640, 30);
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
@@ -252,38 +283,6 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(70, 200, 640, 200);
-
-        bookedError.setForeground(new java.awt.Color(204, 0, 0));
-        bookedError.setText("Cannot book an already booked session");
-        getContentPane().add(bookedError);
-        bookedError.setBounds(510, 400, 250, 20);
-
-        selectError.setForeground(new java.awt.Color(204, 0, 0));
-        selectError.setText("Please select a row");
-        getContentPane().add(selectError);
-        selectError.setBounds(70, 400, 180, 20);
-
-        buttons.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttons.setForeground(new java.awt.Color(56, 85, 98));
-        buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/book.PNG"))); // NOI18N
-        getContentPane().add(buttons);
-        buttons.setBounds(320, 420, 160, 50);
-
-        salaryDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tsaldrop.PNG"))); // NOI18N
-        getContentPane().add(salaryDD);
-        salaryDD.setBounds(540, 55, 190, 170);
-
-        logoutDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tLoutdrop.PNG"))); // NOI18N
-        getContentPane().add(logoutDD);
-        logoutDD.setBounds(540, 57, 189, 170);
-
-        ProfileDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tprofdrop.PNG"))); // NOI18N
-        getContentPane().add(ProfileDD);
-        ProfileDD.setBounds(540, 55, 190, 170);
-
-        LogDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/tlogbookdrop.PNG"))); // NOI18N
-        getContentPane().add(LogDD);
-        LogDD.setBounds(540, 56, 190, 170);
 
         aboutHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/about us hover.PNG"))); // NOI18N
         getContentPane().add(aboutHover);
@@ -351,15 +350,6 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
         });
         getContentPane().add(xBtn);
         xBtn.setBounds(735, 10, 20, 20);
-
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
 
         iconBtn.setText("jButton1");
         iconBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -547,11 +537,6 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnMouseExited
 
 
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
-
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
         // iconHover.setVisible(true);
     }//GEN-LAST:event_iconBtnMouseEntered
@@ -659,7 +644,7 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutBtnMouseExited
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsTrainerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -890,7 +875,6 @@ public class TrainerClassesGUI extends javax.swing.JFrame {
     public static javax.swing.JTable classTable;
     private javax.swing.JLabel dropdown;
     private javax.swing.JLabel header;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;

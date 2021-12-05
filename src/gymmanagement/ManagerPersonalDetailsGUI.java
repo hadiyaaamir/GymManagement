@@ -123,7 +123,6 @@ public class ManagerPersonalDetailsGUI extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
         xBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         chPassBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
@@ -356,15 +355,6 @@ public class ManagerPersonalDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(nextBtn);
         nextBtn.setBounds(500, 348, 150, 50);
-
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
 
         chPassBtn.setText("jButton1");
         chPassBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -639,11 +629,6 @@ public class ManagerPersonalDetailsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameActionPerformed
 
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
-
     private void phoneNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneNumMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneNumMouseClicked
@@ -752,7 +737,7 @@ public class ManagerPersonalDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutBtnMouseExited
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsManagerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -906,7 +891,6 @@ public class ManagerPersonalDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel fillAll;
     public javax.swing.JTextField firstName;
     private javax.swing.JLabel gender;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id1;

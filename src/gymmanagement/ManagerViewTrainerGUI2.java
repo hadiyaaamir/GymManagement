@@ -2,6 +2,7 @@ package gymmanagement;
 
 import gymmanagement.HomePageGUI.*;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -119,7 +120,10 @@ public class ManagerViewTrainerGUI2 extends javax.swing.JFrame {
                height.setText( height.getText() + " " +rs.getString("height"));
                name.setText(rs.getString("firstname") + " " + rs.getString("lastname"));
                weight.setText( weight.getText() + " " +rs.getString("weight"));
-               bmi.setText( bmi.getText() + " " +rs.getString("bmi"));
+               
+               DecimalFormat df = new DecimalFormat("#.#");
+               double BMI = Double.parseDouble(rs.getString("bmi"));
+               bmi.setText( bmi.getText() + " " + df.format(BMI));
                
                String hiredate = rs.getString("HireDate");
                String y = hiredate.substring(0, 4);

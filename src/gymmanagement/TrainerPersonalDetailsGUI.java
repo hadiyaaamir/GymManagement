@@ -128,7 +128,6 @@ public class TrainerPersonalDetailsGUI extends javax.swing.JFrame {
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         chPassBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
@@ -414,15 +413,6 @@ public class TrainerPersonalDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(nextBtn);
         nextBtn.setBounds(530, 438, 150, 40);
 
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
-
         chPassBtn.setText("jButton1");
         chPassBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -604,7 +594,7 @@ public class TrainerPersonalDetailsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsTrainerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -714,11 +704,6 @@ public class TrainerPersonalDetailsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameActionPerformed
 
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
-
     private void phoneNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneNumMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneNumMouseClicked
@@ -774,7 +759,7 @@ public class TrainerPersonalDetailsGUI extends javax.swing.JFrame {
 
     private void chPassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chPassBtnActionPerformed
         new TrainerChangePasswordGUI().setVisible(true);
-        this.setVisible(false);
+//        this.setVisible(false);
     }//GEN-LAST:event_chPassBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
@@ -1057,7 +1042,6 @@ public class TrainerPersonalDetailsGUI extends javax.swing.JFrame {
     public javax.swing.JTextField firstName;
     private javax.swing.JLabel gender;
     private javax.swing.JButton healthBtn;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;

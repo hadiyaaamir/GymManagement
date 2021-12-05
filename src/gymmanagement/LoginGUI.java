@@ -301,7 +301,6 @@ public class LoginGUI extends javax.swing.JFrame {
             conn = DriverManager.getConnection(url, user, password);
             myStmt = conn.createStatement();
         
-
             String sql = "select email, password, ManagerID from Manager where email = '" + e + "';";
             ResultSet rs = myStmt.executeQuery(sql);
 
@@ -321,7 +320,8 @@ public class LoginGUI extends javax.swing.JFrame {
                             trainerid = "";
                             //manager home gui
                             
-                            new ManagerMemberDetailsGUI().setVisible(true);
+                            new ManagerAllClassesGUI().setVisible(true);
+                            this.setVisible(false);
                             
                         } else {
                             kuchKharab.setVisible(true);
@@ -350,7 +350,8 @@ public class LoginGUI extends javax.swing.JFrame {
                             managerid = "";
                             //trainer home gui
                             //temp 
-                            new TrainerPersonalDetailsGUI().setVisible(true);
+                            new TrainerClassesGUI().setVisible(true);
+                            this.setVisible(false);
                         }
                         else {
                             kuchKharab.setVisible(true);
@@ -382,7 +383,8 @@ public class LoginGUI extends javax.swing.JFrame {
                             trainerid = "";
                             //member home gui
                             //temp
-                            new MemberPersonalDetailsGUI().setVisible(true);
+                            new MemberClassesGUI().setVisible(true);
+                            this.setVisible(false);
                         } 
                         else {
                             kuchKharab.setVisible(true);

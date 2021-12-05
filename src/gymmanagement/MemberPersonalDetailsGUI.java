@@ -126,7 +126,6 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         chPassBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
@@ -174,7 +173,7 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         phoneError.setForeground(new java.awt.Color(192, 0, 0));
         phoneError.setText("* Phone number length is incorrect *");
         getContentPane().add(phoneError);
-        phoneError.setBounds(480, 290, 300, 16);
+        phoneError.setBounds(480, 290, 300, 14);
 
         id1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         id1.setForeground(new java.awt.Color(56, 85, 98));
@@ -220,7 +219,7 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         fillAll.setForeground(new java.awt.Color(192, 0, 0));
         fillAll.setText("* Please fill all fields *");
         getContentPane().add(fillAll);
-        fillAll.setBounds(580, 480, 300, 16);
+        fillAll.setBounds(580, 480, 300, 14);
 
         address.setEditable(false);
         address.setBackground(new java.awt.Color(56, 85, 98));
@@ -399,15 +398,6 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(nextBtn);
         nextBtn.setBounds(530, 438, 150, 40);
 
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
-
         chPassBtn.setText("jButton1");
         chPassBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -572,7 +562,7 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsMemberGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -683,11 +673,6 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameActionPerformed
 
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
-
     private void phoneNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneNumMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneNumMouseClicked
@@ -792,8 +777,10 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_phistoryBtnMouseExited
 
     private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
-        new MemberpayhistoryGUI().setVisible(true);
-        this.setVisible(false);
+        if (ddOpen) {
+            new MemberpayhistoryGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_phistoryBtnActionPerformed
 
     private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
@@ -949,7 +936,6 @@ public class MemberPersonalDetailsGUI extends javax.swing.JFrame {
     public javax.swing.JTextField firstName;
     private javax.swing.JLabel gender;
     private javax.swing.JButton healthBtn;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;

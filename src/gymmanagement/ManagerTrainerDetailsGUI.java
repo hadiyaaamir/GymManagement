@@ -52,7 +52,7 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         updateTable();
     }
 
-     void updateTable() {
+    void updateTable() {
 
         int c;
 
@@ -127,7 +127,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         teamHover = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         xBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         fireBtn = new javax.swing.JButton();
@@ -305,15 +304,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
         });
         getContentPane().add(xBtn);
         xBtn.setBounds(735, 10, 20, 20);
-
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
 
         viewBtn.setText("jButton2");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -515,11 +505,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnMouseExited
    
 
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
-
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
        // iconHover.setVisible(true);
     }//GEN-LAST:event_iconBtnMouseEntered
@@ -608,7 +593,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
 
     private void hireBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hireBtnActionPerformed
         new ManagerHireTrainerGUI().setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_hireBtnActionPerformed
 
     private void MemberBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberBtnMouseEntered
@@ -637,7 +621,7 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutBtnMouseExited
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsManagerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -4911,7 +4895,6 @@ public class ManagerTrainerDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JButton fireBtn;
     private javax.swing.JLabel header1;
     private javax.swing.JButton hireBtn;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JScrollPane jScrollPane2;

@@ -1,6 +1,8 @@
 package gymmanagement;
 
 import gymmanagement.HomePageGUI.*;
+import static gymmanagement.ManagerTrainerDetailsGUI.MyClients;
+import static gymmanagement.ManagerTrainerDetailsGUI.teamTable;
 import java.sql.*;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -33,6 +35,54 @@ public class ManagerHireTrainerGUI2 extends javax.swing.JFrame {
         fillError.setVisible(false);
         added.setVisible(false);
 
+    }
+    
+    void updateTable() {
+
+        int c;
+
+        try {
+            Connection myConn = DriverManager.getConnection(url, user, password);
+            Statement myStmt = myConn.createStatement();
+
+            String sql = null;
+
+            if(MyClients.isSelected()) {
+                sql = "SELECT `TrainerID`, `Firstname`, "
+                        + "`Lastname`, Category "
+                        + "FROM `trainer` "
+                        + "WHERE Active = 1;";
+            
+            }
+            
+            else {
+                sql = "SELECT `TrainerID`, `Firstname`, "
+                        + "`Lastname`, Category "
+                        + "FROM `trainer`;";
+            }
+            
+            ResultSet rs = myStmt.executeQuery(sql);
+
+            ResultSetMetaData rsd = rs.getMetaData();
+            c = rsd.getColumnCount();
+            DefaultTableModel dft = (DefaultTableModel) teamTable.getModel();
+            dft.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v2 = new Vector();
+
+                for (int i = 1; i <= c; i++) {
+                    v2.add(rs.getString("TrainerID"));
+                    v2.add(rs.getString("Firstname") + " " + rs.getString("Lastname"));
+                    v2.add(rs.getString("Category"));
+                }
+
+                dft.addRow(v2);
+            }
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(MembersTeamGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -393,7 +443,9 @@ public class ManagerHireTrainerGUI2 extends javax.swing.JFrame {
 
                 int rs = myStmt.executeUpdate(sql);
                 
+                added.setVisible(true);
                 added.setText(added.getText() + " " + pass);
+                updateTable();
 
             } 
             

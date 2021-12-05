@@ -118,7 +118,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         x = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         xBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         SalaryyBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
@@ -268,15 +267,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
         });
         getContentPane().add(xBtn);
         xBtn.setBounds(735, 10, 20, 20);
-
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
 
         iconBtn.setText("jButton1");
         iconBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -460,11 +450,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnMouseExited
 
 
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
-
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
         // iconHover.setVisible(true);
     }//GEN-LAST:event_iconBtnMouseEntered
@@ -604,7 +589,7 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutBtnMouseExited
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsTrainerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -786,7 +771,6 @@ public class TrainerSalaryGUI extends javax.swing.JFrame {
     private javax.swing.JLabel dropdown;
     private javax.swing.JButton getSalaryBtn;
     private javax.swing.JLabel header;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;

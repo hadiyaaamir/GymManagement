@@ -88,7 +88,6 @@ public class TrainerHealthDetailsGUI extends javax.swing.JFrame {
         aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         chPassBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
@@ -331,15 +330,6 @@ public class TrainerHealthDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(nextBtn);
         nextBtn.setBounds(390, 438, 160, 50);
 
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
-
         chPassBtn.setText("jButton1");
         chPassBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -553,7 +543,7 @@ public class TrainerHealthDetailsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsTrainerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -623,11 +613,6 @@ public class TrainerHealthDetailsGUI extends javax.swing.JFrame {
     private void nextBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseExited
 
     }//GEN-LAST:event_nextBtnMouseExited
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
 //        iconHover.setVisible(true);
@@ -1058,7 +1043,6 @@ public class TrainerHealthDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel fillAll;
     private javax.swing.JButton healthBtn;
     public javax.swing.JTextField height;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;

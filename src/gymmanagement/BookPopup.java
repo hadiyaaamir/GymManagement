@@ -88,13 +88,13 @@ public class BookPopup extends javax.swing.JFrame {
             if (MyClasses.isSelected()) {
                 sql = "SELECT `SessionID`, `Date`, `StartTime`, "
                         + "`Firstname`, `Lastname`, Category, SessionFee "
-                        + "FROM `session` NATURAL JOIN trainer"
+                        + "FROM `session` NATURAL JOIN trainer "
                         + "WHERE MemberID ='" + LoginGUI.memberid + "';";
             } else if (Available.isSelected()) {
                 sql = "SELECT `SessionID`, `Date`, `StartTime`, "
                         + "`Firstname`, `Lastname`, Category, SessionFee "
-                        + "FROM `session` NATURAL JOIN trainer"
-                        + "WHERE MemberID = null;";
+                        + "FROM `session` NATURAL JOIN trainer "
+                        + "WHERE MemberID is null;";
             } else {
                 sql = "SELECT `SessionID`, `Date`, `StartTime`, "
                         + "`Firstname`, `Lastname`, Category, SessionFee "

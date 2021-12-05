@@ -120,7 +120,6 @@ public class ManagerTranGUI extends javax.swing.JFrame {
         aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
         MemberBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
@@ -307,15 +306,6 @@ public class ManagerTranGUI extends javax.swing.JFrame {
         getContentPane().add(MemberBtn);
         MemberBtn.setBounds(470, 10, 100, 40);
 
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
-
         iconBtn.setText("jButton1");
         iconBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -440,7 +430,7 @@ public class ManagerTranGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsManagerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -468,11 +458,6 @@ public class ManagerTranGUI extends javax.swing.JFrame {
         aboutHover.setVisible(false);
     }//GEN-LAST:event_aboutBtnMouseExited
    
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
        // iconHover.setVisible(true);
@@ -557,7 +542,7 @@ public class ManagerTranGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_MemberBtnMouseExited
 
     private void MemberBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MemberBtnActionPerformed
-        new ManagerTranGUI().setVisible(true);
+        new ManagerMemberDetailsGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MemberBtnActionPerformed
 
@@ -8885,7 +8870,6 @@ public class ManagerTranGUI extends javax.swing.JFrame {
     private javax.swing.JLabel dropdown;
     private javax.swing.JLabel email;
     private javax.swing.JLabel header;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel jLabel1;

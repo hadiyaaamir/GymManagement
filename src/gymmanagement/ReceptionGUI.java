@@ -263,6 +263,10 @@ public class ReceptionGUI extends javax.swing.JFrame {
         
         kuchKharab.setVisible(false);
 
+        memberid = "";
+        trainerid = "";
+        type = "";
+        
         e = email.getText();
         pass = new String(passwor.getPassword());
         

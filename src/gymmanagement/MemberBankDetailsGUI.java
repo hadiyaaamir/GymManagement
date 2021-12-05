@@ -152,7 +152,6 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
         xBtn = new javax.swing.JButton();
         teamBtn = new javax.swing.JButton();
         classBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         healthBtn = new javax.swing.JButton();
         paymentBtn = new javax.swing.JButton();
@@ -370,15 +369,6 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(classBtn);
         classBtn.setBounds(590, 10, 70, 40);
 
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
-
         iconBtn.setText("jButton1");
         iconBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -527,7 +517,7 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsMemberGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -536,7 +526,8 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnActionPerformed
 
     private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new MembersTeamGUI().setVisible(true);
     }//GEN-LAST:event_teamBtnActionPerformed
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
@@ -581,11 +572,6 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
         classHover.setVisible(false);
     }//GEN-LAST:event_classBtnMouseExited
 
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
         // iconHover.setVisible(true);
@@ -728,8 +714,10 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_phistoryBtnMouseExited
 
     private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
-        new MemberpayhistoryGUI().setVisible(true);
-        this.setVisible(false);
+        if (ddOpen) {
+            new MemberpayhistoryGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_phistoryBtnActionPerformed
 
     private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
@@ -920,15 +908,11 @@ public class MemberBankDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel dropdown;
     private javax.swing.JLabel header;
     private javax.swing.JButton healthBtn;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logbookBtn;
-    private javax.swing.JButton logbookBtn1;
-    private javax.swing.JButton logbookBtn2;
-    private javax.swing.JButton logbookBtn3;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel logoutDD;
     private javax.swing.JButton paymentBtn;

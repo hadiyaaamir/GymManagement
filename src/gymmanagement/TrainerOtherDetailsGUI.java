@@ -113,7 +113,6 @@ public class TrainerOtherDetailsGUI extends javax.swing.JFrame {
         aboutBtn = new javax.swing.JButton();
         xBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         healthBtn = new javax.swing.JButton();
@@ -372,15 +371,6 @@ public class TrainerOtherDetailsGUI extends javax.swing.JFrame {
         getContentPane().add(nextBtn);
         nextBtn.setBounds(350, 428, 240, 50);
 
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
-
         editBtn.setText("jButton1");
         editBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -575,7 +565,7 @@ public class TrainerOtherDetailsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsTrainerGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -665,11 +655,6 @@ public class TrainerOtherDetailsGUI extends javax.swing.JFrame {
     private void salaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_salaryActionPerformed
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void CategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CategoryMouseClicked
         // TODO add your handling code here:
@@ -922,7 +907,6 @@ public class TrainerOtherDetailsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel fillAll;
     private javax.swing.JLabel gender;
     private javax.swing.JButton healthBtn;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;

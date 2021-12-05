@@ -91,14 +91,14 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         logoutDD = new javax.swing.JLabel();
-        annHover = new javax.swing.JLabel();
-        monthHover = new javax.swing.JLabel();
-        biannHover = new javax.swing.JLabel();
+        dropdown = new javax.swing.JLabel();
         phistoryDD = new javax.swing.JLabel();
         LogDD = new javax.swing.JLabel();
         ProfileDD = new javax.swing.JLabel();
+        annHover = new javax.swing.JLabel();
+        monthHover = new javax.swing.JLabel();
+        biannHover = new javax.swing.JLabel();
         done = new javax.swing.JLabel();
-        dropdown = new javax.swing.JLabel();
         Saved = new javax.swing.JLabel();
         iconHover = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
@@ -114,7 +114,6 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         teamBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         healthBtn = new javax.swing.JButton();
         paymentBtn = new javax.swing.JButton();
@@ -140,17 +139,9 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         getContentPane().add(logoutDD);
         logoutDD.setBounds(540, 50, 200, 180);
 
-        annHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/pp annual hover.PNG"))); // NOI18N
-        getContentPane().add(annHover);
-        annHover.setBounds(573, 199, 190, 220);
-
-        monthHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/pp monthly hover.PNG"))); // NOI18N
-        getContentPane().add(monthHover);
-        monthHover.setBounds(199, 199, 190, 220);
-
-        biannHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/pp bianual hover.PNG"))); // NOI18N
-        getContentPane().add(biannHover);
-        biannHover.setBounds(387, 198, 190, 220);
+        dropdown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/dropdown.PNG"))); // NOI18N
+        getContentPane().add(dropdown);
+        dropdown.setBounds(540, 50, 200, 180);
 
         phistoryDD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/dropdown payment hover.PNG"))); // NOI18N
         getContentPane().add(phistoryDD);
@@ -164,13 +155,21 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         getContentPane().add(ProfileDD);
         ProfileDD.setBounds(540, 50, 200, 180);
 
+        annHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/pp annual hover.PNG"))); // NOI18N
+        getContentPane().add(annHover);
+        annHover.setBounds(573, 199, 190, 220);
+
+        monthHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/pp monthly hover.PNG"))); // NOI18N
+        getContentPane().add(monthHover);
+        monthHover.setBounds(199, 199, 190, 220);
+
+        biannHover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/pp bianual hover.PNG"))); // NOI18N
+        getContentPane().add(biannHover);
+        biannHover.setBounds(387, 198, 190, 220);
+
         done.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/paybtn.png"))); // NOI18N
         getContentPane().add(done);
         done.setBounds(380, 430, 204, 60);
-
-        dropdown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gymmanagement/dropdown.PNG"))); // NOI18N
-        getContentPane().add(dropdown);
-        dropdown.setBounds(540, 50, 200, 180);
 
         Saved.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Saved.setForeground(new java.awt.Color(56, 85, 98));
@@ -304,15 +303,6 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
         });
         getContentPane().add(nextBtn);
         nextBtn.setBounds(380, 438, 200, 40);
-
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
 
         iconBtn.setText("jButton1");
         iconBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -479,7 +469,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
+        new AboutUsMemberGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
@@ -488,7 +478,8 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnActionPerformed
 
     private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new MembersTeamGUI().setVisible(true);
     }//GEN-LAST:event_teamBtnActionPerformed
 
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered
@@ -544,11 +535,6 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     private void nextBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextBtnMouseExited
 
     }//GEN-LAST:event_nextBtnMouseExited
-
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
 
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
         // iconHover.setVisible(true);
@@ -762,8 +748,10 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_phistoryBtnMouseExited
 
     private void phistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phistoryBtnActionPerformed
-        new MemberpayhistoryGUI().setVisible(true);
-        this.setVisible(false);
+        if (ddOpen) {
+            new MemberpayhistoryGUI().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_phistoryBtnActionPerformed
 
     private void logbookBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logbookBtnMouseEntered
@@ -852,68 +840,7 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MemberPaymentPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MemberPaymentPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MemberPaymentPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MemberPaymentPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MemberPaymentPlanGUI().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogDD;
@@ -933,7 +860,6 @@ public class MemberPaymentPlanGUI extends javax.swing.JFrame {
     private javax.swing.JLabel dropdown;
     private javax.swing.JButton editBtn;
     private javax.swing.JButton healthBtn;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel id;

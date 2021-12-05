@@ -111,10 +111,9 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
         teamHover = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         xBtn = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
         iconBtn = new javax.swing.JButton();
         MemberBtn = new javax.swing.JButton();
-        aboutBtn = new javax.swing.JButton();
+        aboutBtn2 = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         profileBtn = new javax.swing.JButton();
         logbookBtn = new javax.swing.JButton();
@@ -263,15 +262,6 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
         getContentPane().add(xBtn);
         xBtn.setBounds(735, 10, 20, 20);
 
-        homeBtn.setText("jButton2");
-        homeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(homeBtn);
-        homeBtn.setBounds(40, 0, 180, 60);
-
         iconBtn.setText("jButton1");
         iconBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -306,8 +296,8 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
         getContentPane().add(MemberBtn);
         MemberBtn.setBounds(470, 10, 100, 40);
 
-        aboutBtn.setText("jButton1");
-        aboutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        aboutBtn2.setText("jButton1");
+        aboutBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 aboutBtnMouseClicked(evt);
             }
@@ -318,13 +308,13 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
                 aboutBtnMouseExited(evt);
             }
         });
-        aboutBtn.addActionListener(new java.awt.event.ActionListener() {
+        aboutBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(aboutBtn);
-        aboutBtn.setBounds(255, 3, 110, 50);
+        getContentPane().add(aboutBtn2);
+        aboutBtn2.setBounds(255, 3, 110, 50);
 
         logoutBtn.setText("jButton1");
         logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -445,11 +435,6 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnMouseExited
    
 
-    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        //dashboard
-        this.setVisible(false);
-    }//GEN-LAST:event_homeBtnActionPerformed
-
     private void iconBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconBtnMouseEntered
        // iconHover.setVisible(true);
     }//GEN-LAST:event_iconBtnMouseEntered
@@ -502,23 +487,6 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
         new ManagerMemberDetailsGUI().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MemberBtnActionPerformed
-
-    private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
-
-    }//GEN-LAST:event_aboutBtnMouseClicked
-
-    private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
-        aboutHover.setVisible(true);
-    }//GEN-LAST:event_aboutBtnMouseEntered
-
-    private void aboutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseExited
-        aboutHover.setVisible(false);
-    }//GEN-LAST:event_aboutBtnMouseExited
-
-    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-        new AboutUsGUI().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void logoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseEntered
         if (ddOpen) {
@@ -643,6 +611,23 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_teamBtnActionPerformed
 
+    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
+        new AboutUsManagerGUI().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_aboutBtnActionPerformed
+
+    private void aboutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseExited
+        aboutHover.setVisible(false);
+    }//GEN-LAST:event_aboutBtnMouseExited
+
+    private void aboutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseEntered
+        aboutHover.setVisible(true);
+    }//GEN-LAST:event_aboutBtnMouseEntered
+
+    private void aboutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutBtnMouseClicked
+
+    }//GEN-LAST:event_aboutBtnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -653,7 +638,7 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
     private javax.swing.JButton MemberBtn;
     private javax.swing.JLabel ProfileDD;
     private javax.swing.JButton SalaryyBtn;
-    private javax.swing.JButton aboutBtn;
+    private javax.swing.JButton aboutBtn2;
     private javax.swing.JLabel aboutHover;
     private javax.swing.JLabel background;
     private javax.swing.JButton classBtn;
@@ -661,7 +646,6 @@ public class ManagerLogbookGUI extends javax.swing.JFrame {
     private javax.swing.JLabel dropdown;
     private javax.swing.JLabel email;
     private javax.swing.JLabel header;
-    private javax.swing.JButton homeBtn;
     private javax.swing.JButton iconBtn;
     private javax.swing.JLabel iconHover;
     private javax.swing.JLabel jLabel1;

@@ -231,11 +231,13 @@ public class HomePageGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xBtnActionPerformed
 
     private void teamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamBtnActionPerformed
-        // TODO add your handling code here:
+        new TeamGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_teamBtnActionPerformed
 
     private void classBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBtnActionPerformed
-        // TODO add your handling code here:
+        new ClassesGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_classBtnActionPerformed
 
     private void xBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xBtnMouseEntered

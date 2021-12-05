@@ -456,13 +456,16 @@ public class PayGUI extends javax.swing.JFrame {
             monthError.setVisible(true);
         } else if (y == currentYear && m <= currentMonth) {
             monthError.setVisible(true);
-        } else {
-//            HomePageGUI.s3.setVisible(true);
-            this.setVisible(false);
+        } 
+        
+        else {
             createMember();
             LoginGUI.memberid = mid;
             addBankDetails();
             addTransaction();
+            
+            this.setVisible(false);
+            new MemberClassesGUI().setVisible(true);
         }
 
     }//GEN-LAST:event_nextBtnActionPerformed

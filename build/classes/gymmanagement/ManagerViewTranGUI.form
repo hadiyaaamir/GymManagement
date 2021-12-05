@@ -110,12 +110,12 @@
           <Color blue="62" green="55" red="38" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/gymmanagement/log table header.PNG"/>
+          <Image iconType="3" name="/gymmanagement/table titles.PNG"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="170" y="150" width="460" height="30"/>
+          <AbsoluteConstraints x="158" y="144" width="480" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
